@@ -18,10 +18,11 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
     
-        <!--    <mapping class="novoselac.model.Dijete" />
-        <mapping class="novoselac.model.Delatnik" />
+        
+        <mapping class="novoselac.model.Dijete" />
+        <mapping class="novoselac.model.Djelatnik" />
         <mapping class="novoselac.model.Posjeta" />
-        <mapping class="novoselac.model.Usluga" />-->
+        <mapping class="novoselac.model.Usluga" />
     
     
     </session-factory>

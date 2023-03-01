@@ -1,15 +1,22 @@
 package novoselac.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Posjeta extends Entitet {
-
+        //svojstva
+    
+        @Entity
 	private Date datumVrijemeDolaska;
 	private Date datumVrijemeOdlaska;
 	private String napomena;
+        @ManyToOne
 	private Djelatnik djelatnik;
+        @ManyToMany
 	private List<Dijete> djeca;
 	
 	

@@ -4,6 +4,8 @@
 
 package novoselac;
 
+import novoselac.util.PocetniInsert;
+
 /**
  *
  * @author Administrator
@@ -11,6 +13,6 @@ package novoselac;
 public class Start {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+       new PocetniInsert();
     }
 }

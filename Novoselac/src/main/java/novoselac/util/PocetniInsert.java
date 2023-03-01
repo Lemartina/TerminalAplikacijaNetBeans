@@ -10,4 +10,6 @@ package novoselac.util;
  */
 public class PocetniInsert {
     
+  
+    
 }

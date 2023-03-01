@@ -1,9 +1,13 @@
 package novoselac.model;
 
 //nasljeđuje entitet
+
+import jakarta.persistence.Entity;
+
 public class Dijete extends Entitet {
 	//svojstva
 	
+        @Entity
 	private String ime;
 	private String prezime;
 	private String imeRoditelja;
