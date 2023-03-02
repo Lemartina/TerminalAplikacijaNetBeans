@@ -2,10 +2,10 @@ package novoselac.model;
 
 import jakarta.persistence.Entity;
 import java.math.BigDecimal;
-
+    @Entity
 public class Usluga extends Entitet {
         //svojstva
-    @Entity
+
 	private String naziv;
 	private BigDecimal cijena;
 	private String jedinicaMjere;

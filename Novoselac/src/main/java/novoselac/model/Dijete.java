@@ -4,10 +4,11 @@ package novoselac.model;
 
 import jakarta.persistence.Entity;
 
+@Entity
 public class Dijete extends Entitet {
 	//svojstva
 	
-        @Entity
+        
 	private String ime;
 	private String prezime;
 	private String imeRoditelja;
