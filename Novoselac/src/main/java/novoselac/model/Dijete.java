@@ -3,6 +3,7 @@ package novoselac.model;
 //nasljeđuje entitet
 
 import jakarta.persistence.Entity;
+import java.math.BigDecimal;
 
 @Entity
 public class Dijete extends Entitet {
