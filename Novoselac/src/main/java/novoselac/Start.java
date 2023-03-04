@@ -4,7 +4,8 @@
 
 package novoselac;
 
-import novoselac.util.PocetniInsert;
+import novoselac.util.HibernateUtil;
+
 
 /**
  *
@@ -13,6 +14,6 @@ import novoselac.util.PocetniInsert;
 public class Start {
 
     public static void main(String[] args) {
-       new PocetniInsert();
+       HibernateUtil.getSession();
     }
 }
