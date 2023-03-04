@@ -16,6 +16,6 @@ import novoselac.util.PocetniInsert;
 public class Start {
 
     public static void main(String[] args) {
-      new PocetniInsert();
+//      new PocetniInsert(); nakon importa maknut inesert
     }
 }

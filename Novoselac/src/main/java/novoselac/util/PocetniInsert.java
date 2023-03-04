@@ -90,7 +90,7 @@ public class PocetniInsert {
             j= new Djelatnik();
             j.setIme(faker.name().firstName());
             j.setPrezime(faker.name().lastName());
-            //j.setOib(Alati.dovuciOib());
+            j.setOib(Alati.dovuciOib());
             j.setRadnoMjesto(faker.name().title());
             j.setIban(faker.business().creditCardNumber());
             
