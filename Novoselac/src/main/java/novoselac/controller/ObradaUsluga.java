@@ -36,6 +36,12 @@ public class ObradaUsluga extends Obrada<Usluga> {
   }
   
   private void kntrolaNazivNijeBroj() throws NovoselacException{
+      try {
+          Double.parseDouble(entitet.getNaziv());
+          throw new NovoselacException("Naziv smjera ne smije biti");
+      } catch (Exception e) {
+      }
+  
   }
 }
   

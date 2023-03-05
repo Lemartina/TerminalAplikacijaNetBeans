@@ -25,7 +25,7 @@ public class Start {
         ObradaUsluga ou= new ObradaUsluga();
         
         Usluga usluga = new Usluga();
-        usluga.setNaziv("Prvi preko kontorlera");
+        usluga.setNaziv("26");
         
         try {
             ou.create();
