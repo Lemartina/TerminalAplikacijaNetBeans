@@ -4,6 +4,7 @@
  */
 package novoselac.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import novoselac.model.Usluga;
 import novoselac.util.NovoselacException;
@@ -22,6 +23,7 @@ public class ObradaUsluga extends Obrada<Usluga> {
     @Override
     protected void kontrolaUnos() throws NovoselacException {
   kontrolaNaziv();
+  kontrolaCijena();
     }
     @Override
     protected void kontrolaPromjena() throws NovoselacException {
@@ -35,6 +37,8 @@ public class ObradaUsluga extends Obrada<Usluga> {
     protected void kontrolaBrisanje() throws NovoselacException {
    }
    
+    //1.UNOS
+    //kontrola naziva
     
   protected void kontrolaNaziv() throws NovoselacException {
         kontrolaNazivNull();
@@ -44,6 +48,19 @@ public class ObradaUsluga extends Obrada<Usluga> {
         kontrolaNazivDupliUBazi();
   }
   
+  
+  //kontrola cijena
+  
+   protected void kontrolaCijena() throws NovoselacException {
+        if(entitet.getCijena()==null ||
+                entitet.getCijena().compareTo(BigDecimal.ZERO)<=0 ||
+                entitet.getCijena().compareTo(new BigDecimal(500))==1){
+            throw new NovoselacException("Cijena mora biti postavljena, "
+                    + "veća od 0 i manja od 500");
+        }
+    }
+   
+   //ako cijena je nije unesena ili je veća od 0 ili je veća od 10000 izbaci grešku
   
   
     private void kontrolaNazivDupliUBazi() throws NovoselacException  {
@@ -84,14 +101,6 @@ public class ObradaUsluga extends Obrada<Usluga> {
       
       }
   }
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   private void kontrolaNazivNijeBroj()throws NovoselacException{

@@ -6,6 +6,7 @@ package novoselac;
 
 //import novoselac.util.PocetniInsert;
 
+import java.math.BigDecimal;
 import novoselac.controller.ObradaUsluga;
 import novoselac.model.Usluga;
 import novoselac.util.NovoselacException;
@@ -26,7 +27,8 @@ public class Start {
 ObradaUsluga ou= new ObradaUsluga();
         
         Usluga usluga = new Usluga();
-        usluga.setNaziv("26");
+        usluga.setNaziv("Rođendaonica");
+        usluga.setCijena(new BigDecimal(10));
         ou.setEntitet(usluga);
         try {
             ou.create();
