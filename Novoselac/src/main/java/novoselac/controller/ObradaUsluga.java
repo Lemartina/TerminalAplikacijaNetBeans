@@ -25,23 +25,87 @@ public class ObradaUsluga extends Obrada<Usluga> {
     }
     @Override
     protected void kontrolaPromjena() throws NovoselacException {
-   }
+        kontrolaNazivNull();
+        kontrolaNazivNijeBroj();
+        kontrolaNazivMinimalnaDuzina();
+        kontrolaNazivMaksimalnaDuzina();
+    }
 
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
    }
+   
     
   protected void kontrolaNaziv() throws NovoselacException {
-            kntrolaNazivNijeBroj();
+        kontrolaNazivNull();
+        kontrolaNazivNijeBroj();
+        kontrolaNazivMinimalnaDuzina();
+        kontrolaNazivMaksimalnaDuzina();
+        kontrolaNazivDupliUBazi();
   }
   
-  private void kntrolaNazivNijeBroj() throws NovoselacException{
-      try {
-          Double.parseDouble(entitet.getNaziv());
-          throw new NovoselacException("Naziv smjera ne smije biti");
-      } catch (Exception e) {
-      }
   
+  
+    private void kontrolaNazivDupliUBazi() throws NovoselacException  {
+        List<Usluga> usluge=null;
+        try {
+            usluge = session.createQuery("from Usluga u "
+                    + " where s.naziv=:naziv", 
+                    Usluga.class)
+                    .setParameter("naziv", entitet.getNaziv())
+                    .list();
+        } catch (Exception e) {
+        }
+        if(usluge!=null && !usluge.isEmpty()){
+            throw new NovoselacException("Usluga s istim nazivom postoji u bazi");
+        }
+    }
+  
+  
+  private void kontrolaNazivNull() throws NovoselacException{
+      if(entitet.getNaziv()==null){
+          throw new NovoselacException ("Naziv usluge mora biti postavljen");
+          
+      
+      }
+  }
+    private void kontrolaNazivMaksimalnaDuzina() throws NovoselacException{
+      if(entitet.getNaziv().trim().length()>20){
+          throw new NovoselacException ("Naziv usluge može imati maksimalno 20 znakova");
+          
+      
+      }
+  }
+  
+  private void kontrolaNazivMinimalnaDuzina() throws NovoselacException{
+      if(entitet.getNaziv().trim().length()<3){
+          throw new NovoselacException ("Naziv usluge može imati minimalno 3 znaka");
+          
+      
+      }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  private void kontrolaNazivNijeBroj()throws NovoselacException{
+     
+      boolean broj= false;
+      try {
+         Double.parseDouble(entitet.getNaziv());
+         broj=true;
+        
+      } catch (Exception e) {
+        
+      }
+      if(broj)
+   throw new NovoselacException("Naziv smjera ne smije biti broj");
   }
 }
   

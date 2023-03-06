@@ -22,14 +22,16 @@ public class Start {
 
     public static void main(String[] args) {
 //      new PocetniInsert(); nakon importa maknut inesert
-        ObradaUsluga ou= new ObradaUsluga();
+        
+ObradaUsluga ou= new ObradaUsluga();
         
         Usluga usluga = new Usluga();
         usluga.setNaziv("26");
-        
+        ou.setEntitet(usluga);
         try {
             ou.create();
         } catch (NovoselacException e) {
+            System.out.println(e.getPoruka());
         }
         
         

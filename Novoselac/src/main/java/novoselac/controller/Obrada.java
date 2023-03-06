@@ -19,6 +19,7 @@ public abstract class Obrada <T extends Entitet>{
     protected Session session;
     
     public abstract List<T> read ();
+   
 
     
     protected abstract void kontrolaUnos() throws NovoselacException;
