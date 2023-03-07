@@ -23,6 +23,7 @@
         <mapping class="novoselac.model.Djelatnik" />
         <mapping class="novoselac.model.Posjeta" />
         <mapping class="novoselac.model.Usluga" />
+        <mapping class="novoselac.model.Operater" />
     
     
     </session-factory>
