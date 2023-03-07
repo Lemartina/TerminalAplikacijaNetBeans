@@ -11,6 +11,7 @@ import novoselac.model.Dijete;
 import novoselac.model.Posjeta;
 import novoselac.model.Usluga;
 import novoselac.util.NovoselacException;
+import novoselac.view.SplashScreen;
 
 /**
  *
@@ -19,19 +20,22 @@ import novoselac.util.NovoselacException;
 public class Start {
 
     public static void main(String[] args) {
+        
+        new SplashScreen().setVisible(true);
+        
 //      new PocetniInsert(); nakon importa maknut inesert
 
-        ObradaUsluga ou = new ObradaUsluga();
-
-        Usluga usluga = new Usluga();
-        usluga.setNaziv("Rođendaonica");
-        usluga.setCijena(new BigDecimal(10));
-        ou.setEntitet(usluga);
-        try {
-            ou.create();
-        } catch (NovoselacException e) {
-            System.out.println(e.getPoruka());
-        }
+//        ObradaUsluga ou = new ObradaUsluga();
+//
+//        Usluga usluga = new Usluga();
+//        usluga.setNaziv("Rođendaonica");
+//        usluga.setCijena(new BigDecimal(10));
+//        ou.setEntitet(usluga);
+//        try {
+//            ou.create();
+//        } catch (NovoselacException e) {
+//            System.out.println(e.getPoruka());
+//        }
 
 //    for (Usluga u: ou.read()){
 //        System.out.println(u.getNaziv());
