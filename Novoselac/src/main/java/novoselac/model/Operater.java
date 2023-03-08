@@ -5,13 +5,16 @@
 package novoselac.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
 /**
  *
  * @author Administrator
  */
+@Entity
 public class Operater  extends Djelatnik{
 @Column (columnDefinition="char(61))")
+
     public char[] getLozinka() {
         return lozinka;
     }
@@ -22,4 +25,5 @@ public class Operater  extends Djelatnik{
     
     
     private char[] lozinka;
+    
 }
