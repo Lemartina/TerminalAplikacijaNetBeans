@@ -14,52 +14,51 @@ import org.hibernate.Session;
  *
  * @author Administrator
  */
-public abstract class Obrada <T extends Entitet>{
+public abstract class Obrada<T extends Entitet> {
+
     protected T entitet;
     protected Session session;
-    
-    public abstract List<T> read ();
-   
 
-    
+    public abstract List<T> read();
+
     protected abstract void kontrolaUnos() throws NovoselacException;
-    protected abstract void kontrolaPromjena() throws NovoselacException;
-     protected abstract void kontrolaBrisanje() throws NovoselacException;
-    
-    public Obrada() {
-        this.session =HibernateUtil.getSession();
-    }
-    
 
-    public void create() throws NovoselacException{
-       if(entitet==null){
-          throw new NovoselacException("Entitet je null");     
-       } 
- 
-    kontrolaUnos();
-    persist();
-}
-    
-     public void update() throws NovoselacException{
-    kontrolaPromjena();   
-    persist();
+    protected abstract void kontrolaPromjena() throws NovoselacException;
+
+    protected abstract void kontrolaBrisanje() throws NovoselacException;
+
+    public Obrada() {
+        this.session = HibernateUtil.getSession();
     }
-    
-     
-      public void delete() throws NovoselacException{
+
+    public void create() throws NovoselacException {
+        if (entitet == null) {
+            throw new NovoselacException("Entitet je null");
+        }
+
+        kontrolaUnos();
+        persist();
+    }
+
+    public void update() throws NovoselacException {
+        kontrolaPromjena();
+        persist();
+    }
+
+    public void delete() throws NovoselacException {
         kontrolaBrisanje();
         session.beginTransaction();
         session.remove(entitet);
         session.getTransaction().commit();
-        
+
     }
-      
-      private void persist(){
+
+    private void persist() {
         session.beginTransaction();
         session.persist(entitet);
         session.getTransaction().commit();
-      }
-      
+    }
+
     public T getEntitet() {
         return entitet;
     }
@@ -67,9 +66,5 @@ public abstract class Obrada <T extends Entitet>{
     public void setEntitet(T entitet) {
         this.entitet = entitet;
     }
-    
-    
-    
-    
-    
+
 }

@@ -4,6 +4,7 @@
  */
 package novoselac.view;
 import javax.swing.JOptionPane;
+import novoselac.controller.ObradaOperater;
 import novoselac.util.HibernateUtil;
 import org.hibernate.Session;
 
@@ -33,6 +34,16 @@ public class SplashScreen extends javax.swing.JFrame {
             Session s = HibernateUtil.getSession();
             
             if(!s.getMetamodel().getEntities().isEmpty()){
+                ObradaOperater op= new ObradaOperater();
+                
+                    if(op.read().isEmpty()){
+                        op.unosAdminOperatera();
+                }
+                
+                
+                
+                
+                
                 new ProzorLogIn().setVisible(true);
                 dispose();            
             }else{

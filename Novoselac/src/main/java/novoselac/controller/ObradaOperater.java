@@ -13,26 +13,45 @@ import org.mindrot.jbcrypt.BCrypt;
  *
  * @author Administrator
  */
-
- 
 public class ObradaOperater extends Obrada<Operater> {
+    
+    //implementacija metoda
 
     @Override
-   
     public List<Operater> read() {
-        return null;
+        return (List<Operater>) session.createQuery("from Operater", Operater.class).list();
+                
+           }
+    
+    
+    @Override
+    protected void kontrolaUnos() throws NovoselacException {
     }
 
-    public void unosAdminOperatera() throws NovoselacException {
+    @Override
+    protected void kontrolaPromjena() throws NovoselacException {
+    }
+
+    @Override
+    protected void kontrolaBrisanje() throws NovoselacException {
+    }
+
+
+    public void unosAdminOperatera()  {
         Operater o = new Operater();
         o.setIme("Admin");
         o.setPrezime("Operater");
         o.setOib("94520053219");
         o.setLozinka(BCrypt.hashpw("lozinka",
                 BCrypt.gensalt()).toCharArray());
-        
-   entitet=o;
-        
-create();
+
+        entitet = o;
+
+        try {
+             create();
+        } catch (Exception e) {
+        }
+       
     }
+
 }
