@@ -35,10 +35,19 @@ public class ObradaOperater extends Obrada<Operater> {
 
         try {
              create();
-        } catch (Exception e) {
+        } catch (NovoselacException ex) {
+            System.out.println(ex.getPoruka());
         }
        
     }
+        
+        public Operater autoriziraj(String KIme, char[] lozinka){
+            Operater o;
+            
+            o=session.createQuery("Korisničko ime", KIme)
+                    getSingleResult();
+            return null;
+        }
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {
