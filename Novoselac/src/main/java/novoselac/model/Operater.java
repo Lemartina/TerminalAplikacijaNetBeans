@@ -14,17 +14,16 @@ import jakarta.persistence.Entity;
 @Entity
 public class Operater  extends Entitet{
 
-    public Operater() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-@Column (columnDefinition="char(61))")
-
-    public char[] getLozinka() {
-        return lozinka;
-    }
-
     
-    //seteri i geter
+ @Column(columnDefinition = "char(61)")
+    private char[] lozinka;
+   
+  
+    //seteri i geteri
+ 
+ public char[] getLozinka(){
+     return lozinka;
+      }
     public void setLozinka(char[] lozinka) {
         this.lozinka = lozinka;
     }
@@ -54,8 +53,8 @@ public class Operater  extends Entitet{
     }
     
   
-    //privatna svojst a
-    private char[] lozinka;
+    //privatna svojstva
+
     private String ime;
     private String prezime;
     private String oib;

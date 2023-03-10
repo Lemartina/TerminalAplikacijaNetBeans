@@ -23,21 +23,7 @@ public class ObradaOperater extends Obrada<Operater> {
                 
            }
     
-    
-    @Override
-    protected void kontrolaUnos() throws NovoselacException {
-    }
-
-    @Override
-    protected void kontrolaPromjena() throws NovoselacException {
-    }
-
-    @Override
-    protected void kontrolaBrisanje() throws NovoselacException {
-    }
-
-
-    public void unosAdminOperatera()  {
+        public void unosAdminOperatera()  {
         Operater o = new Operater();
         o.setIme("Admin");
         o.setPrezime("Operater");
@@ -53,5 +39,17 @@ public class ObradaOperater extends Obrada<Operater> {
         }
        
     }
+
+    @Override
+    protected void kontrolaUnos() throws NovoselacException {
+   }
+
+    @Override
+    protected void kontrolaPromjena() throws NovoselacException {
+   }
+
+    @Override
+    protected void kontrolaBrisanje() throws NovoselacException {
+   }
 
 }
