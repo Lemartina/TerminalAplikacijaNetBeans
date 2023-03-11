@@ -4,6 +4,7 @@
  */
 package novoselac.controller;
 
+import jakarta.persistence.NoResultException;
 import java.util.List;
 import novoselac.model.Operater;
 import novoselac.util.NovoselacException;
@@ -41,13 +42,30 @@ public class ObradaOperater extends Obrada<Operater> {
        
     }
         
-        public Operater autoriziraj(String KIme, char[] lozinka){
-            Operater o;
+          public Operater autoriziraj(String ime, char[] lozinka){
+        Operater o;
+        try {
+            o = session.createQuery(
+                    "from Operater o where o.ime=:ime", 
+                    Operater.class)
+                    .setParameter("ime",ime)
+                    .getSingleResult();
             
-            o=session.createQuery("Korisničko ime", KIme)
-                    getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
+                    
+        if(BCrypt.checkpw(
+                new String(lozinka), 
+                new String(o.getLozinka())
+                            )
+                ){
+            return o;
+        }
+        
+        return null;
+    }
+        // implementacija metoda
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {
