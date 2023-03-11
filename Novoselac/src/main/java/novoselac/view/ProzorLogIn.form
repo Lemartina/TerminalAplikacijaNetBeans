@@ -79,6 +79,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtKorisnickoImeActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtKorisnickoImeKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLozinka">
@@ -92,6 +93,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pswLozinkaActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pswLozinkaKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAutoriziraj">

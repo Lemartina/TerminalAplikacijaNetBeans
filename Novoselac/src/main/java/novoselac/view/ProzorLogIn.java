@@ -4,6 +4,7 @@
  */
 package novoselac.view;
 
+import java.awt.event.KeyEvent;
 import novoselac.controller.ObradaOperater;
 import novoselac.model.Operater;
 import novoselac.util.Aplikacija;
@@ -20,8 +21,10 @@ public class ProzorLogIn extends javax.swing.JFrame {
      */
     public ProzorLogIn() {
         initComponents();
+        obrada= new ObradaOperater();
         
         setTitle(Aplikacija.NAZIV_NOVOSELAC + " Login");
+  
     }
 
     private void autoriziraj(){
@@ -77,6 +80,11 @@ public class ProzorLogIn extends javax.swing.JFrame {
                 txtKorisnickoImeActionPerformed(evt);
             }
         });
+        txtKorisnickoIme.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtKorisnickoImeKeyPressed(evt);
+            }
+        });
 
         lblLozinka.setText("Lozinka");
 
@@ -84,6 +92,11 @@ public class ProzorLogIn extends javax.swing.JFrame {
         pswLozinka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pswLozinkaActionPerformed(evt);
+            }
+        });
+        pswLozinka.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pswLozinkaKeyPressed(evt);
             }
         });
 
@@ -148,6 +161,42 @@ public class ProzorLogIn extends javax.swing.JFrame {
     private void pswLozinkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswLozinkaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pswLozinkaActionPerformed
+
+    private void txtKorisnickoImeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKorisnickoImeKeyPressed
+      if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+          if(txtKorisnickoIme.getText().isEmpty()){
+              lblPoruka.setText("Obavezno unesite korisničko ime");
+         return;
+          }
+          if(pswLozinka.getPassword().length==0){
+              pswLozinka.requestFocus();
+              lblPoruka.setText("Obavezno unesite lozinku");
+          return;
+          }
+            autoriziraj();
+      }
+    
+      
+      
+      
+    }//GEN-LAST:event_txtKorisnickoImeKeyPressed
+
+    private void pswLozinkaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswLozinkaKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+          if(pswLozinka.getPassword().length==0
+                  ){
+              lblPoruka.setText("Obavezno unesite lozinku");
+         return;
+          }
+          if(txtKorisnickoIme.getText().isEmpty()){
+               lblPoruka.setText("Obavezno unesite  korisničko ime");
+              txtKorisnickoIme.requestFocus();
+             
+          return;
+          }
+            autoriziraj();
+      }
+    }//GEN-LAST:event_pswLozinkaKeyPressed
 
     /**
      * @param args the command line arguments
