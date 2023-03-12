@@ -92,7 +92,7 @@ public class ProzorLogIn extends javax.swing.JFrame {
 
         lblLozinka.setText("Lozinka");
 
-        pswLozinka.setText("1234567");
+        pswLozinka.setText("edunova");
         pswLozinka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pswLozinkaActionPerformed(evt);
