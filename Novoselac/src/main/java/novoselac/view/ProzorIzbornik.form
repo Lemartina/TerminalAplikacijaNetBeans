@@ -40,6 +40,18 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="O aplikaciji"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Novosti"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Izlaz"/>
+          </Properties>
         </Menu>
       </SubComponents>
     </Menu>
