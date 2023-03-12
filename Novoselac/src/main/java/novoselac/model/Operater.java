@@ -17,6 +17,10 @@ public class Operater  extends Entitet{
     
  @Column(columnDefinition = "char(61)")
     private char[] lozinka;
+ 
+ public String getImePerezime(){
+     return getIme() +" "+ getPrezime();
+ }
    
   
     //seteri i geteri
@@ -51,6 +55,14 @@ public class Operater  extends Entitet{
     public void setOib(String oib) {
         this.oib = oib;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
   
     //privatna svojstva
@@ -58,7 +70,7 @@ public class Operater  extends Entitet{
     private String ime;
     private String prezime;
     private String oib;
-    
+    private String email;
 
 
      public String getImePrezime(){

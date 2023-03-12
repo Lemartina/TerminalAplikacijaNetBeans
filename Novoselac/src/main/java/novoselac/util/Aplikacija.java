@@ -4,6 +4,8 @@
  */
 package novoselac.util;
 
+import novoselac.model.Operater;
+
 /**
  *
  * @author Administrator
@@ -12,4 +14,5 @@ public class Aplikacija {
     
     public static final String NAZIV_NOVOSELAC="Dječja igraonica";
     
+    public static Operater OPERATER;
 }

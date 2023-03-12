@@ -26,10 +26,11 @@ public class ObradaOperater extends Obrada<Operater> {
     
         public void unosAdminOperatera()  {
         Operater o = new Operater();
-        o.setIme("Admin");
-        o.setPrezime("Operater");
-        o.setOib("94520053219");
-        o.setLozinka(BCrypt.hashpw("lozinka",
+        o.setIme("Martina");
+        o.setPrezime("Novoselac");
+        o.setOib("69266610915");
+        o.setEmail("novoselac.martina@gmail.com");
+        o.setLozinka(BCrypt.hashpw("edunova",
                 BCrypt.gensalt()).toCharArray());
 
         entitet = o;
@@ -42,13 +43,13 @@ public class ObradaOperater extends Obrada<Operater> {
        
     }
         
-          public Operater autoriziraj(String ime, char[] lozinka){
+          public Operater autoriziraj(String email, char[] lozinka){
         Operater o;
         try {
             o = session.createQuery(
-                    "from Operater o where o.ime=:ime", 
+                    "from Operater o where o.email=:email", 
                     Operater.class)
-                    .setParameter("ime",ime)
+                    .setParameter("email",email)
                     .getSingleResult();
             
         } catch (NoResultException e) {

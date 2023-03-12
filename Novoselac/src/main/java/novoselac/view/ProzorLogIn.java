@@ -28,28 +28,32 @@ public class ProzorLogIn extends javax.swing.JFrame {
     }
 
     private void autoriziraj(){
-             if(txtKorisnickoIme.getText().isEmpty()){
-            lblPoruka.setText("Obavezan unos korisničkog imena");
+             if(txtEmail.getText().isEmpty()){
+            lblPoruka.setText("Obavezan unos emaila");
             return;
         }
         
         if(pswLozinka.getPassword().length==0){
-            lblPoruka.setText("Obavezno lozinka");
+            lblPoruka.setText("Obavezan unos lozinke");
             return;
         }
         
         
         
-       Operater o = obrada.autoriziraj(txtKorisnickoIme.getText(),
+       Operater o = obrada.autoriziraj(txtEmail.getText(),
                 pswLozinka.getPassword());
         
         
     if(o==null){
-        lblPoruka.setText("Neispravna kombinacija imena i lozinke");
+        lblPoruka.setText("Neispravna kombinacija emaila i lozinke");
         return;
         
        
     }
+    
+    
+    Aplikacija.OPERATER=o;
+    
      new ProzorIzbornik().setVisible(true);
         dispose();
     }
@@ -64,7 +68,7 @@ public class ProzorLogIn extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtKorisnickoIme = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         lblLozinka = new javax.swing.JLabel();
         pswLozinka = new javax.swing.JPasswordField();
         btnAutoriziraj = new javax.swing.JButton();
@@ -72,17 +76,17 @@ public class ProzorLogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Korisničko ime");
+        jLabel1.setText("Email");
 
-        txtKorisnickoIme.setText("Martina");
-        txtKorisnickoIme.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.setText("novoselac.martina@gmail.com");
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKorisnickoImeActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
-        txtKorisnickoIme.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtKorisnickoImeKeyPressed(evt);
+                txtEmailKeyPressed(evt);
             }
         });
 
@@ -112,38 +116,32 @@ public class ProzorLogIn extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pswLozinka)
-                            .addComponent(txtKorisnickoIme)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(btnAutoriziraj, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGap(108, 108, 108)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnAutoriziraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblLozinka, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pswLozinka)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPoruka, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblLozinka)
-                .addGap(18, 18, 18)
-                .addComponent(pswLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAutoriziraj)
                 .addGap(33, 33, 33)
-                .addComponent(lblPoruka)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pswLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(btnAutoriziraj, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,18 +152,18 @@ public class ProzorLogIn extends javax.swing.JFrame {
         autoriziraj();
     }//GEN-LAST:event_btnAutorizirajActionPerformed
 
-    private void txtKorisnickoImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKorisnickoImeActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtKorisnickoImeActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     private void pswLozinkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswLozinkaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pswLozinkaActionPerformed
 
-    private void txtKorisnickoImeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKorisnickoImeKeyPressed
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
       if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-          if(txtKorisnickoIme.getText().isEmpty()){
-              lblPoruka.setText("Obavezno unesite korisničko ime");
+          if(txtEmail.getText().isEmpty()){
+              lblPoruka.setText("Obavezno unesite email");
          return;
           }
           if(pswLozinka.getPassword().length==0){
@@ -179,7 +177,7 @@ public class ProzorLogIn extends javax.swing.JFrame {
       
       
       
-    }//GEN-LAST:event_txtKorisnickoImeKeyPressed
+    }//GEN-LAST:event_txtEmailKeyPressed
 
     private void pswLozinkaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswLozinkaKeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -188,9 +186,9 @@ public class ProzorLogIn extends javax.swing.JFrame {
               lblPoruka.setText("Obavezno unesite lozinku");
          return;
           }
-          if(txtKorisnickoIme.getText().isEmpty()){
-               lblPoruka.setText("Obavezno unesite  korisničko ime");
-              txtKorisnickoIme.requestFocus();
+          if(txtEmail.getText().isEmpty()){
+               lblPoruka.setText("Obavezno unesite email");
+              txtEmail.requestFocus();
              
           return;
           }
@@ -209,6 +207,6 @@ public class ProzorLogIn extends javax.swing.JFrame {
     private javax.swing.JLabel lblLozinka;
     private javax.swing.JLabel lblPoruka;
     private javax.swing.JPasswordField pswLozinka;
-    private javax.swing.JTextField txtKorisnickoIme;
+    private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
 }
