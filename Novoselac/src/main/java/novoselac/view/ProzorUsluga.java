@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import novoselac.controller.ObradaUsluga;
 import novoselac.model.Usluga;
 import novoselac.util.Aplikacija;
 import novoselac.util.NovoselacException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,9 +39,8 @@ public class ProzorUsluga extends javax.swing.JFrame {
                         new Locale("hr", "HR"));
         df= new DecimalFormat("###,##0.00", dfs);
         
-        
-        
-        obrada= new ObradaUsluga();
+              
+ 
         setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Usluge");
@@ -82,6 +81,11 @@ public class ProzorUsluga extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPodaciValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstPodaci);
 
         jLabel1.setText("Popis usluga:");
@@ -247,7 +251,26 @@ private void napuniModel(){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNazivActionPerformed
 
-    
+    private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
+        if(evt.getValueIsAdjusting()){
+            return;
+        }
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        
+        obrada.setEntitet(lstPodaci.getSelectedValue());
+        napuniView();
+    }//GEN-LAST:event_lstPodaciValueChanged
+
+    private void napuniView(){
+        var u= obrada.getEntitet();
+        txtNaziv.setText(u.getNaziv());
+        txtCijena.setText(df.format(u.getCijena()));
+        txtJedinicaMjere.setText(u.getJedinicaMjere());
+        txtKolicina.setText(df.format(u.getKolicina()));
+             
+    }
     
     /**
      * @param args the command line arguments
