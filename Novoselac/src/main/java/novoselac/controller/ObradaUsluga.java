@@ -45,7 +45,7 @@ public class ObradaUsluga extends Obrada<Usluga> {
         kontrolaNazivNijeBroj();//radi
         kontrolaNazivMinimalnaDuzina();//radi
         kontrolaNazivMaksimalnaDuzina();//radi
-        kontrolaNazivDupliUBazi();//ne radi
+        kontrolaNazivDupliUBazi();//radi
   }
   
   
