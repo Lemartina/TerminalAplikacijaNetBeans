@@ -41,11 +41,11 @@ public class ObradaUsluga extends Obrada<Usluga> {
     //kontrola naziva
     
   protected void kontrolaNaziv() throws NovoselacException {
-        kontrolaNazivNull();
-        kontrolaNazivNijeBroj();
-        kontrolaNazivMinimalnaDuzina();
-        kontrolaNazivMaksimalnaDuzina();
-        kontrolaNazivDupliUBazi();
+        kontrolaNazivNull();//radi
+        kontrolaNazivNijeBroj();//radi
+        kontrolaNazivMinimalnaDuzina();//radi
+        kontrolaNazivMaksimalnaDuzina();//radi
+        kontrolaNazivDupliUBazi();//ne radi
   }
   
   
@@ -60,14 +60,14 @@ public class ObradaUsluga extends Obrada<Usluga> {
         }
     }
    
-   //ako cijena je nije unesena ili je veća od 0 ili je veća od 10000 izbaci grešku
+   //ako cijena je nije unesena ili je veća od 0 ili je veća od 10000 izbaci grešku-radi
   
   
     private void kontrolaNazivDupliUBazi() throws NovoselacException  {
         List<Usluga> usluge=null;
         try {
             usluge = session.createQuery("from Usluga u "
-                    + " where s.naziv=:naziv", 
+                    + " where u.naziv=:naziv", 
                     Usluga.class)
                     .setParameter("naziv", entitet.getNaziv())
                     .list();
