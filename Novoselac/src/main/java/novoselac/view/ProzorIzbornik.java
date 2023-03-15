@@ -81,11 +81,11 @@ pokreniSat();
         jToolBar1 = new javax.swing.JToolBar();
         lblVrijeme = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -97,10 +97,7 @@ pokreniSat();
         jToolBar1.setRollover(true);
         jToolBar1.add(lblVrijeme);
 
-        jMenu1.setText("Katalog");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Obrada");
+        jMenu2.setText("Katalog");
 
         jMenuItem1.setText("Usluge");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,10 +113,14 @@ pokreniSat();
         jMenuItem3.setText("Djelatnici");
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("Posjete");
-        jMenu2.add(jMenuItem4);
-
         jMenuBar1.add(jMenu2);
+
+        jMenu1.setText("Obrada");
+
+        jMenuItem4.setText("Posjete");
+        jMenu1.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu1);
 
         jMenu3.setText("O aplikaciji");
 
@@ -166,6 +167,7 @@ pokreniSat();
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
