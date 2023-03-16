@@ -5,20 +5,22 @@
 package novoselac.view;
 
 import java.text.DecimalFormat;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import novoselac.controller.ObradaDjelatnik;
 import novoselac.model.Djelatnik;
+import novoselac.util.Aplikacija;
 import novoselac.util.NovoselacException;
 
 /**
  *
  * @author Administrator
  */
-public class ProzorDjelatnik extends javax.swing.JFrame 
-
+public class ProzorDjelatnik 
+ extends javax.swing.JFrame 
 implements NovoselacViewSucelje{
     
-      private ObradaDjelatnik obrada;
+    private ObradaDjelatnik obrada; // dovlačenje djelatnika iz baze je u kontroleru
     private DecimalFormat df;
 
     /**
@@ -26,7 +28,23 @@ implements NovoselacViewSucelje{
      */
     public ProzorDjelatnik() {
         initComponents();
+        
+        obrada = new ObradaDjelatnik();
+        
+        setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
+               Aplikacija.OPERATER.getImePrezime() +
+                ": Djelatnici");
+        
+        ucitaj();
     }
+    
+    public void ucitaj(){
+        DefaultListModel<Djelatnik> m= new DefaultListModel<>();
+        m.addAll(obrada.read());
+        lstPodaci.setModel(m);
+        lstPodaci.repaint();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,6 +100,7 @@ implements NovoselacViewSucelje{
         });
 
         lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstPodaci.setToolTipText("");
         lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstPodaciValueChanged(evt);
@@ -199,7 +218,7 @@ implements NovoselacViewSucelje{
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odabertie uslugu");
+                "Prvo odabertie djelatnika");
             return;
         }
 
@@ -217,7 +236,7 @@ implements NovoselacViewSucelje{
     private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite uslugu koju želite brisati");
+                "Prvo odaberite djelatnika kojeg želite brisati");
 
             return;
         }
@@ -225,7 +244,7 @@ implements NovoselacViewSucelje{
         if(JOptionPane.showConfirmDialog(
             getRootPane(),
             "Jeste li sigurni da želite brisati djelatnika " +
-            obrada.getEntitet().getNaziv()+"?",
+            obrada.getEntitet().getIme()+"?",
             "Brisanje",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
@@ -255,7 +274,7 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_lstPodaciValueChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        obrada.setEntitet(new Djelatnk());
+        obrada.setEntitet(new Djelatnik());
         napuniModel();
         try {
             obrada.create();
@@ -273,6 +292,7 @@ implements NovoselacViewSucelje{
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOibActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -298,14 +318,23 @@ implements NovoselacViewSucelje{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void ucitaj() {
-   }
-
-    @Override
     public void napuniView() {
-   }
+   var e = obrada.getEntitet();
+        txtImeDjelatnika.setText(e.getIme());
+        txtPrezime.setText(e.getPrezime());
+        txtOib.setText(e.getOib());
+        txtIban.setText(e.getIban());
+    txtRadnoMjesto.setText(e.getRadnoMjesto());
+    }
 
     @Override
     public void napuniModel() {
-    }
-}
+        var e = obrada.getEntitet();
+        e.setIme(txtImeDjelatnika.getText());
+        e.setPrezime(txtPrezime.getText());
+        e.setOib(txtOib.getText());
+        e.setIban(txtIban.getText());
+        e.setRadnoMjesto(txtRadnoMjesto.getText());
+    } }
+
+
