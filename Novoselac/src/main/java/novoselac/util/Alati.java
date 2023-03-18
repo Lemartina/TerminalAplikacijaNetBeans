@@ -41,6 +41,33 @@ public class Alati {
 
         return "";
     }
+    
+    
+    
+    public static String dovuciIban() {
+
+        try {
+            //https://stackoverflow.com/questions/8616781/how-to-get-a-web-pages-source-code-from-java
+            URL url = new URL("http://randomiban.com/?country=Croatia");
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(
+                            url.openStream()));
+            String inputLine;
+            StringBuilder sb = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                sb.append(inputLine);
+            }
+            in.close();
+       
+                     Document d = Jsoup.parse(sb.toString());
+            return Xsoup.compile("/html/body/p()").evaluate(d).get();
+
+            //System.out.println(sb.toString());
+        } catch (Exception e) {
+        }
+
+        return "";
+    }
 
    // kontrola oib-a
     
