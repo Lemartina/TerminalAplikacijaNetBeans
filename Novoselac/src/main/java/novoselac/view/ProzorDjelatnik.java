@@ -58,7 +58,7 @@ implements NovoselacViewSucelje{
 
         txtIban = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtImeDjelatnika = new javax.swing.JTextField();
+        txtIme = new javax.swing.JTextField();
         btnPromjeni = new javax.swing.JButton();
         btnBrisi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -81,10 +81,10 @@ implements NovoselacViewSucelje{
 
         jLabel5.setText("Ime");
 
-        txtImeDjelatnika.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtImeDjelatnika.addActionListener(new java.awt.event.ActionListener() {
+        txtIme.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtIme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImeDjelatnikaActionPerformed(evt);
+                txtImeActionPerformed(evt);
             }
         });
 
@@ -164,11 +164,10 @@ implements NovoselacViewSucelje{
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(txtPrezime)
-                    .addComponent(txtImeDjelatnika)
+                    .addComponent(txtIme)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnDodaj)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -199,7 +198,7 @@ implements NovoselacViewSucelje{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtImeDjelatnika, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -233,9 +232,9 @@ implements NovoselacViewSucelje{
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtImeDjelatnikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeDjelatnikaActionPerformed
+    private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtImeDjelatnikaActionPerformed
+    }//GEN-LAST:event_txtImeActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         if(lstPodaci.getSelectedValue()==null){
@@ -343,7 +342,7 @@ implements NovoselacViewSucelje{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Djelatnik> lstPodaci;
     private javax.swing.JTextField txtIban;
-    private javax.swing.JTextField txtImeDjelatnika;
+    private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtOib;
     private javax.swing.JTextField txtPrezime;
     private javax.swing.JTextField txtRadnoMjesto;
@@ -352,7 +351,7 @@ implements NovoselacViewSucelje{
     @Override
     public void napuniView() {
    var e = obrada.getEntitet();
-        txtImeDjelatnika.setText(e.getIme());
+        txtIme.setText(e.getIme());
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtIban.setText(e.getIban());
@@ -362,7 +361,7 @@ implements NovoselacViewSucelje{
     @Override
     public void napuniModel() {
         var e = obrada.getEntitet();
-        e.setIme(txtImeDjelatnika.getText());
+        e.setIme(txtIme.getText());
         e.setPrezime(txtPrezime.getText());
         e.setOib(txtOib.getText());
         e.setIban(txtIban.getText());

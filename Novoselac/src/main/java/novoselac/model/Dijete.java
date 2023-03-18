@@ -3,6 +3,9 @@ package novoselac.model;
 //nasljeđuje entitet
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -14,7 +17,17 @@ public class Dijete extends Entitet {
 	private String prezime;
 	private String imeRoditelja;
 	private String telefonRoditelja;
-	
+        
+        @ManyToMany(mappedBy="djeca")
+        private List<Posjeta> posjete= new ArrayList<>();	
+
+    public List<Posjeta> getPosjete() {
+        return posjete;
+    }
+
+    public void setPosjete(List<Posjeta> posjete) {
+        this.posjete = posjete;
+    }
 	
 	//prazni konstruktor
 	public Dijete() {
