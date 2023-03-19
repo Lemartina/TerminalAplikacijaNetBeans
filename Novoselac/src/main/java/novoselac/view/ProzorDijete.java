@@ -16,7 +16,8 @@ import novoselac.util.NovoselacException;
  *
  * @author Administrator
  */
-public class ProzorDijete extends javax.swing.JFrame
+public class ProzorDijete 
+extends javax.swing.JFrame
 implements NovoselacViewSucelje{
 
     private ObradaDijete obrada;
@@ -27,21 +28,24 @@ implements NovoselacViewSucelje{
         initComponents();
         obrada= new ObradaDijete();
         //veza s renderer
-//        lstPodaci.setCellRenderer(new DijeteRenderer());
+        lstPodaci.setCellRenderer(new DijeteRenderer());
         
             setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Djeca");
-        
-        ucitaj();
+        txtUvjet.requestFocus();
+//        ucitaj();
     }
     
 
     
     @Override
          public void ucitaj(){
-             DefaultListModel<Dijete> m= new DefaultListModel<>();
-        m.addAll(obrada.read());
+             DefaultListModel<Dijete> m= 
+                     new DefaultListModel<>();
+         m.addAll(obrada.read(
+                txtUvjet.getText(),
+                chbTraziOdPocetkaImena.isSelected()));
         lstPodaci.setModel(m);
         lstPodaci.repaint();
     }

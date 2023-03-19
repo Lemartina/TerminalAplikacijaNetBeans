@@ -4,6 +4,7 @@
  */
 package novoselac.controller;
 
+import java.util.Collection;
 import java.util.List;
 import novoselac.model.Dijete;
 import novoselac.util.NovoselacException;
@@ -18,9 +19,26 @@ public class ObradaDijete extends Obrada<Dijete> {
     //implementacija abstraktnih 
     @Override
     public List<Dijete> read() {
-   return session.createQuery("from Dijete", Dijete.class).list();
+   return session.createQuery("from Dijete order by prezime, ime", 
+           Dijete.class).list();
     }
 
+        public List<Dijete> read(String uvjet,
+                boolean traziOdPocetkaImena) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+        
+       return session.createQuery("from Dijete "
+               + " where concat(ime,' ',prezime,' ',ime) "
+               + " like :uvjet "
+               + " order by prezime, ime ", 
+               Dijete.class)
+               .setParameter("uvjet", uvjet)
+               .setMaxResults(12)
+               .list();
+    }
+    
+    
     @Override
     protected void kontrolaUnos() throws NovoselacException {
     }
@@ -32,5 +50,7 @@ public class ObradaDijete extends Obrada<Dijete> {
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
    }
+
+ 
     
 }

@@ -1,7 +1,10 @@
 package novoselac.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
     @Entity
 public class Usluga extends Entitet {
         //svojstva
@@ -10,6 +13,11 @@ public class Usluga extends Entitet {
 	private BigDecimal cijena;
 	private String jedinicaMjere;
 	private BigDecimal kolicina;
+        
+        
+       @ManyToMany
+        private List<Posjeta> posjete= new ArrayList<>();
+        
 	// prazni konstruktor
 	public Usluga() {
 		super();
