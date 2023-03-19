@@ -94,13 +94,14 @@ pokreniSat();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        txtOperater = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToolBar1.setRollover(true);
         jToolBar1.add(lblVrijeme);
 
-        jMenu2.setText("Katalog");
+        jMenu2.setText("Unos");
 
         jMenuItem1.setText("Usluge");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +183,14 @@ pokreniSat();
         });
         jMenu4.add(jMenuItem6);
 
+        txtOperater.setText("Operater");
+        txtOperater.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOperaterActionPerformed(evt);
+            }
+        });
+        jMenu4.add(txtOperater);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -236,6 +245,10 @@ pokreniSat();
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void txtOperaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOperaterActionPerformed
+        new ProzorOperater().setVisible(true);
+    }//GEN-LAST:event_txtOperaterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -258,5 +271,6 @@ pokreniSat();
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblVrijeme;
+    private javax.swing.JMenuItem txtOperater;
     // End of variables declaration//GEN-END:variables
 }

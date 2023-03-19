@@ -110,16 +110,15 @@ implements NovoselacViewSucelje{
 
     @Override
     public void ucitaj() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   }
 
     @Override
     public void napuniView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   var e = obrada.getEntitet();
+       
+     }
 
     @Override
     public void napuniModel() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   }
 }

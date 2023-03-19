@@ -44,6 +44,9 @@ public class Alati {
     
     
     
+    
+    
+    
     public static String dovuciIban() {
 
         try {
@@ -68,6 +71,13 @@ public class Alati {
 
         return "";
     }
+    
+    
+    
+    
+    
+    
+
 
    // kontrola oib-a
     

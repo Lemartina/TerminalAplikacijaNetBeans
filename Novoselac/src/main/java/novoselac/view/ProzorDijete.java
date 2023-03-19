@@ -9,6 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import novoselac.controller.ObradaDijete;
 import novoselac.model.Dijete;
+import novoselac.util.Aplikacija;
 import novoselac.util.NovoselacException;
 
 /**
@@ -25,9 +26,16 @@ implements NovoselacViewSucelje{
     public ProzorDijete() {
         initComponents();
         obrada= new ObradaDijete();
+        //veza s renderer
+//        lstPodaci.setCellRenderer(new DijeteRenderer());
         
+            setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
+               Aplikacija.OPERATER.getImePrezime() +
+                ": Djeca");
         
+        ucitaj();
     }
+    
 
     
     @Override

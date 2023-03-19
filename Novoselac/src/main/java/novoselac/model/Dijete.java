@@ -18,16 +18,16 @@ public class Dijete extends Entitet {
 	private String imeRoditelja;
 	private String telefonRoditelja;
         
-        @ManyToMany(mappedBy="djeca")
-        private List<Posjeta> posjete= new ArrayList<>();	
-
-    public List<Posjeta> getPosjete() {
-        return posjete;
-    }
-
-    public void setPosjete(List<Posjeta> posjete) {
-        this.posjete = posjete;
-    }
+//        @ManyToMany(mappedBy="djeca")
+//        private List<Posjeta> posjete= new ArrayList<>();	
+//
+//    public List<Posjeta> getPosjete() {
+//        return posjete;
+//    }
+//
+//    public void setPosjete(List<Posjeta> posjete) {
+//        this.posjete = posjete;
+//    }
 	
 	//prazni konstruktor
 	public Dijete() {
