@@ -23,10 +23,29 @@ public class ObradaDijete extends Obrada<Dijete> {
            Dijete.class).list();
     }
 
+    
+        public List<Dijete> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+       return session.createQuery("from <Dijete "
+               + " where concat(ime,' ',prezime,' ',ime) "
+               + " like :uvjet "
+               + " order by prezime, ime ", 
+               Dijete.class)
+               .setParameter("uvjet", uvjet)
+               .setMaxResults(12)
+               .list();
+    }
+    
+    
         public List<Dijete> read(String uvjet,
                 boolean traziOdPocetkaImena) {
         uvjet=uvjet.trim();
-        uvjet = "%" + uvjet + "%";
+        if(traziOdPocetkaImena){
+            uvjet = uvjet + "%";
+        }else{
+            uvjet = "%" + uvjet + "%";
+        }
         
        return session.createQuery("from Dijete "
                + " where concat(ime,' ',prezime,' ',ime) "
@@ -51,6 +70,10 @@ public class ObradaDijete extends Obrada<Dijete> {
     protected void kontrolaBrisanje() throws NovoselacException {
    }
 
- 
+// select a.sifra, a.datumVrijemeDolaska , c.imeRoditelja 
+//from posjeta a
+//inner join posjeta_dijete b on a.djelatnik_sifra =b.Posjeta_sifra 
+//inner join dijete c on b.djeca_sifra =c.sifra
+
     
 }

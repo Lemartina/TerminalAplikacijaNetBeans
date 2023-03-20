@@ -33,19 +33,19 @@ implements ListCellRenderer<Dijete>{
        boolean neMozeBrisati=dijete.getPosjete()!=null && !dijete.getPosjete().isEmpty();
         
         if (isSelected) {
-            setBackground(Color.BLUE);
+            setBackground(Color.BLUE);//pozadina označenog bude plava
             if(neMozeBrisati){
                 setForeground(Color.GRAY);
             }else{
-                setForeground(Color.WHITE);
+                setForeground(Color.RED);//kada je označeno bude crveno
             }
             
         } else {
-            setBackground(Color.WHITE);
+            setBackground(Color.WHITE);//pozadina svega
             if(neMozeBrisati){
-                setForeground(Color.GRAY);
+                setForeground(Color.GREEN);//nema na ispisu
             }else{
-                setForeground(Color.BLACK);
+                setForeground(Color.MAGENTA);//sada su magenta svi na popisu i javi grešku
             }
         }
         
