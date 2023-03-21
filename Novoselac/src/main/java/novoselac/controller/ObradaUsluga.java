@@ -35,6 +35,8 @@ public class ObradaUsluga extends Obrada<Usluga> {
 
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
+        
+        
    }
    
     //1.UNOS

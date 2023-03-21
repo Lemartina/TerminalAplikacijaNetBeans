@@ -34,6 +34,12 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
 
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
+   if(entitet.getPosjete()==null &&
+           !entitet.getPosjete().isEmpty()){
+       throw new NovoselacException("Djelatnik se ne može brisati jer"
+               + "ima zabilježenu posjetu");
+     
+   }
     }
  
     

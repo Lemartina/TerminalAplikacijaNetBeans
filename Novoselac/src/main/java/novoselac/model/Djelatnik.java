@@ -1,6 +1,8 @@
 package novoselac.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import java.util.List;
   @Entity
 public class Djelatnik extends Entitet {
 
@@ -12,6 +14,21 @@ public class Djelatnik extends Entitet {
 	private String oib;
 	private String iban;
 	private String radnoMjesto;
+        
+        @OneToMany(mappedBy="djelatnik")
+        private List<Posjeta>posjete;
+        
+        // dodani geteri i seteri za posjete
+
+    public List<Posjeta> getPosjete() {
+        return posjete;
+    }
+
+    public void setPosjete(List<Posjeta> posjete) {
+        this.posjete = posjete;
+    }
+
+  
 	
 	//prazni konstruktor
 	public Djelatnik() {

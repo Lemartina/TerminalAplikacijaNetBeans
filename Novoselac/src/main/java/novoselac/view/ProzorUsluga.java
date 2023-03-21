@@ -243,21 +243,23 @@ implements NovoselacViewSucelje{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-        if(lstPodaci.getSelectedValue()==null){
-            JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odabertie uslugu");
-            return;
-        }
+//        if(lstPodaci.getSelectedValue()==null){
+//            JOptionPane.showMessageDialog(getRootPane(),
+//                "Prvo odabertie uslugu");
+//            return;
+//        }
+//
+//        napuniModel();
+//
+//        try {
+//            obrada.update();
+//            ucitaj();
+//        } catch (NovoselacException ex) {
+//            JOptionPane.showMessageDialog(getRootPane(),
+//                ex.getPoruka());
+//        }
 
-        napuniModel();
-
-        try {
-            obrada.update();
-            ucitaj();
-        } catch (NovoselacException ex) {
-            JOptionPane.showMessageDialog(getRootPane(),
-                ex.getPoruka());
-        }
+btnBrisi.setVisible(false);
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
@@ -270,7 +272,7 @@ implements NovoselacViewSucelje{
 
         if(JOptionPane.showConfirmDialog(
             getRootPane(),
-            "Jeste li sigurni da želite brisati uslugu " +
+            "Jeste li sigurni da želite brisati uslugu-prozorusluga " +
             obrada.getEntitet().getNaziv()+"?",
             "Brisanje",
             JOptionPane.YES_NO_OPTION,
