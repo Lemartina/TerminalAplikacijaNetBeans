@@ -21,7 +21,7 @@ public class Posjeta extends Entitet {
         
          @ManyToMany
           @JoinTable(
-            name = "dijete_posjeta",
+            name = "dijetePosjeta",
             joinColumns = {
                 @JoinColumn(name = "dijete")},
             inverseJoinColumns = {
@@ -31,15 +31,15 @@ public class Posjeta extends Entitet {
          private List<Dijete> djeca;
          
            @ManyToMany
-//          @JoinTable(
-//            name = "usluga_posjeta",
-//            joinColumns = {
-//                @JoinColumn(name = "usluga")},
-//            inverseJoinColumns = {
-//                @JoinColumn(name = "posjeta")}
-//    
-//          )
-//         
+          @JoinTable(
+            name = "uslugaPosjeta",
+            joinColumns = {
+                @JoinColumn(name = "usluga")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "posjeta")}
+    
+          )
+         
          private List<Usluga>usluge;
 
     

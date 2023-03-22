@@ -11,6 +11,7 @@ package novoselac;
 //import novoselac.model.Posjeta;
 //import novoselac.model.Usluga;
 //import novoselac.util.NovoselacException;
+import novoselac.util.PocetniInsert;
 import novoselac.view.SplashScreen;
 
 /**
@@ -21,9 +22,8 @@ public class Start {
 
     public static void main(String[] args) {
         
-        new SplashScreen().setVisible(true);
-        
-//      new PocetniInsert(); nakon importa maknut inesert
+       new SplashScreen().setVisible(true);
+//             new PocetniInsert(); //nakon importa maknuti inesert
 
 //        ObradaUsluga ou = new ObradaUsluga();
 //

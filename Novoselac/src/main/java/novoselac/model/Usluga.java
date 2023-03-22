@@ -15,7 +15,7 @@ public class Usluga extends Entitet {
 	private BigDecimal kolicina;
         
         
-       @ManyToMany
+       @ManyToMany(mappedBy="usluge")
         private List<Posjeta> posjete= new ArrayList<>();
         
 	// prazni konstruktor
