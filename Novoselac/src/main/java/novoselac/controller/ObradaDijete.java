@@ -60,15 +60,18 @@ public class ObradaDijete extends Obrada<Dijete> {
     
     @Override
     protected void kontrolaUnos() throws NovoselacException {
+//    super.kontrolaUnos();
     }
 
     @Override
     protected void kontrolaPromjena() throws NovoselacException {
+//    super.kontrolaPromjena();
     }
 
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
-   }
+//   super.kontrolaBrisanje();
+    }
 
 // select a.sifra, a.datumVrijemeDolaska , c.imeRoditelja 
 //from posjeta a

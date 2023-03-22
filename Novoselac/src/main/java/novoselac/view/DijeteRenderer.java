@@ -4,48 +4,48 @@
 // */
 package novoselac.view;
 //
+import novoselac.model.Dijete;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import novoselac.model.Dijete;
 
-public class DijeteRenderer 
-extends JLabel
-implements ListCellRenderer<Dijete>{
+/**
+ *
+ * @author dell
+ */
+// https://www.codejava.net/java-se/swing/jlist-custom-renderer-example
+public class DijeteRenderer extends JLabel implements ListCellRenderer<Dijete> {
 
-    
-    public DijeteRenderer(){
-        setOpaque(true);
-    }
-    
     @Override
     public Component getListCellRendererComponent(
             JList<? extends Dijete> list,
-            Dijete dijete, 
-            int index, 
-            boolean isSelected, 
+            Dijete dijete,
+            int index,
+            boolean isSelected,
             boolean cellHasFocus) {
-       
-     setText(dijete.getIme() + " " + dijete.getPrezime());
 
-       boolean neMozeBrisati=dijete.getPosjete()!=null && !dijete.getPosjete().isEmpty();
+        setText(dijete.getIme() + " " + dijete.getPrezime());
+
+        setOpaque(true);
+        
+        boolean neMozeBrisati=dijete.getPosjete()!=null && !dijete.getPosjete().isEmpty();
         
         if (isSelected) {
-            setBackground(Color.BLUE);//pozadina označenog bude plava
+            setBackground(Color.WHITE);
             if(neMozeBrisati){
-                setForeground(Color.GRAY);
+                setForeground(Color.MAGENTA);
             }else{
-                setForeground(Color.RED);//kada je označeno bude crveno
+                setForeground(Color.BLUE);
             }
             
         } else {
-            setBackground(Color.WHITE);//pozadina svega
+            setBackground(Color.WHITE);
             if(neMozeBrisati){
-                setForeground(Color.GREEN);//nema na ispisu
+                setForeground(Color.RED);
             }else{
-                setForeground(Color.MAGENTA);//sada su magenta svi na popisu i javi grešku
+                setForeground(Color.BLACK);
             }
         }
         
@@ -55,4 +55,5 @@ implements ListCellRenderer<Dijete>{
 
         return this;
     }
+
 }

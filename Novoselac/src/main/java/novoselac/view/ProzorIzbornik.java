@@ -18,6 +18,7 @@ public class ProzorIzbornik extends javax.swing.JFrame {
     /**
      * Creates new form Izbornik
      */
+    
     public ProzorIzbornik() {
         initComponents();
      setTitle(Aplikacija.NAZIV_NOVOSELAC + ": "+
@@ -132,6 +133,11 @@ pokreniSat();
         jMenu1.setText("Obrada");
 
         jMenuItem4.setText("Posjete");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
@@ -248,6 +254,10 @@ pokreniSat();
     private void txtOperaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOperaterActionPerformed
         new ProzorOperater().setVisible(true);
     }//GEN-LAST:event_txtOperaterActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        new ProzorPosjeta().setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@
  */
 package novoselac.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.util.Locale;
 import javax.swing.DefaultListModel;
 import novoselac.controller.ObradaPosjeta;
 import novoselac.model.Posjeta;
@@ -30,7 +32,16 @@ implements NovoselacViewSucelje{
                Aplikacija.OPERATER.getImePrezime() +
                 ": Posjete");
         
-        //ucitaj();
+        ucitajDjecu();
+        ucitajUsluge();
+        odaberiDatumIVrijemeDolaska();
+        ucitaj();
+    }
+    
+    private void odaberiDatumIVrijemeDolaska() {
+        
+     
+    
     }
     
     /**
@@ -42,59 +53,97 @@ implements NovoselacViewSucelje{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstPodaci = new javax.swing.JList<>();
+        chbOdaberiUslugu = new javax.swing.JComboBox<>();
+        chbOdaberiDijete = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        dpDatumIVrijemeOdlaska = new com.github.lgooddatepicker.components.DateTimePicker();
+        pdDatumIVrijemeDolaska = new com.github.lgooddatepicker.components.DateTimePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstPodaci.setToolTipText("");
-        lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstPodaciValueChanged(evt);
+        chbOdaberiUslugu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbOdaberiUsluguActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(lstPodaci);
 
-        jLabel1.setText("Popis posjeta:");
+        chbOdaberiDijete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbOdaberiDijeteActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Odaberi uslugu");
+
+        jLabel1.setText("Rezerviraj svoj termin");
+
+        jLabel4.setText("Odaberi datum i vrijeme odlaska");
+
+        jLabel2.setText("Odaberi dijete");
+
+        jLabel5.setText("Odaberi datum i vijeme dolaska");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(244, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(chbOdaberiDijete, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(chbOdaberiUslugu, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(dpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pdDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(chbOdaberiDijete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chbOdaberiUslugu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(pdDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
-        if(evt.getValueIsAdjusting()){
-            return;
-        }
-        if(lstPodaci.getSelectedValue()==null){
-            return;
-        }
+    private void chbOdaberiUsluguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbOdaberiUsluguActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chbOdaberiUsluguActionPerformed
 
-        obrada.setEntitet(lstPodaci.getSelectedValue());
-        napuniView();
-    }//GEN-LAST:event_lstPodaciValueChanged
+    private void chbOdaberiDijeteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbOdaberiDijeteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chbOdaberiDijeteActionPerformed
 
 
     /**
@@ -103,9 +152,15 @@ implements NovoselacViewSucelje{
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<Posjeta> chbOdaberiDijete;
+    private javax.swing.JComboBox<Posjeta> chbOdaberiUslugu;
+    private com.github.lgooddatepicker.components.DateTimePicker dpDatumIVrijemeOdlaska;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<Posjeta> lstPodaci;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private com.github.lgooddatepicker.components.DateTimePicker pdDatumIVrijemeDolaska;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -120,5 +175,16 @@ implements NovoselacViewSucelje{
 
     @Override
     public void napuniModel() {
+        
+        
+        
    }
+
+    private void ucitajDjecu() {
+   
+    }
+
+    private void ucitajUsluge() {
+     
+    }
 }
