@@ -4,12 +4,22 @@
  */
 package novoselac.view;
 
+import novoselac.controller.ObradaPosjeta;
+import novoselac.controller.ObradaUsluga;
+import novoselac.model.Posjeta;
+
 /**
  *
  * @author Administrator
  */
-public class ProzorDogovoreniTermini extends javax.swing.JFrame {
+public class ProzorDogovoreniTermini extends javax.swing.JFrame
+implements NovoselacViewSucelje
+{
 
+    
+    
+     private ObradaPosjeta obrada;
+    private ObradaUsluga obrdaUsluge;
     /**
      * Creates new form ProzorDogovoreniTermini
      */
@@ -26,18 +36,12 @@ public class ProzorDogovoreniTermini extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmbFilterUsluge = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
+        cmbUsluga = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        cmbFilterUsluge.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbFilterUslugeItemStateChanged(evt);
-            }
-        });
 
         lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -49,6 +53,12 @@ public class ProzorDogovoreniTermini extends javax.swing.JFrame {
 
         jLabel1.setText("Odaberite usluge za koje hoćete vidjeti dogovorene termine");
 
+        cmbUsluga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbUslugaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,9 +66,10 @@ public class ProzorDogovoreniTermini extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbFilterUsluge, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cmbUsluga, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -67,7 +78,7 @@ public class ProzorDogovoreniTermini extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmbFilterUsluge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbUsluga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -75,10 +86,6 @@ public class ProzorDogovoreniTermini extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmbFilterUslugeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFilterUslugeItemStateChanged
-        ucitaj();
-    }//GEN-LAST:event_cmbFilterUslugeItemStateChanged
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
         if(evt.getValueIsAdjusting()){
@@ -93,15 +100,34 @@ public class ProzorDogovoreniTermini extends javax.swing.JFrame {
         napuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
 
+    private void cmbUslugaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUslugaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbUslugaActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Smjer> cmbFilterUsluge;
+    private javax.swing.JComboBox<Posjeta> cmbUsluga;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<Grupa> lstPodaci;
+    private javax.swing.JList<Posjeta> lstPodaci;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void ucitaj() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void napuniView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void napuniModel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
