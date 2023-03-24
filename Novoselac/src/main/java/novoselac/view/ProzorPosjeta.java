@@ -55,7 +55,7 @@ implements NovoselacViewSucelje{
     }
     
     private void odaberiDatumIVrijemeDolaska() {
-     
+   
     }
     
        private void odaberiDatumIVrijemeOdlaska() {
@@ -70,6 +70,7 @@ implements NovoselacViewSucelje{
         cmbOdaberiDijete.setModel(d);
         cmbOdaberiDijete.repaint();
 //        cmbOdaberiDijete.setSelectedIndex(0);
+
         
         
     }
@@ -314,6 +315,13 @@ implements NovoselacViewSucelje{
 
     @Override
     public void napuniView() {
+        var e= obrada.getEntitet();
+        txtNapomena.setText(e.getNapomena());
+        cmbOdaberiDijete.setSelectedItem(e.getDjeca());
+        cmbOdaberiDjelatnika.setSelectedItem(e.getDjelatnik());
+        cmbOdaberiUslugu.setSelectedItem(e.getUsluge());
+        
+                
  
      }
 
