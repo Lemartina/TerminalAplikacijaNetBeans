@@ -4,7 +4,9 @@
  */
 package novoselac.controller;
 
+import java.util.Collection;
 import java.util.List;
+import novoselac.model.Dijete;
 import novoselac.model.Posjeta;
 import novoselac.util.NovoselacException;
 
@@ -33,5 +35,7 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
    }
+
+
     
 }

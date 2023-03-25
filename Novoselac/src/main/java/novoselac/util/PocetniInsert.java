@@ -75,7 +75,8 @@ public class PocetniInsert {
             d.setIme(faker.name().firstName());
             d.setPrezime(faker.name().lastName());
             d.setImeRoditelja(faker.name().firstName());
-//          d.setTelefonRoditelja(faker.phoneNumber();
+            d.setOib(Alati.dovuciOib());
+            d.setTelefonRoditelja(faker.phoneNumber().cellPhone());
             
             session.persist(d);
             djeca.add(d);

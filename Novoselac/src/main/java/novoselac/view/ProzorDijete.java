@@ -123,6 +123,11 @@ implements NovoselacViewSucelje{
         jLabel4.setText("Telefon roditelja");
 
         chbTraziOdPocetkaImena.setText("Traži od početka imena");
+        chbTraziOdPocetkaImena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbTraziOdPocetkaImenaActionPerformed(evt);
+            }
+        });
 
         txtUvjet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,6 +382,10 @@ implements NovoselacViewSucelje{
     private void btnDovuciOibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDovuciOibActionPerformed
         txtOib.setText(Alati.dovuciOib());
     }//GEN-LAST:event_btnDovuciOibActionPerformed
+
+    private void chbTraziOdPocetkaImenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbTraziOdPocetkaImenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chbTraziOdPocetkaImenaActionPerformed
 
  
 

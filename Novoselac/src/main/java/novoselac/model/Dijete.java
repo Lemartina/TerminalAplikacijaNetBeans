@@ -84,7 +84,7 @@ public class Dijete extends Entitet {
     }
 	@Override
 	public String toString() {
-				return ime +" "+ prezime;
+				return ime +" "+ prezime + ", oib: "+ oib;
 	}
 	
 	

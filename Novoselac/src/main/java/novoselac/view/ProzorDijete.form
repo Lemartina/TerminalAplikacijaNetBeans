@@ -227,6 +227,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Tra&#x17e;i od po&#x10d;etka imena"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbTraziOdPocetkaImenaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUvjet">
       <Events>
