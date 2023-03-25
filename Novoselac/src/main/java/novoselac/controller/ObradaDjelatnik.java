@@ -26,8 +26,8 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {
-    kontrolaOib();
-     kontrolaImePerzimeDupliUBazi();
+    kontrolaFormatOib();
+     kontrolaOibDupliUBazi();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
    }
     }
  
-    private void kontrolaImePerzimeDupliUBazi() throws NovoselacException{
+    private void kontrolaOibDupliUBazi() throws NovoselacException{
          List<Djelatnik> djelatnici=null;
         try {
             djelatnici = session.createQuery("from Djelatnik u "
@@ -61,7 +61,7 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
             
             
             
-    private void kontrolaOib() throws NovoselacException{
+    private void kontrolaFormatOib() throws NovoselacException{
         if(!Alati.kontrolaOIB(entitet.getOib())){
             throw new NovoselacException("OIB nije u dobrom formatu");
         }

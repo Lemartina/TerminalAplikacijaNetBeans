@@ -17,6 +17,20 @@ public class Dijete extends Entitet {
 	private String prezime;
 	private String imeRoditelja;
 	private String telefonRoditelja;
+        private String oib;
+
+    public Dijete(String oib, int sifra) {
+        super(sifra);
+        this.oib = oib;
+    }
+
+    public String getOib() {
+        return oib;
+    }
+
+    public void setOib(String oib) {
+        this.oib = oib;
+    }
         
         @ManyToMany(mappedBy="djeca")
         private List<Posjeta> posjete= new ArrayList<>();	

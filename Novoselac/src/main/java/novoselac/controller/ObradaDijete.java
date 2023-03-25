@@ -7,6 +7,7 @@ package novoselac.controller;
 
 import java.util.List;
 import novoselac.model.Dijete;
+import novoselac.util.Alati;
 import novoselac.util.NovoselacException;
 
 /**
@@ -60,12 +61,13 @@ public class ObradaDijete extends Obrada<Dijete> {
     
     @Override
     protected void kontrolaUnos() throws NovoselacException {
-
+ kontrolaFormatOib();
+     kontrolaOibDjetetaDupliUBazi();
     }
 
     @Override
     protected void kontrolaPromjena() throws NovoselacException {
-
+ 
     }
 
     @Override
@@ -75,12 +77,36 @@ public class ObradaDijete extends Obrada<Dijete> {
        throw new NovoselacException("Dijete se ne može brisati jer"
                + " ima zabilježenu posjetu");
     }
-
+    }
+   private void kontrolaOibDjetetaDupliUBazi() throws NovoselacException{
+         List<Dijete> djeca=null;
+        try {
+            djeca = session.createQuery("from Dijete u "
+                    + " where u.oib=:oib", 
+                    Dijete.class)
+                    .setParameter("oib", entitet.getOib())
+                    .list();
+        } catch (Exception e) {
+        }
+        if(djeca!=null && !djeca.isEmpty()){
+            throw new NovoselacException("Dijete s istim oibom postoji u bazi");
+        }
+    }
+            
+            
+            
+    private void kontrolaFormatOib() throws NovoselacException{
+        if(!Alati.kontrolaOIB(entitet.getOib())){
+            throw new NovoselacException("OIB nije u dobrom formatu");
+        }
+    }
+  
+    
 // select a.sifra, a.datumVrijemeDolaska , c.imeRoditelja 
 //from posjeta a
 //inner join posjeta_dijete b on a.djelatnik_sifra =b.Posjeta_sifra 
 //inner join dijete c on b.djeca_sifra =c.sifra
-
-    
+  
     }
-}
+
+
