@@ -4,7 +4,7 @@
  */
 package novoselac.controller;
 
-import java.util.Collection;
+
 import java.util.List;
 import novoselac.model.Dijete;
 import novoselac.util.NovoselacException;
@@ -27,7 +27,7 @@ public class ObradaDijete extends Obrada<Dijete> {
         public List<Dijete> read(String uvjet) {
         uvjet=uvjet.trim();
         uvjet = "%" + uvjet + "%";
-       return session.createQuery("from <Dijete "
+       return session.createQuery("from Dijete "
                + " where concat(ime,' ',prezime,' ',ime) "
                + " like :uvjet "
                + " order by prezime, ime ", 
@@ -60,17 +60,20 @@ public class ObradaDijete extends Obrada<Dijete> {
     
     @Override
     protected void kontrolaUnos() throws NovoselacException {
-//    super.kontrolaUnos();
+
     }
 
     @Override
     protected void kontrolaPromjena() throws NovoselacException {
-//    super.kontrolaPromjena();
+
     }
 
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
-//   super.kontrolaBrisanje();
+    if(entitet.getPosjete()==null &&
+           !entitet.getPosjete().isEmpty()){
+       throw new NovoselacException("Dijete se ne može brisati jer"
+               + " ima zabilježenu posjetu");
     }
 
 // select a.sifra, a.datumVrijemeDolaska , c.imeRoditelja 
@@ -79,4 +82,5 @@ public class ObradaDijete extends Obrada<Dijete> {
 //inner join dijete c on b.djeca_sifra =c.sifra
 
     
+    }
 }

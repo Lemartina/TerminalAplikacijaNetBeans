@@ -6,6 +6,7 @@ package novoselac.controller;
 
 import java.util.List;
 import novoselac.model.Djelatnik;
+import novoselac.util.Alati;
 import novoselac.util.NovoselacException;
 
 /**
@@ -26,6 +27,7 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
     @Override
     protected void kontrolaUnos() throws NovoselacException {
     kontrolaOib();
+     kontrolaImePerzimeDupliUBazi();
     }
 
     @Override
@@ -42,8 +44,26 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
    }
     }
  
-    
+    private void kontrolaImePerzimeDupliUBazi() throws NovoselacException{
+         List<Djelatnik> djelatnici=null;
+        try {
+            djelatnici = session.createQuery("from Djelatnik u "
+                    + " where u.oib=:oib", 
+                    Djelatnik.class)
+                    .setParameter("oib", entitet.getOib())
+                    .list();
+        } catch (Exception e) {
+        }
+        if(djelatnici!=null && !djelatnici.isEmpty()){
+            throw new NovoselacException("Djelatnik s istim oibom postoji u bazi");
+        }
+    }
+            
+            
+            
     private void kontrolaOib() throws NovoselacException{
-        
+        if(!Alati.kontrolaOIB(entitet.getOib())){
+            throw new NovoselacException("OIB nije u dobrom formatu");
+        }
     }
 }
