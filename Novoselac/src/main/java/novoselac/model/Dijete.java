@@ -21,13 +21,7 @@ public class Dijete extends Entitet {
         @ManyToMany(mappedBy="djeca")
         private List<Posjeta> posjete= new ArrayList<>();	
 
-    public List<Posjeta> getPosjete() {
-        return posjete;
-    }
-
-    public void setPosjete(List<Posjeta> posjete) {
-        this.posjete = posjete;
-    }
+   
 	
 	//prazni konstruktor
 	public Dijete() {
@@ -67,6 +61,13 @@ public class Dijete extends Entitet {
 		this.telefonRoditelja = telefonRoditelja;
 	}
 	
+         public List<Posjeta> getPosjete() {
+        return posjete;
+    }
+
+    public void setPosjete(List<Posjeta> posjete) {
+        this.posjete = posjete;
+    }
 	@Override
 	public String toString() {
 				return ime +" "+ prezime;

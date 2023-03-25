@@ -39,8 +39,7 @@ public class Posjeta extends Entitet {
                 @JoinColumn(name = "posjeta")}
     
           )
-         
-         private List<Usluga>usluge;
+           private List<Usluga>usluge;
 
     
     

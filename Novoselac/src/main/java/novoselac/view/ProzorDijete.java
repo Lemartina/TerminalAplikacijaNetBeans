@@ -41,12 +41,12 @@ implements NovoselacViewSucelje{
     
     @Override
          public void ucitaj(){
-             DefaultListModel<Dijete> m= 
+             DefaultListModel<Dijete> d= 
                      new DefaultListModel<>();
-         m.addAll(obrada.read(
+         d.addAll(obrada.read(
                 txtUvjet.getText(),
                 chbTraziOdPocetkaImena.isSelected()));
-        lstPodaci.setModel(m);
+        lstPodaci.setModel(d);
         lstPodaci.repaint();
     }
     /**
@@ -158,13 +158,12 @@ implements NovoselacViewSucelje{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(chbTraziOdPocetkaImena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(32, 32, 32)
-                                    .addComponent(btnTrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -200,17 +199,18 @@ implements NovoselacViewSucelje{
                         .addGap(23, 23, 23)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTrazi))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(chbTraziOdPocetkaImena)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnTrazi))
+                            .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(chbTraziOdPocetkaImena))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +224,7 @@ implements NovoselacViewSucelje{
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTelefonRodtelja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodaj)
                             .addComponent(btnPromjeni)
@@ -253,16 +253,16 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_txtImeActionPerformed
 
     private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
-        if(lstPodaci.getSelectedValue()==null){
+ if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite djelatnika kojeg želite brisati");
+                "Prvo odaberite dijete kojeg želite brisati");
 
             return;
         }
 
         if(JOptionPane.showConfirmDialog(
             getRootPane(),
-            "Jeste li sigurni da želite brisati djelatnika " +
+            "Jeste li sigurni da želite brisati dijete " +
             obrada.getEntitet().getIme()+"?",
             "Brisanje",
             JOptionPane.YES_NO_OPTION,
@@ -277,6 +277,11 @@ implements NovoselacViewSucelje{
             JOptionPane.showMessageDialog(getRootPane(),
                 ex.getPoruka());
         }
+        
+        
+             
+    
+        
     }//GEN-LAST:event_btnBrisiActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -329,11 +334,16 @@ implements NovoselacViewSucelje{
 
     @Override
     public void napuniView() {
-         var e = obrada.getEntitet();
-        txtIme.setText(e.getIme());
-        txtPrezime.setText(e.getPrezime());
-        txtImeRoditelja.setText(e.getImeRoditelja());
-        txtTelefonRodtelja.setText(e.getTelefonRoditelja());
+        var d = obrada.getEntitet();
+        txtIme.setText(d.getIme());
+        txtPrezime.setText(d.getPrezime());
+        txtImeRoditelja.setText(d.getImeRoditelja());
+        txtTelefonRodtelja.setText(d.getTelefonRoditelja());
+        
+//         btnBrisi.setVisible(false);
+//        if(d.getPosjete())== null || d.getPosjete().isEmpty()){
+//        btnBrisi.setVisible(true);
+//    }
      }
 
     @Override

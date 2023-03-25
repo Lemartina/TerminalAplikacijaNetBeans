@@ -15,9 +15,12 @@ import novoselac.util.NovoselacException;
  */
 public class ObradaUsluga extends Obrada<Usluga> {
 
-    @Override
     public List<Usluga> read() {
-        return session.createQuery("from Usluga", Usluga.class).list();
+      
+      
+      
+        return session.createQuery("from Usluga order by naziv",
+                Usluga.class).list();
     }
 
     @Override
@@ -35,7 +38,12 @@ public class ObradaUsluga extends Obrada<Usluga> {
 
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
-        
+        if(entitet.getPosjete()!= null &&
+                !entitet.getPosjete().isEmpty()){
+        throw new NovoselacException("Usluga se ne može brisati"
+                + " jer ima posjete ");
+    }
+
         
    }
    
@@ -118,6 +126,8 @@ public class ObradaUsluga extends Obrada<Usluga> {
       if(broj)
    throw new NovoselacException("Naziv smjera ne smije biti broj");
   }
+
+   
 }
   
 

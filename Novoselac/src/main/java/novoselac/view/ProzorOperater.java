@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import novoselac.controller.ObradaOperater;
 import novoselac.model.Operater;
 import novoselac.util.Alati;
+import novoselac.util.Aplikacija;
 import novoselac.util.NovoselacException;
 
 /**
@@ -26,6 +27,13 @@ implements NovoselacViewSucelje{
         initComponents();
         
         obrada = new ObradaOperater();
+         setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
+               Aplikacija.OPERATER.getImePrezime() +
+                ": Operateri");
+        
+        ucitaj();
+        
+        
     }
 
     /**
@@ -40,7 +48,6 @@ implements NovoselacViewSucelje{
         txtIme = new javax.swing.JTextField();
         txtOib = new javax.swing.JTextField();
         btnPromjeni = new javax.swing.JButton();
-        txtLozinka = new javax.swing.JTextField();
         btnBrisi = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,6 +61,7 @@ implements NovoselacViewSucelje{
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txtLozinka = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,8 +85,6 @@ implements NovoselacViewSucelje{
                 btnPromjeniActionPerformed(evt);
             }
         });
-
-        txtLozinka.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         btnBrisi.setText("Briši");
         btnBrisi.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +132,12 @@ implements NovoselacViewSucelje{
 
         jLabel4.setText("Email");
 
+        txtLozinka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLozinkaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,13 +161,13 @@ implements NovoselacViewSucelje{
                         .addComponent(btnBrisi))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtLozinka)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtOib)
                         .addGap(15, 15, 15)
                         .addComponent(btnDovuciOib, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtEmail))
+                    .addComponent(txtEmail)
+                    .addComponent(txtLozinka))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -186,8 +198,8 @@ implements NovoselacViewSucelje{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addComponent(txtLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodaj)
                             .addComponent(btnPromjeni)
@@ -229,14 +241,14 @@ implements NovoselacViewSucelje{
     private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite djelatnika kojeg želite brisati");
+                "Prvo odaberite operater kojeg želite brisati");
 
             return;
         }
 
         if(JOptionPane.showConfirmDialog(
             getRootPane(),
-            "Jeste li sigurni da želite brisati djelatnika " +
+            "Jeste li sigurni da želite brisati operatera " +
             obrada.getEntitet().getIme()+"?",
             "Brisanje",
             JOptionPane.YES_NO_OPTION,
@@ -283,6 +295,10 @@ implements NovoselacViewSucelje{
         }
     }//GEN-LAST:event_btnDodajActionPerformed
 
+    private void txtLozinkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLozinkaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLozinkaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,7 +319,7 @@ implements NovoselacViewSucelje{
     private javax.swing.JList<Operater> lstPodaci;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIme;
-    private javax.swing.JTextField txtLozinka;
+    private javax.swing.JPasswordField txtLozinka;
     private javax.swing.JTextField txtOib;
     private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
@@ -323,7 +339,7 @@ implements NovoselacViewSucelje{
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtEmail.setText(e.getEmail());
-//  txtLozinka.setText();
+//        txtLozinka.(e.getLozinka());
     }
 
     @Override

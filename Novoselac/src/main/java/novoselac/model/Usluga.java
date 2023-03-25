@@ -17,6 +17,14 @@ public class Usluga extends Entitet {
         
        @ManyToMany(mappedBy="usluge")
         private List<Posjeta> posjete= new ArrayList<>();
+
+    public List<Posjeta> getPosjete() {
+        return posjete;
+    }
+
+    public void setPosjete(List<Posjeta> posjete) {
+        this.posjete = posjete;
+    }
         
 	// prazni konstruktor
 	public Usluga() {

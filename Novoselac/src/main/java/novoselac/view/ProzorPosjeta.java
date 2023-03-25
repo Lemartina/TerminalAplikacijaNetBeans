@@ -5,6 +5,7 @@
 package novoselac.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.awt.event.KeyEvent;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -46,7 +47,7 @@ implements NovoselacViewSucelje{
                Aplikacija.OPERATER.getImePrezime() +
                 ": Posjete");
         
-        ucitajDjecu();
+//        ucitajDjecu();
         ucitajUsluge();
 //        ucitajDjelatnika();
         odaberiDatumIVrijemeDolaska();
@@ -62,18 +63,17 @@ implements NovoselacViewSucelje{
      
     }
     
-    private void ucitajDjecu(){
-        DefaultComboBoxModel<Dijete> d
-                = new DefaultComboBoxModel<>();
-        d.addAll(new ObradaDijete().read());
-        
-        cmbOdaberiDijete.setModel(d);
-        cmbOdaberiDijete.repaint();
-//        cmbOdaberiDijete.setSelectedIndex(0);
-
-        
-        
+   @Override
+         public void ucitaj(){
+//           DefaultListModel<Dijete> d = 
+//                new DefaultListModel<>();
+//        d.addAll(obrada.read(txtUvjet.getText()));
+//        lstPodaci.setModel(m);
+//        lstPodaci.repaint();
     }
+        
+        
+    
     
        private void ucitajUsluge(){
         DefaultComboBoxModel<Usluga> u
@@ -108,11 +108,9 @@ implements NovoselacViewSucelje{
     private void initComponents() {
 
         cmbOdaberiUslugu = new javax.swing.JComboBox<>();
-        cmbOdaberiDijete = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         dpDatumIVrijemeOdlaska = new com.github.lgooddatepicker.components.DateTimePicker();
         pdDatumIVrijemeDolaska = new com.github.lgooddatepicker.components.DateTimePicker();
@@ -131,19 +129,11 @@ implements NovoselacViewSucelje{
             }
         });
 
-        cmbOdaberiDijete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOdaberiDijeteActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Odaberi uslugu");
 
         jLabel1.setText("Rezerviraj svoj termin");
 
         jLabel4.setText("Odaberi datum i vrijeme odlaska");
-
-        jLabel2.setText("Odaberi dijete");
 
         jLabel5.setText("Odaberi datum i vijeme dolaska");
 
@@ -154,7 +144,7 @@ implements NovoselacViewSucelje{
             }
         });
 
-        btnNoviUnos.setText("Novi unos");
+        btnNoviUnos.setText("Unos djeteta");
         btnNoviUnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNoviUnosActionPerformed(evt);
@@ -180,39 +170,29 @@ implements NovoselacViewSucelje{
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(191, 191, 191))
             .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(144, 144, 144)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pdDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(dpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbOdaberiDijete, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnNoviUnos))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(124, 124, 124)
-                                        .addComponent(jLabel7))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbOdaberiUslugu, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(cmbOdaberiDjelatnika, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(btnPotvrdiTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnPotvrdiTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel6)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(144, 144, 144)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(pdDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(38, 38, 38)
+                            .addComponent(dpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(cmbOdaberiUslugu, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(32, 32, 32)
+                            .addComponent(cmbOdaberiDjelatnika, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(213, 213, 213)
+                            .addComponent(jLabel7))
+                        .addComponent(btnNoviUnos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -220,13 +200,9 @@ implements NovoselacViewSucelje{
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addComponent(btnNoviUnos)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbOdaberiDijete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNoviUnos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7))
@@ -246,9 +222,9 @@ implements NovoselacViewSucelje{
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(27, 27, 27)
                 .addComponent(btnPotvrdiTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -258,14 +234,6 @@ implements NovoselacViewSucelje{
     private void cmbOdaberiUsluguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOdaberiUsluguActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbOdaberiUsluguActionPerformed
-
-    private void cmbOdaberiDijeteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOdaberiDijeteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOdaberiDijeteActionPerformed
-
-    private void btnNoviUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoviUnosActionPerformed
-         new ProzorDijete().setVisible(true);
-    }//GEN-LAST:event_btnNoviUnosActionPerformed
 
     private void btnPotvrdiTerminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotvrdiTerminActionPerformed
        obrada.setEntitet(new Posjeta());
@@ -285,6 +253,10 @@ implements NovoselacViewSucelje{
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbOdaberiDjelatnikaActionPerformed
 
+    private void btnNoviUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoviUnosActionPerformed
+        new ProzorDijete().setVisible(true);
+    }//GEN-LAST:event_btnNoviUnosActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -294,12 +266,10 @@ implements NovoselacViewSucelje{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNoviUnos;
     private javax.swing.JButton btnPotvrdiTermin;
-    private javax.swing.JComboBox<Dijete> cmbOdaberiDijete;
     private javax.swing.JComboBox<Usluga> cmbOdaberiDjelatnika;
     private javax.swing.JComboBox<Usluga> cmbOdaberiUslugu;
     private com.github.lgooddatepicker.components.DateTimePicker dpDatumIVrijemeOdlaska;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -309,15 +279,13 @@ implements NovoselacViewSucelje{
     private javax.swing.JTextField txtNapomena;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void ucitaj() {
-   }
+
 
     @Override
     public void napuniView() {
         var e= obrada.getEntitet();
         txtNapomena.setText(e.getNapomena());
-        cmbOdaberiDijete.setSelectedItem(e.getDjeca());
+        
         cmbOdaberiDjelatnika.setSelectedItem(e.getDjelatnik());
         cmbOdaberiUslugu.setSelectedItem(e.getUsluge());
         

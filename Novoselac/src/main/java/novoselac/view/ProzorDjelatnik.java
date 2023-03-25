@@ -355,7 +355,7 @@ implements NovoselacViewSucelje{
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtIban.setText(e.getIban());
-    txtRadnoMjesto.setText(e.getRadnoMjesto());
+        txtRadnoMjesto.setText(e.getRadnoMjesto());
     }
 
     @Override

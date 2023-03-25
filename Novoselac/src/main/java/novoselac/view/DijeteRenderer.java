@@ -16,8 +16,14 @@ import javax.swing.ListCellRenderer;
  * @author dell
  */
 // https://www.codejava.net/java-se/swing/jlist-custom-renderer-example
-public class DijeteRenderer extends JLabel implements ListCellRenderer<Dijete> {
+public class DijeteRenderer 
+        extends JLabel 
+        implements ListCellRenderer<Dijete> {
 
+    public DijeteRenderer(){
+        setOpaque(true);
+    }
+    
     @Override
     public Component getListCellRendererComponent(
             JList<? extends Dijete> list,
@@ -28,22 +34,22 @@ public class DijeteRenderer extends JLabel implements ListCellRenderer<Dijete> {
 
         setText(dijete.getIme() + " " + dijete.getPrezime());
 
-        setOpaque(true);
+        
         
         boolean neMozeBrisati=dijete.getPosjete()!=null && !dijete.getPosjete().isEmpty();
         
         if (isSelected) {
-            setBackground(Color.WHITE);
+            setBackground(Color.BLUE);
             if(neMozeBrisati){
-                setForeground(Color.MAGENTA);
+                setForeground(Color.GRAY);
             }else{
-                setForeground(Color.BLUE);
+                setForeground(Color.WHITE);
             }
             
         } else {
             setBackground(Color.WHITE);
             if(neMozeBrisati){
-                setForeground(Color.RED);
+                setForeground(Color.GRAY);
             }else{
                 setForeground(Color.BLACK);
             }
