@@ -88,9 +88,9 @@ pokreniSat();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -140,6 +140,14 @@ pokreniSat();
         });
         jMenu1.add(jMenuItem4);
 
+        jMenuItem8.setText("Raspored zaposlenih");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
         jMenuBar1.add(jMenu1);
 
         jMenu5.setText("Pregledi");
@@ -151,14 +159,6 @@ pokreniSat();
             }
         });
         jMenu5.add(jMenuItem7);
-
-        jMenuItem8.setText("Raspored zaposlenih");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem8);
 
         jMenuBar1.add(jMenu5);
 
@@ -248,7 +248,7 @@ pokreniSat();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+       new ProzorRasporedZaposlenih().setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void txtOperaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOperaterActionPerformed

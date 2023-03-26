@@ -398,10 +398,7 @@ implements NovoselacViewSucelje{
         txtTelefonRodtelja.setText(e.getTelefonRoditelja());
         txtOib.setText(e.getOib());
         
-//         btnBrisi.setVisible(false);
-//        if(d.getPosjete())== null || d.getPosjete().isEmpty()){
-//        btnBrisi.setVisible(true);
-//    }
+
      }
 
     @Override
