@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import novoselac.controller.ObradaDjelatnik;
 import novoselac.controller.ObradaPosjeta;
@@ -40,7 +41,7 @@ implements NovoselacViewSucelje{
                 ": Raspored");
         
         ucitajDjelatnike();
-//        ucitajPosjete();
+    ucitajPosjete();
         ucitaj();
         
         
@@ -55,9 +56,15 @@ implements NovoselacViewSucelje{
         m.addAll(new ObradaDjelatnik().read());
         cmbFilterDjelatnici.setModel(m);
         cmbFilterDjelatnici.repaint();
-        cmbFilterDjelatnici.setSelectedIndex(0);
-    }
+         }
 
+      private void ucitajPosjete(){
+           DefaultListModel<Posjeta> m = new DefaultListModel<>();
+        m.addAll(obradaPosjeta.read(txtUvjet.getText().trim()));
+       lstDogovorenePosjete.setModel(m);
+        lstDogovorenePosjete.repaint();
+      }
+      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,9 +88,10 @@ implements NovoselacViewSucelje{
         btnDodaj = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         lstPosjeteNaDjelatniku = new javax.swing.JList<>();
-        btnNoviUnos = new javax.swing.JButton();
+        btnPregledPosjetaNaDjelatniku = new javax.swing.JButton();
+        btnNoviUnos1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel12.setText("Dodjela podjete djelatniku ");
 
@@ -135,10 +143,17 @@ implements NovoselacViewSucelje{
 
         jScrollPane3.setViewportView(lstPosjeteNaDjelatniku);
 
-        btnNoviUnos.setText("Unos novog djelatnika");
-        btnNoviUnos.addActionListener(new java.awt.event.ActionListener() {
+        btnPregledPosjetaNaDjelatniku.setText("Ispis posjeta po djelaniku");
+        btnPregledPosjetaNaDjelatniku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNoviUnosActionPerformed(evt);
+                btnPregledPosjetaNaDjelatnikuActionPerformed(evt);
+            }
+        });
+
+        btnNoviUnos1.setText("Unos novog djelatnika");
+        btnNoviUnos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNoviUnos1ActionPerformed(evt);
             }
         });
 
@@ -153,34 +168,31 @@ implements NovoselacViewSucelje{
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .addComponent(btnDodaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnDodajPosjetu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnObrisiPosjetu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(cmbFilterDjelatnici, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnNoviUnos1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnPregledPosjetaNaDjelatniku, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnDodaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(51, 51, 51)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnDodajPosjetu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnObrisiPosjetu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(txtUvjet)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbFilterDjelatnici, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnNoviUnos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                                        .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,101 +200,103 @@ implements NovoselacViewSucelje{
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbFilterDjelatnici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNoviUnos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTrazi))
+                    .addComponent(cmbFilterDjelatnici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNoviUnos1)
+                    .addComponent(btnPregledPosjetaNaDjelatniku))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(btnDodajPosjetu)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnObrisiPosjetu))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                            .addComponent(jLabel13))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(btnDodaj))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(btnDodajPosjetu)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnObrisiPosjetu)))
+                        .addGap(94, 94, 94))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(btnDodaj)))
-                .addGap(50, 50, 50))
+                        .addGap(76, 76, 76)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTrazi))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUvjetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//            ucitajPosjete();
+         ucitajPosjete();
         }
     }//GEN-LAST:event_txtUvjetKeyPressed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
-//        ucitajPosjete();
+       ucitajPosjete();
     }//GEN-LAST:event_btnTraziActionPerformed
 
     private void btnDodajPosjetuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajPosjetuActionPerformed
 
-//        if(lstDogovorenePosjete.getSelectedValuesList()==null
-//            || lstDogovorenePosjete.getSelectedValuesList().isEmpty()){
-//            JOptionPane.showMessageDialog(getRootPane(),
-//                "Prvo pronađite posjetu");
-//            return;
-//        }
-//
-//        if(lstPosjeteDjelatnik.getModel()==null ||
-//            !(lstPosjeteDjelatnik.getModel() instanceof DefaultListModel<Posjeta>)){
-//            lstPosjeteDjelatnik.setModel(new DefaultListModel<Posjeta>());
-//        }
-//
-//        DefaultListModel<Posjeta> m =
-//        (DefaultListModel<Posjeta>) lstPosjeteDjelatnik.getModel();
-//
-//        DefaultListModel<Posjeta> polaznici =
-//        (DefaultListModel<Posjeta>) lstPosjeteDjelatnik.getModel();
-//        boolean postoji;
-//        for(Posjeta pub : lstDogovorenePosjete.getSelectedValuesList()){
-//            postoji=false;
-//            for(int i=0;i<polaznici.getSize();i++){
-//                if(pub.getSifra()==polaznici.get(i).getSifra()){
-//                    postoji=true;
-//                    break;
-//                }
-//            }
-//            if(!postoji){
-//                polaznici.addElement(pub);
-//            }
-//        }
-//        lstPosjeteDjelatnik.repaint();
-//
+        if(lstDogovorenePosjete.getSelectedValuesList()==null
+            || lstDogovorenePosjete.getSelectedValuesList().isEmpty()){
+            JOptionPane.showMessageDialog(getRootPane(),
+                "Prvo pronađite posjetu");
+            return;
+        }
+
+        if(lstPosjeteNaDjelatniku.getModel()==null ||
+            !(lstPosjeteNaDjelatniku.getModel() instanceof DefaultListModel<Posjeta>)){
+            lstPosjeteNaDjelatniku.setModel(new DefaultListModel<Posjeta>());
+        }
+
+        DefaultListModel<Posjeta> m =
+        (DefaultListModel<Posjeta>) lstPosjeteNaDjelatniku.getModel();
+
+        DefaultListModel<Posjeta> polaznici =
+        (DefaultListModel<Posjeta>) lstPosjeteNaDjelatniku.getModel();
+        boolean postoji;
+        for(Posjeta pub : lstDogovorenePosjete.getSelectedValuesList()){
+            postoji=false;
+            for(int i=0;i<polaznici.getSize();i++){
+                if(pub.getSifra()==polaznici.get(i).getSifra()){
+                    postoji=true;
+                    break;
+                }
+            }
+            if(!postoji){
+                polaznici.addElement(pub);
+            }
+        }
+        lstPosjeteNaDjelatniku.repaint();
+
     }//GEN-LAST:event_btnDodajPosjetuActionPerformed
 
     private void btnObrisiPosjetuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiPosjetuActionPerformed
-//        if(lstPosjeteDjelatnik.getSelectedValuesList()==null
-//            || lstPosjeteDjelatnik.getSelectedValuesList().isEmpty()){
-//            JOptionPane.showMessageDialog(getRootPane(),
-//                "Prvo odaberite polaznike u grupi");
-//            return;
-//        }
-//
-//        DefaultListModel<Posjeta> m =
-//        (DefaultListModel<Posjeta>) lstPosjeteDjelatnik.getModel();
-//
-//        for(Posjeta p : lstPosjeteDjelatnik.getSelectedValuesList()){
-//            m.removeElement(p);
-//        }
-//        lstPosjeteDjelatnik.repaint();
+        if(lstPosjeteNaDjelatniku.getSelectedValuesList()==null
+            || lstPosjeteNaDjelatniku.getSelectedValuesList().isEmpty()){
+            JOptionPane.showMessageDialog(getRootPane(),
+                "Prvo odaberite polaznike u grupi");
+            return;
+        }
+
+        DefaultListModel<Posjeta> m =
+        (DefaultListModel<Posjeta>) lstPosjeteNaDjelatniku.getModel();
+
+        for(Posjeta p : lstPosjeteNaDjelatniku.getSelectedValuesList()){
+            m.removeElement(p);
+        }
+        lstPosjeteNaDjelatniku.repaint();
 
     }//GEN-LAST:event_btnObrisiPosjetuActionPerformed
 
@@ -291,19 +305,23 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_cmbFilterDjelatniciItemStateChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        obrada.setEntitet(new Djelatnik());
+           obrada.setEntitet(new Djelatnik());
         napuniModel();
         try {
             obrada.create();
+            ucitaj();
         } catch (NovoselacException ex) {
-            Logger.getLogger(ProzorRasporedZaposlenih.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(getParent(), ex.getPoruka());
         }
-        ucitaj();
     }//GEN-LAST:event_btnDodajActionPerformed
 
-    private void btnNoviUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoviUnosActionPerformed
+    private void btnPregledPosjetaNaDjelatnikuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledPosjetaNaDjelatnikuActionPerformed
+        new ProzorPosjetePoZaposlenom().setVisible(true);
+    }//GEN-LAST:event_btnPregledPosjetaNaDjelatnikuActionPerformed
+
+    private void btnNoviUnos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoviUnos1ActionPerformed
         new ProzorDjelatnik().setVisible(true);
-    }//GEN-LAST:event_btnNoviUnosActionPerformed
+    }//GEN-LAST:event_btnNoviUnos1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,8 +331,9 @@ implements NovoselacViewSucelje{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDodajPosjetu;
-    private javax.swing.JButton btnNoviUnos;
+    private javax.swing.JButton btnNoviUnos1;
     private javax.swing.JButton btnObrisiPosjetu;
+    private javax.swing.JButton btnPregledPosjetaNaDjelatniku;
     private javax.swing.JButton btnTrazi;
     private javax.swing.JComboBox<Djelatnik> cmbFilterDjelatnici;
     private javax.swing.JLabel jLabel12;

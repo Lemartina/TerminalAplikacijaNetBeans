@@ -45,11 +45,13 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtNapomena" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
+                                      <Component id="btnPotvrdiTermin" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="cmbOdaberiUslugu" alignment="0" min="-2" pref="256" max="-2" attributes="0"/>
+                                      <Component id="btnIspisDogovorenihPosjeta" min="-2" pref="256" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -77,10 +79,6 @@
                           <Component id="jLabel12" min="-2" pref="215" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="230" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                      <Component id="btnPotvrdiTermin" min="-2" pref="262" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="28" max="32767" attributes="0"/>
@@ -127,9 +125,12 @@
                       <Component id="cmbOdaberiUslugu" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="btnPotvrdiTermin" min="-2" pref="32" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnPotvrdiTermin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnIspisDogovorenihPosjeta" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -235,6 +236,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTraziActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnIspisDogovorenihPosjeta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ispis dogovorenih termina"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIspisDogovorenihPosjetaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

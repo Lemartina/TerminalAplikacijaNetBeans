@@ -41,7 +41,7 @@ implements NovoselacViewSucelje
         jLabel1 = new javax.swing.JLabel();
         cmbUsluga = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -85,6 +85,7 @@ implements NovoselacViewSucelje
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged

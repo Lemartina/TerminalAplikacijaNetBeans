@@ -23,6 +23,20 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
         return session.createQuery
         ("from Posjeta", Posjeta.class).list();
     }
+    
+    public List<Posjeta> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+       return session.createQuery("from Posjeta "
+               + " where concat(datumVrijemeDolaska,' ',napomena) "
+               + " like :uvjet "
+               + " order by datumVrijemeDolaska", 
+               Posjeta.class)
+               .setParameter("uvjet", uvjet)
+               .setMaxResults(12)
+               .list();
+    }
+    
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {

@@ -131,6 +131,7 @@ implements NovoselacViewSucelje{
         lstDijete = new javax.swing.JList<>();
         txtUvjet = new javax.swing.JTextField();
         btnTrazi = new javax.swing.JButton();
+        btnIspisDogovorenihPosjeta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -183,6 +184,13 @@ implements NovoselacViewSucelje{
             }
         });
 
+        btnIspisDogovorenihPosjeta.setText("Ispis dogovorenih termina");
+        btnIspisDogovorenihPosjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIspisDogovorenihPosjetaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,11 +213,13 @@ implements NovoselacViewSucelje{
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel6)
-                                        .addComponent(txtNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnPotvrdiTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(24, 24, 24)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
-                                        .addComponent(cmbOdaberiUslugu, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cmbOdaberiUslugu, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnIspisDogovorenihPosjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
@@ -226,10 +236,7 @@ implements NovoselacViewSucelje{
                         .addGap(211, 211, 211)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(btnPotvrdiTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -266,9 +273,11 @@ implements NovoselacViewSucelje{
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbOdaberiUslugu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addComponent(btnPotvrdiTermin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPotvrdiTermin)
+                    .addComponent(btnIspisDogovorenihPosjeta))
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -307,6 +316,10 @@ implements NovoselacViewSucelje{
         ucitajDjecu();
     }//GEN-LAST:event_btnTraziActionPerformed
 
+    private void btnIspisDogovorenihPosjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIspisDogovorenihPosjetaActionPerformed
+       new ProzorDogovoreniTermini().setVisible(true);
+    }//GEN-LAST:event_btnIspisDogovorenihPosjetaActionPerformed
+
     private void ucitajDjecu(){
         DefaultListModel<Dijete> m= new DefaultListModel<>();
         m.addAll(obradaDijete.read(txtUvjet.getText().trim()));
@@ -320,6 +333,7 @@ implements NovoselacViewSucelje{
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIspisDogovorenihPosjeta;
     private javax.swing.JButton btnNoviUnos;
     private javax.swing.JButton btnPotvrdiTermin;
     private javax.swing.JButton btnTrazi;
