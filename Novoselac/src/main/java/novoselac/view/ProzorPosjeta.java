@@ -10,6 +10,7 @@ import com.github.lgooddatepicker.components.DateTimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -358,18 +359,23 @@ implements NovoselacViewSucelje{
     @Override
     public void napuniView() {
         var p= obrada.getEntitet();
+        //napomena
+        
         txtNapomena.setText(p.getNapomena());
+        
+        //usluga
         cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
         
-  
+         // vrijeme i datum
+        LocalDate ld = p.getDatumVrijemeDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        pdDatumIVrijemeDolaska.datePicker.setDate(ld);
+        LocalTime lt = p.getDatumVrijemeOdlaska().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+        pdDatumIVrijemeDolaska.timePicker.setTime(lt);
         
-        
-//        p.getDatumVrijemeDolaska()
-//                .toInstant()
-//                .atZone(ZoneId.systemDefault())
-//                  .toLocalDate();
-//       pdDatumIVrijemeDolaska.setDateTimeStrict(dp);
-        
+        LocalDate ldd = p.getDatumVrijemeOdlaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        pdDatumIVrijemeDolaska.datePicker.setDate(ldd);
+        LocalTime ltt = p.getDatumVrijemeOdlaska().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+        pdDatumIVrijemeDolaska.timePicker.setTime(ltt);
         
         //djeca na posjeti
         DefaultListModel<Dijete> m= new DefaultListModel<>();
@@ -386,7 +392,23 @@ implements NovoselacViewSucelje{
     @Override
     public void napuniModel() {
        var p= obrada.getEntitet();
+       
        p.setNapomena(txtNapomena.getText());
+       
+       p.setDatumVrijemeDolaska(pdDatumIVrijemeDolaska.datePicker.getDate()!=null? 
+       Date.from(pdDatumIVrijemeDolaska.datePicker.getDate()
+       .atStartOfDay().atZone(ZoneId.systemDefault())
+       .toInstant()): null);
+       
+        
+       p.setDatumVrijemeDolaska(dpDatumIVrijemeOdlaska.datePicker.getDate()!=null? 
+   Date.from(dpDatumIVrijemeOdlaska.datePicker.getDate()
+   .atStartOfDay().atZone(ZoneId.systemDefault())
+   .toInstant()): null);
+       
+ cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
+       
+       
        
    
        

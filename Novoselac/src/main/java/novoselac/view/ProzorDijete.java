@@ -365,7 +365,7 @@ implements NovoselacViewSucelje{
 
         if(JOptionPane.showConfirmDialog(
             getRootPane(),
-            "Jeste li sigurni da želite brisati dijte " +
+            "Jeste li sigurni da želite brisati dijete " +
             obrada.getEntitet().getPrezime()+"?",
             "Brisanje",
             JOptionPane.YES_NO_OPTION,
