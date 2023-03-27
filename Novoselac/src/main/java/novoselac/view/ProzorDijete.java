@@ -64,7 +64,6 @@ implements NovoselacViewSucelje{
         jLabel5 = new javax.swing.JLabel();
         txtIme = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btnBrisi = new javax.swing.JButton();
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -79,6 +78,7 @@ implements NovoselacViewSucelje{
         jLabel6 = new javax.swing.JLabel();
         txtOib = new javax.swing.JTextField();
         btnDovuciOib = new javax.swing.JButton();
+        btnBrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,13 +96,6 @@ implements NovoselacViewSucelje{
         });
 
         jLabel1.setText("Popis djece:");
-
-        btnBrisi.setText("Briši");
-        btnBrisi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrisiActionPerformed(evt);
-            }
-        });
 
         btnDodaj.setText("Dodaj");
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +164,13 @@ implements NovoselacViewSucelje{
             }
         });
 
+        btnBrisi.setText("Briši");
+        btnBrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrisiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,7 +217,7 @@ implements NovoselacViewSucelje{
                                 .addComponent(btnPromjeni)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnBrisi)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(67, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,38 +284,6 @@ implements NovoselacViewSucelje{
     private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtImeActionPerformed
-
-    private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
- if(lstPodaci.getSelectedValue()==null){
-            JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite dijete kojeg želite brisati");
-
-            return;
-        }
-
-        if(JOptionPane.showConfirmDialog(
-            getRootPane(),
-            "Jeste li sigurni da želite brisati dijete " +
-            obrada.getEntitet().getIme()+"?",
-            "Brisanje",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
-        return;
-        }
-
-        try {
-            obrada.delete();
-            ucitaj();
-        } catch (NovoselacException ex) {
-            JOptionPane.showMessageDialog(getRootPane(),
-                ex.getPoruka());
-        }
-        
-        
-             
-    
-        
-    }//GEN-LAST:event_btnBrisiActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Dijete());
@@ -386,6 +354,33 @@ implements NovoselacViewSucelje{
     private void chbTraziOdPocetkaImenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbTraziOdPocetkaImenaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chbTraziOdPocetkaImenaActionPerformed
+
+    private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
+        if(lstPodaci.getSelectedValue()==null){
+            JOptionPane.showMessageDialog(getRootPane(),
+                "Prvo odaberite uslugu kojeu želite brisati");
+
+            return;
+        }
+
+        if(JOptionPane.showConfirmDialog(
+            getRootPane(),
+            "Jeste li sigurni da želite brisati dijte " +
+            obrada.getEntitet().getPrezime()+"?",
+            "Brisanje",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
+        return;
+        }
+
+        try {
+            obrada.delete();
+            ucitaj();
+        } catch (NovoselacException ex) {
+            JOptionPane.showMessageDialog(getRootPane(),
+                ex.getPoruka());
+        }
+    }//GEN-LAST:event_btnBrisiActionPerformed
 
  
 

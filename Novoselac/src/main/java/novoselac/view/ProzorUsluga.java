@@ -266,7 +266,7 @@ implements NovoselacViewSucelje{
     private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite dijete kojeg želite brisati");
+                "Prvo odaberite uslugu kojeu želite brisati");
 
             return;
         }

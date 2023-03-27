@@ -339,7 +339,7 @@ implements NovoselacViewSucelje{
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtEmail.setText(e.getEmail());
-//        txtLozinka.(e.getLozinka());
+//       txtLozinka.setText(e.getLozinka()); string u char treba prebaciti
     }
 
     @Override

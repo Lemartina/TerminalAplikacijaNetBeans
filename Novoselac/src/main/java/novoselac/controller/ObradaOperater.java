@@ -7,6 +7,7 @@ package novoselac.controller;
 import jakarta.persistence.NoResultException;
 import java.util.List;
 import novoselac.model.Operater;
+import novoselac.util.Alati;
 import novoselac.util.NovoselacException;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -70,6 +71,9 @@ public class ObradaOperater extends Obrada<Operater> {
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {
+     kontrolaFormatOib();
+     kontrolaOibDupliUBazi();
+        
    }
 
     @Override
@@ -80,4 +84,27 @@ public class ObradaOperater extends Obrada<Operater> {
     protected void kontrolaBrisanje() throws NovoselacException {
    }
 
+    private void kontrolaOibDupliUBazi() throws NovoselacException{
+         List<Operater> djelatnici=null;
+        try {
+            djelatnici = session.createQuery("from Djelatnik u "
+                    + " where u.oib=:oib", 
+                    Operater.class)
+                    .setParameter("oib", entitet.getOib())
+                    .list();
+        } catch (Exception e) {
+        }
+        if(djelatnici!=null && !djelatnici.isEmpty()){
+            throw new NovoselacException("Operater s istim oibom postoji u bazi");
+        }
+    }
+            
+            
+            
+    private void kontrolaFormatOib() throws NovoselacException{
+        if(!Alati.kontrolaOIB(entitet.getOib())){
+            throw new NovoselacException("OIB nije u dobrom formatu");
+        }
+    }
+    
 }

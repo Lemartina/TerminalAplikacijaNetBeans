@@ -16,10 +16,7 @@ import novoselac.util.NovoselacException;
 public class ObradaUsluga extends Obrada<Usluga> {
 
     public List<Usluga> read() {
-      
-      
-      
-        return session.createQuery("from Usluga order by naziv",
+       return session.createQuery("from Usluga order by naziv",
                 Usluga.class).list();
     }
 

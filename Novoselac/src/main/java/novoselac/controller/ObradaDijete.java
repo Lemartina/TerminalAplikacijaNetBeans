@@ -72,10 +72,10 @@ public class ObradaDijete extends Obrada<Dijete> {
 
     @Override
     protected void kontrolaBrisanje() throws NovoselacException {
-    if(entitet.getPosjete()==null &&
-           !entitet.getPosjete().isEmpty()){
-       throw new NovoselacException("Dijete se ne može brisati jer"
-               + " ima zabilježenu posjetu");
+    if(entitet.getPosjete()!= null &&
+                !entitet.getPosjete().isEmpty()){
+        throw new NovoselacException("Dijete se ne može brisati"
+                + " jer ima posjete ");
     }
     }
    private void kontrolaOibDjetetaDupliUBazi() throws NovoselacException{

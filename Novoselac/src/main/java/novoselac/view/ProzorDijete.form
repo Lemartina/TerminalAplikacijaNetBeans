@@ -78,7 +78,7 @@
                               <Component id="btnBrisi" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -185,14 +185,6 @@
         <Property name="text" type="java.lang.String" value="Popis djece:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnBrisi">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Bri&#x161;i"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrisiActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnDodaj">
       <Properties>
         <Property name="text" type="java.lang.String" value="Dodaj"/>
@@ -287,6 +279,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDovuciOibActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBrisi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bri&#x161;i"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrisiActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
