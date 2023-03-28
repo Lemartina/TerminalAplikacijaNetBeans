@@ -358,7 +358,7 @@ implements NovoselacViewSucelje{
     private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite uslugu kojeu želite brisati");
+                "Prvo odaberite dijete koje želite brisati");
 
             return;
         }
@@ -366,7 +366,7 @@ implements NovoselacViewSucelje{
         if(JOptionPane.showConfirmDialog(
             getRootPane(),
             "Jeste li sigurni da želite brisati dijete " +
-            obrada.getEntitet().getPrezime()+"?",
+            obrada.getEntitet().getIme()+"?",
             "Brisanje",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){

@@ -40,8 +40,8 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {
+    
     }
-
     @Override
     protected void kontrolaPromjena() throws NovoselacException {
     }
