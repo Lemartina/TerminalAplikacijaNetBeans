@@ -13,7 +13,8 @@ import novoselac.util.Aplikacija;
  *
  * @author Administrator
  */
-public class ProzorIzbornik extends javax.swing.JFrame {
+public class ProzorIzbornik extends javax.swing.JFrame
+implements NovoselacViewSucelje{
 
     /**
      * Creates new form Izbornik
@@ -31,6 +32,21 @@ pokreniSat();
     //metoda da se ne radi nova instanca thread
     private void pokreniSat(){
           new Vrijeme().start();
+    }
+
+    @Override
+    public void ucitaj() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void napuniView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void napuniModel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     private  class Vrijeme extends Thread{
 
