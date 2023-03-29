@@ -34,7 +34,6 @@ public class ObradaDijete extends Obrada<Dijete> {
                + " order by prezime, ime ", 
                Dijete.class)
                .setParameter("uvjet", uvjet)
-               .setMaxResults(12)
                .list();
     }
     
@@ -54,7 +53,6 @@ public class ObradaDijete extends Obrada<Dijete> {
                + " order by prezime, ime ", 
                Dijete.class)
                .setParameter("uvjet", uvjet)
-               .setMaxResults(12)
                .list();
     }
     
