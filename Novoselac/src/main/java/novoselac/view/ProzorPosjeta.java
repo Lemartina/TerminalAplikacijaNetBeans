@@ -422,7 +422,7 @@ implements NovoselacViewSucelje{
        
  cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
        
-       
+      
        
    
        
