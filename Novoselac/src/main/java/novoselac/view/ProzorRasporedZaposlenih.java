@@ -4,7 +4,13 @@
  */
 package novoselac.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -40,15 +46,19 @@ implements NovoselacViewSucelje{
                 Aplikacija.OPERATER.getImePrezime() + 
                 ": Raspored");
         
-        ucitajDjelatnike();
+   
+    ucitajDjelatnike();
     ucitajPosjete();
-        ucitaj();
+    ucitaj();
         
         
           
         
         
     }
+    
+    
+      
     
       private void ucitajDjelatnike(){
           DefaultComboBoxModel<Djelatnik> m
@@ -62,8 +72,17 @@ implements NovoselacViewSucelje{
            DefaultListModel<Posjeta> m = new DefaultListModel<>();
         m.addAll(obradaPosjeta.read(txtUvjet.getText().trim()));
        lstDogovorenePosjete.setModel(m);
-        lstDogovorenePosjete.repaint();
+       lstDogovorenePosjete.repaint();
       }
+      @Override
+    public void ucitaj() {
+//          DefaultListModel<Posjeta> m= new DefaultListModel<>();
+//        m.addAll(obradaPosjeta.read(txtUvjet.getText().trim()));
+//        lstPosjeteNaDjelatniku.setModel(m);
+//        lstPosjeteNaDjelatniku.repaint();
+        
+      
+    }
       
 
     /**
@@ -293,7 +312,7 @@ implements NovoselacViewSucelje{
         if(lstPosjeteNaDjelatniku.getSelectedValuesList()==null
             || lstPosjeteNaDjelatniku.getSelectedValuesList().isEmpty()){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite polaznike u grupi");
+                "Prvo odaberite posjetu za uklanjanje sa djelatnika");
             return;
         }
 
@@ -353,15 +372,40 @@ implements NovoselacViewSucelje{
     private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void ucitaj() {
-    }
+    
 
     @Override
     public void napuniView() {
+      
+         var e = obrada.getEntitet();
+         cmbFilterDjelatnici.setSelectedItem(e.getPosjete());
+         
+         
+            DefaultListModel<Posjeta> m = new DefaultListModel<>();
+        if(e.getPosjete()!=null){
+            m.addAll(e.getPosjete());
+        }
+        lstPosjeteNaDjelatniku.setModel(m);
+        lstPosjeteNaDjelatniku.repaint();
+         
+         
    }
 
     @Override
     public void napuniModel() {
+        
+        var e = obrada.getEntitet();
+          
+        List<Posjeta> posjete = new ArrayList<>();
+        try {
+            DefaultListModel<Posjeta> m = (DefaultListModel<Posjeta>) lstDogovorenePosjete.getModel();
+            for(int i=0;i<m.getSize();i++){
+                posjete.add(m.getElementAt(i));
+            }
+        } catch (Exception ex) {
+            
+        }
+        e.setPosjete(posjete);
+         
     }
 }

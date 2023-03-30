@@ -62,8 +62,8 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
             
             
     private void kontrolaFormatOib() throws NovoselacException{
-        if(!Alati.kontrolaOIB(entitet.getOib())){
-            throw new NovoselacException("OIB nije u dobrom formatu");
-        }
+//        if(!Alati.kontrolaOIB(entitet.getOib())){
+//            throw new NovoselacException("OIB nije u dobrom formatu");
+//        }
     }
 }

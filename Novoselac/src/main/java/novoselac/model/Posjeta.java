@@ -123,6 +123,6 @@ public class Posjeta extends Entitet {
     //ispis
     @Override
 	public String toString() {
-		return datumVrijemeDolaska  + "(" + djelatnik.getIme()  + djelatnik.getPrezime() + ")";
+		return datumVrijemeDolaska + "(" + djeca.get(0)+ djeca.get(0)+ ")";
 	}
 }

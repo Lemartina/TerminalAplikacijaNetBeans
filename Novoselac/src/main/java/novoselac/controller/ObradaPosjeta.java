@@ -33,7 +33,7 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
                + " order by datumVrijemeDolaska", 
                Posjeta.class)
                .setParameter("uvjet", uvjet)
-               .setMaxResults(12)
+               .setMaxResults(1000)
                .list();
     }
     
