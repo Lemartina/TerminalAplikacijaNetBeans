@@ -5,7 +5,9 @@
 package novoselac.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import novoselac.model.GrafPodaci;
 import novoselac.model.Usluga;
 import novoselac.util.NovoselacException;
 
@@ -14,7 +16,39 @@ import novoselac.util.NovoselacException;
  * @author Administrator
  */
 public class ObradaUsluga extends Obrada<Usluga> {
+     public List<GrafPodaci> getGrafPodaci(){
+        List<GrafPodaci> l = new ArrayList<>();
+        // preraditi na listu Grafpodaci
+         List<Object[]> lista =  session.createNativeQuery(
+                 ""
+//                         upiti ne daju dobre podatke
+//                      select * from dijete  
+//                             select * from usluga
+//                             
+//                             select a.naziv, count (e.ime)
+//                     
+//                             from usluga a 
+//                             inner join uslugaposjeta b on a.sifra=b.posjeta
+//                             inner join posjeta c on b.usluga =c.sifra 
+//                             inner join dijeteposjeta d on c.sifra=d.posjeta 
+//                             inner join dijete e on d.dijete=e.sifra
+                         + ""
+                         + " ",Object[].class
+                 ).getResultList();
+       
+         GrafPodaci gf;
+         for(Object[] niz : lista){
+            gf = new GrafPodaci();
+            gf.setNaziv(niz[0].toString());
+            gf.setBroj(Integer.valueOf(niz[1].toString()));
+            l.add(gf);
+         }
+    
+    
+       return l;
+    }
 
+    @Override
     public List<Usluga> read() {
        return session.createQuery("from Usluga order by naziv",
                 Usluga.class).list();

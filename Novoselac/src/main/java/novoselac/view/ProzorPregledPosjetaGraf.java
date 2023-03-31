@@ -4,19 +4,67 @@
  */
 package novoselac.view;
 
+import java.awt.BorderLayout;
+import novoselac.controller.ObradaDijete;
+import novoselac.controller.ObradaUsluga;
+import novoselac.model.GrafPodaci;
+import novoselac.model.Usluga;
+import novoselac.util.Aplikacija;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.Dataset;
+import org.jfree.data.general.DefaultPieDataset;
+
 /**
  *
  * @author Administrator
  */
-public class ProzorPregledPosjetaGraf extends javax.swing.JFrame {
+public class ProzorPregledPosjetaGraf 
+        extends javax.swing.JFrame
+implements NovoselacViewSucelje{
+    
+    private ObradaDijete obrada;
+    private ObradaUsluga obradaUsluga;
 
     /**
      * Creates new form ProzorPregledPosjetaGraf
      */
     public ProzorPregledPosjetaGraf() {
         initComponents();
+        obrada= new ObradaDijete();
+        obradaUsluga= new ObradaUsluga();
+        
+        
+         setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
+               Aplikacija.OPERATER.getImePrezime() +
+                ": Pregled posjeta");
+        definirajGraf();
     }
 
+    private static void definirajGraf(){
+        DefaultPieDataset dataset = new DefaultPieDataset( );
+       
+     for(GrafPodaci gp : new ObradaUsluga().getGrafPodaci()){
+            
+             dataset.setValue(gp.getNaziv() + " (" + gp.getBroj() + ")", 
+                     Double.valueOf(gp.getBroj()));
+        }
+        JFreeChart chart = ChartFactory.createPieChart(      
+         "Statistika smjerova",   // chart title 
+         dataset,          // data    
+         false,             // include legend   
+         false, 
+         false);
+          
+          ChartPanel cp = new ChartPanel(chart);
+          
+//         
+//          
+//          pnlGraf.setLayout(new BorderLayout());
+//          pnlGraf.add(cp,BorderLayout.CENTER);
+//          pnlGraf.validate();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,4 +121,19 @@ public class ProzorPregledPosjetaGraf extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel pnlGraf;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void ucitaj() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void napuniView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void napuniModel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
