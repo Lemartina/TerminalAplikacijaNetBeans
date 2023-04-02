@@ -31,7 +31,7 @@ public class ProzorRasporedZaposlenih
         extends javax.swing.JFrame
 implements NovoselacViewSucelje{
 
-    private ObradaDjelatnik obrada;
+    private ObradaDjelatnik obradaDjelatnik;
     private ObradaPosjeta obradaPosjeta;
     
     /**
@@ -39,7 +39,7 @@ implements NovoselacViewSucelje{
      */
     public ProzorRasporedZaposlenih() {
         initComponents();
-        obrada = new ObradaDjelatnik();
+        obradaDjelatnik = new ObradaDjelatnik();
         obradaPosjeta = new ObradaPosjeta();
         
         setTitle(Aplikacija.NAZIV_NOVOSELAC + ": " + 
@@ -331,14 +331,16 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_cmbFilterDjelatniciItemStateChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-          obrada.setEntitet(new Djelatnik());
-        napuniModel();
-        try {
-            obrada.create();
-            ucitaj();
-        } catch (NovoselacException ex) {
-            JOptionPane.showMessageDialog(getParent(), ex.getPoruka());
-        }
+      Djelatnik d = (Djelatnik)cmbFilterDjelatnici.getSelectedItem();
+       DefaultListModel<Posjeta> m=(DefaultListModel<Posjeta>) lstPosjeteNaDjelatniku.getModel();
+       for( int i =0; i<m.getSize(); i++){
+        m.get(i).setDjelatnik(d);
+        obradaPosjeta.setEntitet(m.get(i));
+           try {
+               obradaPosjeta.update();
+           } catch (Exception e) {
+           }
+      }
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPregledPosjetaNaDjelatnikuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledPosjetaNaDjelatnikuActionPerformed
@@ -377,7 +379,7 @@ implements NovoselacViewSucelje{
     @Override
     public void napuniView() {
       
-         var e = obrada.getEntitet();
+           var e = obradaDjelatnik.getEntitet();
          cmbFilterDjelatnici.setSelectedItem(e.getPosjete());
          
          
@@ -388,13 +390,11 @@ implements NovoselacViewSucelje{
         lstPosjeteNaDjelatniku.setModel(m);
         lstPosjeteNaDjelatniku.repaint();
          
-         
    }
 
     @Override
     public void napuniModel() {
-        
-        var e = obrada.getEntitet();
+       var e = obradaDjelatnik.getEntitet();
           
         List<Posjeta> posjete = new ArrayList<>();
         try {

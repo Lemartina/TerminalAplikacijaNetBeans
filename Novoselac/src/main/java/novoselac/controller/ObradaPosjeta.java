@@ -30,10 +30,10 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
        return session.createQuery("from Posjeta "
                + " where concat(datumVrijemeDolaska,' ',napomena) "
                + " like :uvjet "
-               + " order by datumVrijemeDolaska", 
+               + " order by datumVrijemeDolaska desc ", 
                Posjeta.class)
                .setParameter("uvjet", uvjet)
-               .setMaxResults(1000)
+               .setMaxResults(100)
                .list();
     }
     

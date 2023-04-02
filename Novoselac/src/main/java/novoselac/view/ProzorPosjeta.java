@@ -59,11 +59,11 @@ implements NovoselacViewSucelje{
         ucitajDjecu();
         
 //        txtUvjet.requestFocus();
-        ucitajUsluge();
+
    
         odaberiDatumIVrijemeDolaska();
         odaberiDatumIVrijemeOdlaska();
-        ucitaj();
+        ucitaj();//usluge
     }
     
     private void odaberiDatumIVrijemeDolaska() {
@@ -72,8 +72,8 @@ implements NovoselacViewSucelje{
         dps.setTranslationClear("Očisti");
          pdDatumIVrijemeDolaska.datePicker.setSettings(dps);
         TimePickerSettings tps = new TimePickerSettings(new Locale("hr", "HR"));
-         tps.setFormatForDisplayTime("HH:MM:SS");
-       
+         tps.setFormatForDisplayTime("hh:mm:ss");
+       pdDatumIVrijemeDolaska.timePicker.setTime(LocalTime.now());
                
     }
     
@@ -83,20 +83,13 @@ implements NovoselacViewSucelje{
         dos.setTranslationClear("Očisti");
         dpDatumIVrijemeOdlaska.datePicker.setSettings(dos);
         TimePickerSettings tos = new TimePickerSettings(new Locale("hr", "HR"));
-         tos.setFormatForDisplayTime("HH:MM:SS");
+         tos.setFormatForDisplayTime("hh:mm:ss");
+         pdDatumIVrijemeDolaska.timePicker.setTime(LocalTime.now());
     }
     
    @Override
-         public void ucitaj(){
-//           DefaultListModel<Dijete> d = 
-//                new DefaultListModel<>();
-//        d.addAll(obrada.read(txtUvjet.getText()));
-//        lstPodaci.setModel(m);
-//        lstPodaci.repaint();
-    }
- 
-    
-       private void ucitajUsluge(){
+   
+       public void ucitaj(){
         DefaultComboBoxModel<Usluga> u
                 = new DefaultComboBoxModel<>();
         u.addAll(new ObradaUsluga().read());
@@ -294,7 +287,8 @@ implements NovoselacViewSucelje{
         napuniModel();
         try {
             obrada.create();
-            ucitaj();
+            odaberiDatumIVrijemeDolaska();
+            odaberiDatumIVrijemeOdlaska();
         } catch (NovoselacException ex) {
 
             JOptionPane.showMessageDialog(
@@ -413,12 +407,18 @@ implements NovoselacViewSucelje{
        .atZone(ZoneId.systemDefault())
        .toInstant()): null);
        
+   LocalTime lt= pdDatumIVrijemeDolaska.getTimePicker().getTime();
+       
+       
         
        p.setDatumVrijemeOdlaska(dpDatumIVrijemeOdlaska.datePicker.getDate()!=null? 
-   Date.from(dpDatumIVrijemeOdlaska.datePicker.getDate()
-   .atStartOfDay()
-   .atZone(ZoneId.systemDefault())
-   .toInstant()): null);
+       Date.from(dpDatumIVrijemeOdlaska.datePicker.getDate()
+       .atStartOfDay()
+       .atZone(ZoneId.systemDefault())
+       .toInstant()): null);
+       
+       
+         LocalTime ltt= dpDatumIVrijemeOdlaska.getTimePicker().getTime();
        
  cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
        
