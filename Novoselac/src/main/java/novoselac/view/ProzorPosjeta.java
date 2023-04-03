@@ -10,9 +10,11 @@ import com.github.lgooddatepicker.components.DateTimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
@@ -70,23 +72,51 @@ implements NovoselacViewSucelje{
         DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
         dps.setFormatForDatesCommonEra("dd. MM. YYYY. ");
         dps.setTranslationClear("Očisti");
-         pdDatumIVrijemeDolaska.datePicker.setSettings(dps);
+        dps.setTranslationToday("Danas");
+         dtpDatumIVrijemeDolaska.datePicker.setSettings(dps);
+         
         TimePickerSettings tps = new TimePickerSettings(new Locale("hr", "HR"));
-         tps.setFormatForDisplayTime("hh:mm:ss");
+         tps.setFormatForDisplayTime("HH:mm");
+         dtpDatumIVrijemeDolaska.timePicker.getSettings().use24HourClockFormat();
          
+         ArrayList<LocalTime>lista= new ArrayList<>();
          
+           for(int j=0;j<24;j++){
+        for(int i=0;i<60;i+=15){
+            lista.add(LocalTime.of(j, i));
+        }
+        }
+         
+           dtpDatumIVrijemeDolaska.timePicker.getSettings()
+                   .generatePotentialMenuTimes(lista);
        
                
     }
     
-       private void odaberiDatumIVrijemeOdlaska() {
-        DatePickerSettings dos = new DatePickerSettings(new Locale("hr", "HR"));
-        dos.setFormatForDatesCommonEra("dd. MM. YYYY. ");
-        dos.setTranslationClear("Očisti");
-        dpDatumIVrijemeOdlaska.datePicker.setSettings(dos);
-        TimePickerSettings tos = new TimePickerSettings(new Locale("hr", "HR"));
-         tos.setFormatForDisplayTime("hh:mm:ss");
-      
+      private void odaberiDatumIVrijemeOdlaska() {
+        DatePickerSettings dps = new DatePickerSettings(new Locale("hr", "HR"));
+        dps.setFormatForDatesCommonEra("dd. MM. YYYY. ");
+        dps.setTranslationClear("Očisti");
+        dps.setTranslationToday("Danas");
+         dtpDatumIVrijemeOdlaska.datePicker.setSettings(dps);
+         
+        TimePickerSettings tps = new TimePickerSettings(new Locale("hr", "HR"));
+         tps.setFormatForDisplayTime("HH:mm");
+         dtpDatumIVrijemeOdlaska.timePicker.getSettings().use24HourClockFormat();
+         
+         ArrayList<LocalTime>lista= new ArrayList<>();
+         
+           for(int j=0;j<24;j++){
+        for(int i=0;i<60;i+=15){
+            lista.add(LocalTime.of(j, i));
+        }
+        }
+         
+           dtpDatumIVrijemeOdlaska.timePicker.getSettings()
+                   .generatePotentialMenuTimes(lista);
+       
+               
+    
     }
     
    @Override
@@ -115,8 +145,8 @@ implements NovoselacViewSucelje{
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        dpDatumIVrijemeOdlaska = new com.github.lgooddatepicker.components.DateTimePicker();
-        pdDatumIVrijemeDolaska = new com.github.lgooddatepicker.components.DateTimePicker();
+        dtpDatumIVrijemeOdlaska = new com.github.lgooddatepicker.components.DateTimePicker();
+        dtpDatumIVrijemeDolaska = new com.github.lgooddatepicker.components.DateTimePicker();
         btnPotvrdiTermin = new javax.swing.JButton();
         btnNoviUnos = new javax.swing.JButton();
         txtNapomena = new javax.swing.JTextField();
@@ -222,9 +252,9 @@ implements NovoselacViewSucelje{
                                         .addGap(144, 144, 144)
                                         .addComponent(jLabel4))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(pdDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(dtpDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(38, 38, 38)
-                                        .addComponent(dpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(dtpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(200, 200, 200)
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -257,8 +287,8 @@ implements NovoselacViewSucelje{
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pdDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtpDatumIVrijemeDolaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtpDatumIVrijemeOdlaska, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -335,7 +365,8 @@ implements NovoselacViewSucelje{
     private javax.swing.JButton btnPotvrdiTermin;
     private javax.swing.JButton btnTrazi;
     private javax.swing.JComboBox<Usluga> cmbOdaberiUslugu;
-    private com.github.lgooddatepicker.components.DateTimePicker dpDatumIVrijemeOdlaska;
+    private com.github.lgooddatepicker.components.DateTimePicker dtpDatumIVrijemeDolaska;
+    private com.github.lgooddatepicker.components.DateTimePicker dtpDatumIVrijemeOdlaska;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -345,7 +376,6 @@ implements NovoselacViewSucelje{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Dijete> lstDijete;
-    private com.github.lgooddatepicker.components.DateTimePicker pdDatumIVrijemeDolaska;
     private javax.swing.JTextField txtNapomena;
     private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
@@ -367,23 +397,23 @@ implements NovoselacViewSucelje{
                 toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
-        pdDatumIVrijemeDolaska.datePicker.setDate(ld);
+        dtpDatumIVrijemeDolaska.datePicker.setDate(ld);
         LocalTime lt = p.getDatumVrijemeOdlaska()
                 .toInstant().
                 atZone(ZoneId.systemDefault())
                 .toLocalTime();
-        pdDatumIVrijemeDolaska.timePicker.setTime(lt);
+        dtpDatumIVrijemeDolaska.timePicker.setTime(lt);
         
         LocalDate ldd = p.getDatumVrijemeOdlaska()
                 .toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
-        pdDatumIVrijemeDolaska.datePicker.setDate(ldd);
+        dtpDatumIVrijemeOdlaska.datePicker.setDate(ldd);
         LocalTime ltt = p.getDatumVrijemeOdlaska()
                 .toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalTime();
-        pdDatumIVrijemeDolaska.timePicker.setTime(ltt);
+        dtpDatumIVrijemeOdlaska.timePicker.setTime(ltt);
         
         //djeca na posjeti
         DefaultListModel<Dijete> m= new DefaultListModel<>();
@@ -403,35 +433,38 @@ implements NovoselacViewSucelje{
        
        p.setNapomena(txtNapomena.getText());
        
-       p.setDatumVrijemeDolaska(pdDatumIVrijemeDolaska.datePicker.getDate()!=null? 
-       Date.from(pdDatumIVrijemeDolaska.datePicker.getDate()
-       .atStartOfDay()
-       .atZone(ZoneId.systemDefault())
-       .toInstant()): null);
-       
-   LocalTime lt= pdDatumIVrijemeDolaska.getTimePicker().getTime();
-       
-       
+      LocalDate ld = dtpDatumIVrijemeDolaska.datePicker.getDate();
+ 
+        LocalTime lt = dtpDatumIVrijemeDolaska.timePicker.getTime();
+ 
+         LocalDateTime fromDateAndTime = LocalDateTime.of(ld,
+                                                           lt);
         
-       p.setDatumVrijemeOdlaska(dpDatumIVrijemeOdlaska.datePicker.getDate()!=null? 
-       Date.from(dpDatumIVrijemeOdlaska.datePicker.getDate()
-       .atStartOfDay()
-       .atZone(ZoneId.systemDefault())
-       .toInstant()): null);
-       
-       
-         LocalTime ltt= dpDatumIVrijemeOdlaska.getTimePicker().getTime();
-       
- cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
+        Date datum = Date.from(fromDateAndTime.atZone(ZoneId.systemDefault()).toInstant());
+        
+        
+        p.setDatumVrijemeDolaska(datum);
+        
+        
+        
+        
+        LocalDate ldd = dtpDatumIVrijemeOdlaska.datePicker.getDate();
+ 
+        LocalTime ltt = dtpDatumIVrijemeOdlaska.timePicker.getTime();
+ 
+         LocalDateTime
+                 fromDateAndTime1
+                 = LocalDateTime.of(ldd,ltt);
+        
+        Date datumO = Date.from(fromDateAndTime.atZone(ZoneId.systemDefault()).toInstant());
+        
+        
+       p.setDatumVrijemeOdlaska(datumO);        
+        
+        
+      cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
        
       
-       
-   
-       
-               
-               
-       
-        
         
    }
 

@@ -61,9 +61,9 @@
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="pdDatumIVrijemeDolaska" min="-2" pref="256" max="-2" attributes="0"/>
+                                      <Component id="dtpDatumIVrijemeDolaska" min="-2" pref="256" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Component id="dpDatumIVrijemeOdlaska" min="-2" pref="262" max="-2" attributes="0"/>
+                                      <Component id="dtpDatumIVrijemeOdlaska" min="-2" pref="262" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -109,8 +109,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="pdDatumIVrijemeDolaska" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dpDatumIVrijemeOdlaska" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dtpDatumIVrijemeDolaska" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dtpDatumIVrijemeOdlaska" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -169,9 +169,9 @@
         <Property name="text" type="java.lang.String" value="Odaberi datum i vijeme dolaska"/>
       </Properties>
     </Component>
-    <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="dpDatumIVrijemeOdlaska">
+    <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="dtpDatumIVrijemeOdlaska">
     </Component>
-    <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="pdDatumIVrijemeDolaska">
+    <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="dtpDatumIVrijemeDolaska">
     </Component>
     <Component class="javax.swing.JButton" name="btnPotvrdiTermin">
       <Properties>
