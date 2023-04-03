@@ -73,7 +73,9 @@ implements NovoselacViewSucelje{
          pdDatumIVrijemeDolaska.datePicker.setSettings(dps);
         TimePickerSettings tps = new TimePickerSettings(new Locale("hr", "HR"));
          tps.setFormatForDisplayTime("hh:mm:ss");
-       pdDatumIVrijemeDolaska.timePicker.setTime(LocalTime.now());
+         
+         
+       
                
     }
     
@@ -84,7 +86,7 @@ implements NovoselacViewSucelje{
         dpDatumIVrijemeOdlaska.datePicker.setSettings(dos);
         TimePickerSettings tos = new TimePickerSettings(new Locale("hr", "HR"));
          tos.setFormatForDisplayTime("hh:mm:ss");
-         pdDatumIVrijemeDolaska.timePicker.setTime(LocalTime.now());
+      
     }
     
    @Override
