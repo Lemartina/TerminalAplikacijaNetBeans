@@ -74,7 +74,6 @@ implements NovoselacViewSucelje{
         jLabel6 = new javax.swing.JLabel();
         btnDovuciOib = new javax.swing.JButton();
         btnDovuciIban = new javax.swing.JButton();
-        btnOdaberi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -154,13 +153,6 @@ implements NovoselacViewSucelje{
             }
         });
 
-        btnOdaberi.setText("Odaberi");
-        btnOdaberi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOdaberiActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,12 +183,9 @@ implements NovoselacViewSucelje{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnDodaj)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnOdaberi)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnPromjeni)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBrisi)))))
+                        .addComponent(btnPromjeni)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBrisi)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,9 +225,7 @@ implements NovoselacViewSucelje{
                             .addComponent(btnPromjeni)
                             .addComponent(btnBrisi)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOdaberi)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -334,10 +321,6 @@ implements NovoselacViewSucelje{
        txtIban.setText(Alati.dovuciIban());
     }//GEN-LAST:event_btnDovuciIbanActionPerformed
 
-    private void btnOdaberiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOdaberiActionPerformed
-       
-    }//GEN-LAST:event_btnOdaberiActionPerformed
-
     
     /**
      * @param args the command line arguments
@@ -349,7 +332,6 @@ implements NovoselacViewSucelje{
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDovuciIban;
     private javax.swing.JButton btnDovuciOib;
-    private javax.swing.JButton btnOdaberi;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

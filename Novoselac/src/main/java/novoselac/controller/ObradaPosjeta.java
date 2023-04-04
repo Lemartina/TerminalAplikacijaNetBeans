@@ -37,6 +37,8 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
                .list();
     }
     
+    
+    
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {

@@ -23,9 +23,9 @@ public class Posjeta extends Entitet {
           @JoinTable(
             name = "dijetePosjeta",
             joinColumns = {
-                @JoinColumn(name = "dijete")},
+                @JoinColumn(name = "posjeta")},
             inverseJoinColumns = {
-                @JoinColumn(name = "posjeta")}
+                @JoinColumn(name = "dijete")}
     
           )
          private List<Dijete> djeca;
@@ -34,9 +34,9 @@ public class Posjeta extends Entitet {
           @JoinTable(
             name = "uslugaPosjeta",
             joinColumns = {
-                @JoinColumn(name = "usluga")},
+                @JoinColumn(name = "posjeta")},
             inverseJoinColumns = {
-                @JoinColumn(name = "posjeta")}
+                @JoinColumn(name = "usluga")}
     
           )
            private List<Usluga>usluge;
