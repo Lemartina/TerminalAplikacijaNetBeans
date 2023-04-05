@@ -400,17 +400,10 @@ implements NovoselacViewSucelje{
     @Override
     public void napuniModel() {
        var e = obradaDjelatnik.getEntitet();
+       
+        cmbFilterDjelatnici.setSelectedItem(e.getIme());
           
-        List<Posjeta> posjete = new ArrayList<>();
-        try {
-            DefaultListModel<Posjeta> m = (DefaultListModel<Posjeta>) lstDogovorenePosjete.getModel();
-            for(int i=0;i<m.getSize();i++){
-                posjete.add(m.getElementAt(i));
-            }
-        } catch (Exception ex) {
-            
-        }
-        e.setPosjete(posjete);
+     
          
     }
 }

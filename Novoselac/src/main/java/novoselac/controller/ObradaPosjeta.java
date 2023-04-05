@@ -7,6 +7,7 @@ package novoselac.controller;
 import java.util.Collection;
 import java.util.List;
 import novoselac.model.Dijete;
+import novoselac.model.Djelatnik;
 import novoselac.model.Posjeta;
 import novoselac.util.NovoselacException;
 
@@ -38,7 +39,14 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
     }
     
     
-    
+     public List<Posjeta> read(Djelatnik d) {
+        return session.createQuery("from Posjeta "
+                + " where djelatnik=:djelatnik "
+                + " order by datumVrijemeDolaska desc", 
+                Posjeta.class)
+                .setParameter("djelatnik", d)
+                .list();
+    }
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {
