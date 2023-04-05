@@ -452,14 +452,13 @@ implements NovoselacViewSucelje{
  
         LocalTime ltt = dtpDatumIVrijemeOdlaska.timePicker.getTime();
  
-         LocalDateTime
-                 fromDateAndTime1
+         LocalDateTime fromDateAndTime1 
                  = LocalDateTime.of(ldd,ltt);
         
-        Date datumO = Date.from(fromDateAndTime.atZone(ZoneId.systemDefault()).toInstant());
+        Date datum1 = Date.from(fromDateAndTime1.atZone(ZoneId.systemDefault()).toInstant());
         
         
-       p.setDatumVrijemeOdlaska(datumO);        
+       p.setDatumVrijemeOdlaska(datum1);        
         
         
       cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
@@ -472,3 +471,14 @@ implements NovoselacViewSucelje{
 
     
 }
+/* upit za ispis potvđenog termina
+select a.ime,a.prezime, a.imeRoditelja, a.telefonRoditelja,c.datumVrijemeDolaska, c.datumVrijemeOdlaska, c.napomena  
+from dijete a
+inner join dijeteposjeta  b on a.sifra= b.dijete
+inner join posjeta c on b.posjeta=c.sifra
+order by datumVrijemeDolaska desc
+
+select * from posjeta
+order by sifra desc
+
+*/
