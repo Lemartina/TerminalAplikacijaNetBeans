@@ -6,6 +6,8 @@ package novoselac.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ implements NovoselacViewSucelje{
 
     private ObradaDjelatnik obradaDjelatnik;
     private ObradaPosjeta obradaPosjeta;
+    private DecimalFormat df;
     
     /**
      * Creates new form ProzorRasporedZaposlenih
@@ -41,6 +44,11 @@ implements NovoselacViewSucelje{
         initComponents();
         obradaDjelatnik = new ObradaDjelatnik();
         obradaPosjeta = new ObradaPosjeta();
+        
+         DecimalFormatSymbols dfs=
+                new DecimalFormatSymbols(
+                        new Locale("hr", "HR"));
+        df= new DecimalFormat("###,##0.00", dfs);
         
         setTitle(Aplikacija.NAZIV_NOVOSELAC + ": " + 
                 Aplikacija.OPERATER.getImePrezime() + 
@@ -349,7 +357,7 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPregledPosjetaNaDjelatnikuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledPosjetaNaDjelatnikuActionPerformed
-        new ProzorPosjetePoZaposlenom().setVisible(true);
+        new ProzorPregledPosjetaNaDjelatniku().setVisible(true);
     }//GEN-LAST:event_btnPregledPosjetaNaDjelatnikuActionPerformed
 
     private void btnNoviUnos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoviUnos1ActionPerformed

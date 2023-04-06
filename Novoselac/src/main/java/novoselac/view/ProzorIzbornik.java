@@ -285,7 +285,7 @@ pokreniSat();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       new ProzorPosjetePoZaposlenom().setVisible(true);
+       new ProzorPregledPosjetaNaDjelatniku().setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
