@@ -34,12 +34,13 @@ public class ProzorPosjetePoZaposlenom
          setTitle(Aplikacija.NAZIV_NOVOSELAC + ": " + 
                 Aplikacija.OPERATER.getImePrezime() + 
                 ": Posjete po zaposlenom");
-         ucitajDjelatnike();
+         ucitajFilterDjelatnika();
+         ucitajDjeltanike();
          ucitaj();//posjete
     }
 
     
-     private void ucitajDjelatnike(){
+     private void ucitajDjeltanike(){
          DefaultComboBoxModel<Djelatnik> m
                 = new DefaultComboBoxModel<>();
         Djelatnik d = new Djelatnik();
@@ -51,6 +52,18 @@ public class ProzorPosjetePoZaposlenom
         cmbOdaberiDjelatnika.setModel(m);
         cmbOdaberiDjelatnika.repaint();
     }
+     
+     
+     private void ucitajFilterDjelatnika(){
+        DefaultComboBoxModel<Djelatnik> m
+                = new DefaultComboBoxModel<>();
+        m.addAll(new ObradaDjelatnik().read());
+        cmbOdaberiDjelatnika.setModel(m);
+        cmbOdaberiDjelatnika.repaint();
+        cmbOdaberiDjelatnika.setSelectedIndex(0);
+    }
+
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +84,11 @@ public class ProzorPosjetePoZaposlenom
         cmbOdaberiDjelatnika.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbOdaberiDjelatnikaItemStateChanged(evt);
+            }
+        });
+        cmbOdaberiDjelatnika.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbOdaberiDjelatnikaActionPerformed(evt);
             }
         });
 
@@ -134,6 +152,10 @@ public class ProzorPosjetePoZaposlenom
         napuniView();
     }//GEN-LAST:event_lstPregledPosjetaNaZaposlenomValueChanged
 
+    private void cmbOdaberiDjelatnikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOdaberiDjelatnikaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbOdaberiDjelatnikaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -159,17 +181,17 @@ public class ProzorPosjetePoZaposlenom
     
       @Override
     public void napuniView() {
-       var e = obradaDjelatnik.getEntitet(); 
-       cmbOdaberiDjelatnika.setSelectedItem(e.getDjelatnik());
+       var e = obradaPosjeta.getEntitet(); 
+      cmbOdaberiDjelatnika.setSelectedItem(e.getDjelatnik());
+       
+       
     }
     
     
      @Override
     public void napuniModel() {
-        var e = obradaDjelatnik.getEntitet();
-       
-        e.setPosjete((Posjeta) lstPregledPosjetaNaZaposlenom.getSelectedItem());
-      
+        var e = obradaPosjeta.getEntitet();
+      e.setDjelatnik((Djelatnik) cmbOdaberiDjelatnika.getSelectedItem());
     
         
     }
