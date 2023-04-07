@@ -25,6 +25,15 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
         ("from Posjeta", Posjeta.class).list();
     }
     
+        public List<Posjeta> read(Djelatnik d) {
+        return session.createQuery
+        ("from Posjeta"
+                + "where djelatnik=:djelatnik",
+                Posjeta.class)
+                .setParameter("djelatnik", d)
+                .list();
+    }
+    
     public List<Posjeta> read(String uvjet) {
         uvjet=uvjet.trim();
         uvjet = "%" + uvjet + "%";
@@ -39,14 +48,7 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
     }
     
     
-     public List<Posjeta> read(Djelatnik d) {
-        return session.createQuery("from Posjeta "
-                + " where djelatnik=:djelatnik "
-                + " order by datumVrijemeDolaska desc", 
-                Posjeta.class)
-                .setParameter("djelatnik", d)
-                .list();
-    }
+  
 
     @Override
     protected void kontrolaUnos() throws NovoselacException {

@@ -154,10 +154,10 @@ private void ucitajDjelatnike(){
     public void ucitaj() {
             
            DefaultListModel<Posjeta> m = new DefaultListModel<>();
-        m.addAll(obrada.read(txtUvjet.getText().trim()));
+       m.addAll(obrada.read((Djelatnik)cmbFilterDjelatnici.getSelectedItem()));
        lstDogovorenePosjete.setModel(m);
        lstDogovorenePosjete.repaint();
- }
+      }
 
     @Override
     public void napuniView() {
