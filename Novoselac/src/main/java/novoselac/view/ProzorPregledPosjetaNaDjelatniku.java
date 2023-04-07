@@ -23,7 +23,7 @@ import novoselac.util.Aplikacija;
  */
 public class ProzorPregledPosjetaNaDjelatniku 
         extends javax.swing.JFrame 
-implements NovoselacViewSucelje{
+        implements NovoselacViewSucelje{
     
     private ObradaPosjeta obrada;
     private ObradaDjelatnik obradaDjelatnik;
@@ -44,16 +44,33 @@ implements NovoselacViewSucelje{
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Posjete na djelatniku");
-         ucitajDjelatnike();
+        ucitajFilterDjelatnici();
+//         ucitajDjelatnike();
+//         ucitajPosjete();
          ucitaj();
     }
-private void ucitajDjelatnike(){
-          DefaultComboBoxModel<Djelatnik> m
-                = new DefaultComboBoxModel<>();
-        m.addAll(new ObradaDjelatnik().read());
-        cmbFilterDjelatnici.setModel(m);
-        cmbFilterDjelatnici.repaint();
-         }
+    
+  private void ucitajFilterDjelatnici(){
+      DefaultComboBoxModel<Djelatnik> m
+              = new DefaultComboBoxModel<>();
+      m.addAll(new ObradaDjelatnik().read());
+      cmbFilterDjelatnici.setModel(m);
+      cmbFilterDjelatnici.repaint();
+      cmbFilterDjelatnici.setSelectedIndex(0);
+  }
+    
+    
+    
+    
+//private void ucitajDjelatnike(){
+//          DefaultComboBoxModel<Djelatnik> m
+//                = new DefaultComboBoxModel<>();
+//          Djelatnik d= new Djelatnik();
+//          d.setIme(ime);
+//        m.addAll(new ObradaDjelatnik().read());
+//        cmbFilterDjelatnici.setModel(m);
+//        cmbFilterDjelatnici.repaint();
+//         }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,27 +83,17 @@ private void ucitajDjelatnike(){
 
         jScrollPane2 = new javax.swing.JScrollPane();
         lstDogovorenePosjete = new javax.swing.JList<>();
-        txtUvjet = new javax.swing.JTextField();
-        btnTrazi = new javax.swing.JButton();
         cmbFilterDjelatnici = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        lstDogovorenePosjete.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstDogovorenePosjeteValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lstDogovorenePosjete);
-
-        txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUvjetKeyPressed(evt);
-            }
-        });
-
-        btnTrazi.setText("🔍");
-        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraziActionPerformed(evt);
-            }
-        });
 
         cmbFilterDjelatnici.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -102,12 +109,7 @@ private void ucitajDjelatnike(){
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtUvjet)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
+                .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -123,12 +125,8 @@ private void ucitajDjelatnike(){
                 .addComponent(jLabel14)
                 .addGap(12, 12, 12)
                 .addComponent(cmbFilterDjelatnici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTrazi, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
 
@@ -140,20 +138,26 @@ private void ucitajDjelatnike(){
         ucitaj();
     }//GEN-LAST:event_cmbFilterDjelatniciItemStateChanged
 
-    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
-        ucitaj();
-    }//GEN-LAST:event_btnTraziActionPerformed
-
-    private void txtUvjetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ucitaj();
+    private void lstDogovorenePosjeteValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDogovorenePosjeteValueChanged
+         if(evt.getValueIsAdjusting()){
+            return;
         }
-    }//GEN-LAST:event_txtUvjetKeyPressed
+        if(lstDogovorenePosjete.getSelectedValue()==null){
+            return;
+        }
+
+        obrada.setEntitet(lstDogovorenePosjete.getSelectedValue());
+
+        napuniView();
+    }//GEN-LAST:event_lstDogovorenePosjeteValueChanged
 
     @Override
+    
+    //veza posjete i djelatnika
+    
     public void ucitaj() {
             
-           DefaultListModel<Posjeta> m = new DefaultListModel<>();
+       DefaultListModel<Posjeta> m = new DefaultListModel<>();
        m.addAll(obrada.read((Djelatnik)cmbFilterDjelatnici.getSelectedItem()));
        lstDogovorenePosjete.setModel(m);
        lstDogovorenePosjete.repaint();
@@ -174,11 +178,9 @@ private void ucitajDjelatnike(){
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnTrazi;
     private javax.swing.JComboBox<Djelatnik> cmbFilterDjelatnici;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<Posjeta> lstDogovorenePosjete;
-    private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 }

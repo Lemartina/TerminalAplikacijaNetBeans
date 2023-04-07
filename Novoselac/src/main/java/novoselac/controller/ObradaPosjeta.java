@@ -28,7 +28,7 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
         public List<Posjeta> read(Djelatnik d) {
         return session.createQuery
         ("from Posjeta"
-                + "where djelatnik=:djelatnik",
+                + "where djelatnik= :djelatnik",
                 Posjeta.class)
                 .setParameter("djelatnik", d)
                 .list();
