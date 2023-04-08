@@ -27,7 +27,7 @@ public class ProzorPregledPosjetaNaDjelatniku
     
     private ObradaPosjeta obrada;
     private ObradaDjelatnik obradaDjelatnik;
-     private DecimalFormat df;
+//     private DecimalFormat df;
 
     /**
      * Creates new form ProzorPregledPosjetaNaDjelatniku
@@ -36,10 +36,10 @@ public class ProzorPregledPosjetaNaDjelatniku
         initComponents();
         obrada= new ObradaPosjeta();
         obradaDjelatnik = new ObradaDjelatnik();
-         DecimalFormatSymbols dfs=
-                new DecimalFormatSymbols(
-                        new Locale("hr", "HR"));
-        df= new DecimalFormat("###,##0.00", dfs);
+//         DecimalFormatSymbols dfs=
+//                new DecimalFormatSymbols(
+//                        new Locale("hr", "HR"));
+//        df= new DecimalFormat("###,##0.00", dfs);
         
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
@@ -154,22 +154,26 @@ public class ProzorPregledPosjetaNaDjelatniku
     @Override
     
     //veza posjete i djelatnika
-    
+    //read treba primiti filter djelatnika --tu puca nešto ne valja
     public void ucitaj() {
             
        DefaultListModel<Posjeta> m = new DefaultListModel<>();
-       m.addAll(obrada.read((Djelatnik)cmbFilterDjelatnici.getSelectedItem()));
+       m.addAll( obrada.read((Djelatnik)cmbFilterDjelatnici.getSelectedItem()
+        ));
        lstDogovorenePosjete.setModel(m);
        lstDogovorenePosjete.repaint();
-      }
+    }
 
     @Override
     public void napuniView() {
+        var e = obrada.getEntitet();
+        cmbFilterDjelatnici.setSelectedItem(e.getDjelatnik());
    }
 
     @Override
     public void napuniModel() {
-        
+         var e = obrada.getEntitet();
+         e.setDjelatnik((Djelatnik) cmbFilterDjelatnici.getSelectedItem());
    }
 
     /**
