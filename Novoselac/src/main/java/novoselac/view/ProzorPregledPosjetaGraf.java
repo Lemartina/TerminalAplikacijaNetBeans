@@ -5,6 +5,7 @@
 package novoselac.view;
 
 import java.awt.BorderLayout;
+import javax.swing.DefaultListModel;
 import novoselac.controller.ObradaDijete;
 import novoselac.controller.ObradaUsluga;
 import novoselac.model.GrafPodaci;
@@ -38,32 +39,45 @@ implements NovoselacViewSucelje{
         
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
-                ": Pregled posjeta");
+                ": Pregled broja djece po uslugama");
         definirajGraf();
     }
-
-    private static void definirajGraf(){
+   private int broj;
+    
+    
+    private void definirajGraf(){
+        
+        ObradaUsluga ou = new ObradaUsluga();
         DefaultPieDataset dataset = new DefaultPieDataset( );
-       
-     for(GrafPodaci gp : new ObradaUsluga().getGrafPodaci()){
+         
+         for(Usluga u : ou.read()){
+            broj = 0;
             
-             dataset.setValue(gp.getNaziv() + " (" + gp.getBroj() + ")", 
-                     Double.valueOf(gp.getBroj()));
-        }
-        JFreeChart chart = ChartFactory.createPieChart(      
-         "Statistika smjerova",   // chart title 
-         dataset,          // data    
-         false,             // include legend   
+            u.getPosjeta().forEach(u->{
+                broj +=u.getDjeca().size();
+            });
+            
+            
+             dataset.setValue(u.getNaziv()+ " (" + broj() + ")", 
+                     Double.valueOf(broj));
+      }
+         
+         JFreeChart chart = ChartFactory.createPieChrat(      
+         "Statistika usuga",   // naslob grafa
+         dataset,          
+         false,              
          false, 
          false);
           
           ChartPanel cp = new ChartPanel(chart);
           
-//         
-//          
-//          pnlGraf.setLayout(new BorderLayout());
-//          pnlGraf.add(cp,BorderLayout.CENTER);
-//          pnlGraf.validate();
+          pnlGraf.setLayout(new BorderLayout());
+          pnlGraf.add(cp,BorderLayout.CENTER);
+          pnlGraf.validate();
+         
+           
+         
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,16 +138,15 @@ implements NovoselacViewSucelje{
 
     @Override
     public void ucitaj() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   }
 
     @Override
     public void napuniView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+    
     }
 
     @Override
     public void napuniModel() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+     }
 }

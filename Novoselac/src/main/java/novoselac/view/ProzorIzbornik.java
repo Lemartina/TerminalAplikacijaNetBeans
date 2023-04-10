@@ -7,7 +7,16 @@ package novoselac.view;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import novoselac.controller.ObradaDjelatnik;
+import novoselac.controller.ObradaUsluga;
+import novoselac.model.Djelatnik;
+import novoselac.model.GrafPodaci;
+import novoselac.model.Usluga;
 import novoselac.util.Aplikacija;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -27,8 +36,48 @@ implements NovoselacViewSucelje{
      
      
 pokreniSat();
+//definirajGraf();
     }
 
+    // prikazati broj djece po usluzi
+//    private int broj;
+//    
+//    
+//    private void definirajGraf(){
+//        
+//        ObradaUsluga ou = new ObradaUsluga();
+//        DefaultPieDataset dataset = new DefaultPieDataset( );
+//         
+//         for(Usluga u : ou.read()){
+//            broj = 0;
+//            
+//            u.getPosjeta().forEach(u->{
+//                broj +=u.getDjeca().size();
+//            });
+//            
+//            
+//             dataset.setValue(u.getNaziv()+ " (" + broj() + ")", 
+//                     Double.valueOf(broj));
+//      }
+//         
+//         JFreeChart chart = ChartFactory.createPieChrat(      
+//         "Statistika usuga",   // naslob grafa
+//         dataset,          
+//         false,              
+//         false, 
+//         false);
+//          
+//          ChartPanel cp = new ChartPanel(chart);
+//          
+//          pnlGraf.setLayout(new BorderLayout());
+//          pnlGraf.add(cp,BorderLayout.CENTER);
+//          pnlGraf.validate();
+//         
+//         
+//         
+//         
+//        
+//    }
     //metoda da se ne radi nova instanca thread
     private void pokreniSat(){
           new Vrijeme().start();
