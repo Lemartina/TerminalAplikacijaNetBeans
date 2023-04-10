@@ -42,28 +42,28 @@ implements NovoselacViewSucelje{
                 ": Pregled broja djece po uslugama");
         definirajGraf();
     }
-   private int broj;
+   
+ //ne daje inner join dobre podatke
+//select a.naziv, count(e.ime) as broj
+//from usluga a
+//inner join uslugaposjeta b on a.sifra = b.usluga
+//inner join posjeta c on b.posjeta=c.sifra 
+//inner join dijeteposjeta d on c.sifra=d.posjeta
+//inner join dijete e on d.dijete=e.sifra
     
     
     private void definirajGraf(){
         
-        ObradaUsluga ou = new ObradaUsluga();
-        DefaultPieDataset dataset = new DefaultPieDataset( );
+         DefaultPieDataset dataset = new DefaultPieDataset( );
          
-         for(Usluga u : ou.read()){
-            broj = 0;
+         for(GrafPodaci gp : new ObradaUsluga().getGrafPodaci()){
             
-            u.getPosjeta().forEach(u->{
-                broj +=u.getDjeca().size();
-            });
-            
-            
-             dataset.setValue(u.getNaziv()+ " (" + broj() + ")", 
-                     Double.valueOf(broj));
+             dataset.setValue(gp.getNaziv() + " (" + gp.getBroj() + ")", 
+                     Double.valueOf(gp.getBroj()));
       }
          
-         JFreeChart chart = ChartFactory.createPieChrat(      
-         "Statistika usuga",   // naslob grafa
+         JFreeChart chart = ChartFactory.createPieChart(
+         "Statistika usuga",   // naslov grafa
          dataset,          
          false,              
          false, 
@@ -74,10 +74,7 @@ implements NovoselacViewSucelje{
           pnlGraf.setLayout(new BorderLayout());
           pnlGraf.add(cp,BorderLayout.CENTER);
           pnlGraf.validate();
-         
-           
-         
-        
+            
     }
     /**
      * This method is called from within the constructor to initialize the form.
