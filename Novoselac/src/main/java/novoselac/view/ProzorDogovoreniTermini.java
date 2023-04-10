@@ -40,6 +40,7 @@ implements NovoselacViewSucelje
         lstPodaci = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         cmbUsluga = new javax.swing.JComboBox<>();
+        btnStatistikaUsluga = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,17 +60,29 @@ implements NovoselacViewSucelje
             }
         });
 
+        btnStatistikaUsluga.setText("Statistika usluga graf");
+        btnStatistikaUsluga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatistikaUslugaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(cmbUsluga, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(cmbUsluga, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(btnStatistikaUsluga)))
                 .addContainerGap(209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -81,7 +94,9 @@ implements NovoselacViewSucelje
                 .addComponent(cmbUsluga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(btnStatistikaUsluga)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -105,12 +120,17 @@ implements NovoselacViewSucelje
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbUslugaActionPerformed
 
+    private void btnStatistikaUslugaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaUslugaActionPerformed
+         new ProzorPregledUsluga().setVisible(true);
+    }//GEN-LAST:event_btnStatistikaUslugaActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnStatistikaUsluga;
     private javax.swing.JComboBox<Posjeta> cmbUsluga;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

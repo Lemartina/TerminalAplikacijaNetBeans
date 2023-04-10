@@ -8,6 +8,7 @@ import jakarta.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import novoselac.util.Alati;
 @Entity
 public class Posjeta extends Entitet {
         //svojstva
@@ -23,7 +24,7 @@ public class Posjeta extends Entitet {
           @JoinTable(
             name = "dijetePosjeta",
             joinColumns = {
-                @JoinColumn(name = "posjeta")},
+                @JoinColumn(name = "posjeta1")},
             inverseJoinColumns = {
                 @JoinColumn(name = "dijete")}
     
@@ -34,7 +35,7 @@ public class Posjeta extends Entitet {
           @JoinTable(
             name = "uslugaPosjeta",
             joinColumns = {
-                @JoinColumn(name = "posjeta")},
+                @JoinColumn(name = "posjeta2")},
             inverseJoinColumns = {
                 @JoinColumn(name = "usluga")}
     

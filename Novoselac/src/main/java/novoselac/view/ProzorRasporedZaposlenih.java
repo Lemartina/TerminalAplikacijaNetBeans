@@ -8,6 +8,7 @@ import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ implements NovoselacViewSucelje{
     private ObradaDjelatnik obradaDjelatnik;
     private ObradaPosjeta obradaPosjeta;
     private DecimalFormat df;
+   
     
     /**
      * Creates new form ProzorRasporedZaposlenih
@@ -44,7 +46,7 @@ implements NovoselacViewSucelje{
         initComponents();
         obradaDjelatnik = new ObradaDjelatnik();
         obradaPosjeta = new ObradaPosjeta();
-        
+       
          DecimalFormatSymbols dfs=
                 new DecimalFormatSymbols(
                         new Locale("hr", "HR"));
