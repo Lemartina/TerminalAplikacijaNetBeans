@@ -392,7 +392,7 @@ implements NovoselacViewSucelje{
         //usluga
         cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
         
-         // vrijeme i datum
+         // vrijeme i datum - convert
         LocalDate ld = p.getDatumVrijemeDolaska().
                 toInstant()
                 .atZone(ZoneId.systemDefault())

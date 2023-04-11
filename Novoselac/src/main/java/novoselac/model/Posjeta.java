@@ -119,7 +119,7 @@ public class Posjeta extends Entitet {
 	public String toString() {
             
             try {
-            return datumVrijemeDolaska + "  ( " + djeca.get(0)+ " ) ";
+            return datumVrijemeDolaska + "  ( dijete:" + djeca.get(0)+ " ) ";
         } catch (Exception e) {
         }
 		return datumVrijemeDolaska.toString();

@@ -8,6 +8,7 @@ package novoselac.view;
 import java.awt.BorderLayout;
 import javax.swing.DefaultListModel;
 import novoselac.controller.ObradaDijete;
+import novoselac.controller.ObradaPosjeta;
 import novoselac.controller.ObradaUsluga;
 import novoselac.model.GrafPodaci;
 import novoselac.model.Usluga;
@@ -26,30 +27,24 @@ public class ProzorPregledUsluga
         extends javax.swing.JFrame
 implements NovoselacViewSucelje{
     
-    private ObradaDijete obrada;
+    private ObradaPosjeta obrada;
     private ObradaUsluga obradaUsluga;
     /**
      * Creates new form ProzorPregledUsluga
      */
     public ProzorPregledUsluga() {
         initComponents();
-        obrada= new ObradaDijete();
+        obrada= new ObradaPosjeta();
         obradaUsluga= new ObradaUsluga();
         
         
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
-                ": Pregled broja djece po uslugama");
+                ": Pregled broja pojeta po uslugama");
         definirajGraf();
     }
    
- //ne daje inner join dobre podatke
-//select a.naziv, count(e.ime) as broj
-//from usluga a
-//inner join uslugaposjeta b on a.sifra = b.usluga
-//inner join posjeta c on b.posjeta=c.sifra 
-//inner join dijeteposjeta d on c.sifra=d.posjeta
-//inner join dijete e on d.dijete=e.sifra
+
     
     
     private void definirajGraf(){
@@ -63,7 +58,7 @@ implements NovoselacViewSucelje{
       }
          
          JFreeChart chart = ChartFactory.createPieChart(
-         "Statistika usuga",   // naslov grafa
+         "Statistika usluga",   // naslov grafa
          dataset,          
          false,              
          false, 
