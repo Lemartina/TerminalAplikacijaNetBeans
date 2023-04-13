@@ -36,6 +36,7 @@ public class Alati {
             }
             in.close();
             //   /html/body/div[1]/div[1]/text()
+          
             Document d = Jsoup.parse(sb.toString());
             return Xsoup.compile("/html/body/div[1]/div[1]/text()").evaluate(d).get();
 
