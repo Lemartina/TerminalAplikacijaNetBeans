@@ -20,20 +20,12 @@ public class ObradaUsluga extends Obrada<Usluga> {
         List<GrafPodaci> l = new ArrayList<>();
         // preraditi na listu Grafpodaci
          List<Object[]> lista =  session.createNativeQuery(
-                 ""
-//                         upiti ne daju dobre podatke
-//                      select * from dijete  
-//                             select * from usluga
-//                             
-//                             select a.naziv, count (e.ime)
-//                     
-//                             from usluga a 
-//                             inner join uslugaposjeta b on a.sifra=b.posjeta
-//                             inner join posjeta c on b.usluga =c.sifra 
-//                             inner join dijeteposjeta d on c.sifra=d.posjeta 
-//                             inner join dijete e on d.dijete=e.sifra
-                         + ""
-                         + " ",Object[].class
+                            "select c.naziv, count(a.datumVrijemeDolaska) as brojDogovorenihTermina\n" +
+                            "from posjeta a \n" +
+                            "inner join uslugaposjeta b on a.sifra =b.posjeta \n" +
+                            "inner join usluga c  on b.usluga = c.sifra \n" +
+                             "group by c.naziv "
+                  ,Object[].class
                  ).getResultList();
        
          GrafPodaci gf;

@@ -21,10 +21,10 @@ import org.hibernate.Session;
  */
 public class PocetniInsert {
 
-    private static final int BROJ_USLUGA=20;
-    private static final int BROJ_DJECE=500;
+    private static final int BROJ_USLUGA=10;
+    private static final int BROJ_DJECE=20;
     private static final int BROJ_DJELATNIKA=5;
-    private static final int BROJ_POSJETE=1000;
+    private static final int BROJ_POSJETE=500;
 
     
 
@@ -111,13 +111,13 @@ public class PocetniInsert {
             p.setDjelatnik(djelatnici.get(sb(0, BROJ_DJELATNIKA-1)));  //vanjski ključ
             p.setNapomena("nema napomene");
             d= new ArrayList<>();
-             //izgeneritat će 5 - 30 djece u posjeti
-            for (int x=0; x<sb(5,30); x++){
+             //izgeneritat će 5 - 20 djece u posjeti
+            for (int x=0; x<sb(5,20); x++){
                 d.add(djeca.get(sb(0,BROJ_DJECE-1)));
             }
             u=new ArrayList<>();
-            //izgenrirat će se 1 do 20 usluga u posjeti
-            for (int x=0; x<sb(1,20); x++){
+            //izgenrirat će se 1 do 10 usluga u posjeti
+            for (int x=0; x<sb(1,10); x++){
                 u.add(usluge.get(sb(0,BROJ_USLUGA-1)));
             }
               

@@ -23,7 +23,7 @@ public class ProzorDogovoreniTermini extends javax.swing.JFrame
 implements NovoselacViewSucelje
 {
 
-    
+//Broj posjeta po uslugama - koje se uluge najčešće koriste    
     
     private ObradaUsluga obrada;
     private ObradaPosjeta obradaPosjeta;

@@ -27,6 +27,8 @@ public class ProzorPregledUsluga
         extends javax.swing.JFrame
 implements NovoselacViewSucelje{
     
+    // najčešće korištene usluge
+    
     private ObradaPosjeta obrada;
     private ObradaUsluga obradaUsluga;
     /**
@@ -60,7 +62,7 @@ implements NovoselacViewSucelje{
          JFreeChart chart = ChartFactory.createPieChart(
          "Statistika usluga",   // naslov grafa
          dataset,          
-         false,              
+         true,              
          false, 
          false);
           

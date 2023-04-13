@@ -100,11 +100,7 @@ public class ObradaDijete extends Obrada<Dijete> {
     }
   
     
-// select a.sifra, a.datumVrijemeDolaska , c.imeRoditelja 
-//from posjeta a
-//inner join posjeta_dijete b on a.djelatnik_sifra =b.Posjeta_sifra 
-//inner join dijete c on b.djeca_sifra =c.sifra
-  
+
     }
 
 
