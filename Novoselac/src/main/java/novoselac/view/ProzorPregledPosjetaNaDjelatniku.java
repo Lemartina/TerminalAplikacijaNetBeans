@@ -7,6 +7,8 @@ package novoselac.view;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -44,20 +46,20 @@ public class ProzorPregledPosjetaNaDjelatniku
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Posjete na djelatniku");
-        ucitajFilterDjelatnici();
+//        ucitajDjelatnike();
 //         ucitajDjelatnike();
 //         ucitajPosjete();
          ucitaj();
     }
     
-  private void ucitajFilterDjelatnici(){
-      DefaultComboBoxModel<Djelatnik> m
-              = new DefaultComboBoxModel<>();
-      m.addAll(new ObradaDjelatnik().read());
-      cmbFilterDjelatnici.setModel(m);
-      cmbFilterDjelatnici.repaint();
-      cmbFilterDjelatnici.setSelectedIndex(0);
-  }
+//  private void ucitajDjelatnike(){
+//      DefaultComboBoxModel<Djelatnik> m
+//              = new DefaultComboBoxModel<>();
+//      m.addAll(new ObradaDjelatnik().read());
+//      cmbFilterDjelatnici.setModel(m);
+//      cmbFilterDjelatnici.repaint();
+//      cmbFilterDjelatnici.setSelectedIndex(0);
+//  }
     
     
     
@@ -83,8 +85,11 @@ public class ProzorPregledPosjetaNaDjelatniku
 
         jScrollPane2 = new javax.swing.JScrollPane();
         lstDogovorenePosjete = new javax.swing.JList<>();
-        cmbFilterDjelatnici = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstPodaci = new javax.swing.JList<>();
+        jLabel15 = new javax.swing.JLabel();
+        btnBrojPosjetaNaDjelatniku = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,48 +100,69 @@ public class ProzorPregledPosjetaNaDjelatniku
         });
         jScrollPane2.setViewportView(lstDogovorenePosjete);
 
-        cmbFilterDjelatnici.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbFilterDjelatniciItemStateChanged(evt);
+        jLabel14.setText("Djelatnik");
+
+        lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPodaciValueChanged(evt);
             }
         });
+        jScrollPane1.setViewportView(lstPodaci);
 
-        jLabel14.setText("Djelatnik");
+        jLabel15.setText("Posjeta");
+
+        btnBrojPosjetaNaDjelatniku.setText("Broj posjeta po djelatniku graf");
+        btnBrojPosjetaNaDjelatniku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrojPosjetaNaDjelatnikuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbFilterDjelatnici, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBrojPosjetaNaDjelatniku, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel14)
-                .addGap(12, 12, 12)
-                .addComponent(cmbFilterDjelatnici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBrojPosjetaNaDjelatniku)
+                        .addContainerGap(35, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(28, 28, 28))))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmbFilterDjelatniciItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFilterDjelatniciItemStateChanged
-        ucitaj();
-    }//GEN-LAST:event_cmbFilterDjelatniciItemStateChanged
 
     private void lstDogovorenePosjeteValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDogovorenePosjeteValueChanged
          if(evt.getValueIsAdjusting()){
@@ -151,30 +177,60 @@ public class ProzorPregledPosjetaNaDjelatniku
         napuniView();
     }//GEN-LAST:event_lstDogovorenePosjeteValueChanged
 
+    private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
+        if(evt.getValueIsAdjusting()){
+            return;
+        }
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+
+        obradaDjelatnik.setEntitet(lstPodaci.getSelectedValue());
+
+        napuniView();
+    }//GEN-LAST:event_lstPodaciValueChanged
+
+    private void btnBrojPosjetaNaDjelatnikuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrojPosjetaNaDjelatnikuActionPerformed
+        new PregledPosjetaPoDjelatnikuGraf().setVisible(true);
+    }//GEN-LAST:event_btnBrojPosjetaNaDjelatnikuActionPerformed
+
     @Override
     
     //veza posjete i djelatnika
     //read treba primiti filter djelatnika --tu puca nešto ne valja
     public void ucitaj() {
-            
-       DefaultListModel<Posjeta> m = new DefaultListModel<>();
-       m.addAll( obrada.read((Djelatnik)cmbFilterDjelatnici.getSelectedItem()
-        ));
-       lstDogovorenePosjete.setModel(m);
-       lstDogovorenePosjete.repaint();
+        DefaultListModel<Djelatnik> m=
+                new DefaultListModel<>();
+        m.addAll(obradaDjelatnik.read());
+        lstPodaci.setModel(m);
     }
 
     @Override
     public void napuniView() {
-        var e = obrada.getEntitet();
-        cmbFilterDjelatnici.setSelectedItem(e.getDjelatnik());
+         var d = obradaDjelatnik.getEntitet();
+        
+        // veza djelatnik posjeta       
+        
+   DefaultListModel<Posjeta> m = new DefaultListModel<>();
+   if (d.getPosjete()!=null && !d.getPosjete().isEmpty()){
+       m.addAll(d.getPosjete());
+   }
+   lstDogovorenePosjete.setModel(m);
    }
 
     @Override
     public void napuniModel() {
-         var e = obrada.getEntitet();
-         e.setDjelatnik((Djelatnik) cmbFilterDjelatnici.getSelectedItem());
-   }
+          var e = obradaDjelatnik.getEntitet();
+         List<Posjeta> posjete = new ArrayList<>();
+        try {
+            DefaultListModel<Posjeta> m = (DefaultListModel<Posjeta>) lstDogovorenePosjete.getModel();
+            for(int i=0;i<m.getSize();i++){
+                posjete.add(m.getElementAt(i));
+            }
+        } catch (Exception ex) {
+            
+        }
+        e.setPosjete(posjete);}
 
     /**
      * @param args the command line arguments
@@ -182,9 +238,12 @@ public class ProzorPregledPosjetaNaDjelatniku
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Djelatnik> cmbFilterDjelatnici;
+    private javax.swing.JButton btnBrojPosjetaNaDjelatniku;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<Posjeta> lstDogovorenePosjete;
+    private javax.swing.JList<Djelatnik> lstPodaci;
     // End of variables declaration//GEN-END:variables
 }

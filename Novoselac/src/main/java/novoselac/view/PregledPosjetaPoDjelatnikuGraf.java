@@ -2,53 +2,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
- 
 package novoselac.view;
 
 import java.awt.BorderLayout;
-import javax.swing.DefaultListModel;
-import novoselac.controller.ObradaDijete;
+import novoselac.controller.ObradaDjelatnik;
 import novoselac.controller.ObradaPosjeta;
 import novoselac.controller.ObradaUsluga;
 import novoselac.model.GrafPodaci;
-import novoselac.model.Usluga;
 import novoselac.util.Aplikacija;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.Dataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
  * @author Administrator
  */
-public class ProzorPregledUsluga 
+public class PregledPosjetaPoDjelatnikuGraf 
         extends javax.swing.JFrame
 implements NovoselacViewSucelje{
     
-    // najčešće korištene usluge
-    
     private ObradaPosjeta obrada;
-    private ObradaUsluga obradaUsluga;
+    private ObradaDjelatnik obradaDjelatnik;
+
     /**
-     * Creates new form ProzorPregledUsluga
+     * Creates new form PregledPosjetaPoDjelatnikuGraf
      */
-    public ProzorPregledUsluga() {
+    public PregledPosjetaPoDjelatnikuGraf() {
         initComponents();
         obrada= new ObradaPosjeta();
-        obradaUsluga= new ObradaUsluga();
+        obradaDjelatnik= new ObradaDjelatnik();
         
-        
-         setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
+        setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
-                ": Pregled broja posjeta po uslugama");
+                ": Pregled broja posjeta po djelatnicima");
         definirajGraf();
     }
-   
 
-    
-    
     private void definirajGraf(){
         
          DefaultPieDataset dataset = new DefaultPieDataset( );
@@ -60,7 +51,7 @@ implements NovoselacViewSucelje{
       }
          
          JFreeChart chart = ChartFactory.createPieChart(
-         "Statistika usluga",   // naslov grafa
+         "Statistika posjeta po djelatnicima",   // naslov grafa
          dataset,          
          true,              
          false, 
@@ -101,21 +92,21 @@ implements NovoselacViewSucelje{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 714, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(pnlGraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(16, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGap(0, 491, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(37, Short.MAX_VALUE)
+                    .addContainerGap(51, Short.MAX_VALUE)
                     .addComponent(pnlGraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(37, Short.MAX_VALUE)))
+                    .addContainerGap(52, Short.MAX_VALUE)))
         );
 
         pack();
@@ -125,22 +116,21 @@ implements NovoselacViewSucelje{
     /**
      * @param args the command line arguments
      */
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel pnlGraf;
     // End of variables declaration//GEN-END:variables
-    @Override
-    public void ucitaj() {
-   }
 
     @Override
-    public void napuniView() {
-       
-    
+    public void ucitaj() {
     }
 
     @Override
+    public void napuniView() {
+   }
+
+    @Override
     public void napuniModel() {
-     }
+    }
 }

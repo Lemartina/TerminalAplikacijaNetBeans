@@ -4,8 +4,10 @@
  */
 package novoselac.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import novoselac.model.Djelatnik;
+import novoselac.model.GrafPodaci;
 import novoselac.util.Alati;
 import novoselac.util.NovoselacException;
 
@@ -14,6 +16,34 @@ import novoselac.util.NovoselacException;
  * @author Administrator
  */
 public class ObradaDjelatnik  extends Obrada<Djelatnik>{
+    public List<GrafPodaci> getGrafPodaci(){
+        List<GrafPodaci> l = new ArrayList<>();
+        // preraditi na listu Grafpodaci
+         List<Object[]> lista =  session.createNativeQuery(
+                 "select a.ime, a.prezime, count(b.datumVrijemeDolaska)\n" +
+"from djelatnik a  \n" +
+"inner join posjeta b on a.sifra=b.djelatnik_sifra \n" +
+"inner join uslugaposjeta c on b.sifra=c. posjeta\n" +
+"group by a.ime"
+                            
+                  ,Object[].class
+                 ).getResultList();
+       
+         GrafPodaci gf;
+         for(Object[] niz : lista){
+            gf = new GrafPodaci();
+            gf.setNaziv(niz[0].toString());
+            gf.setBroj(Integer.valueOf(niz[1].toString()));
+            l.add(gf);
+         }
+    
+    
+       return l;
+    }
+
+    
+    
+    
 
     
     //implementacija abstraktnih metoda
