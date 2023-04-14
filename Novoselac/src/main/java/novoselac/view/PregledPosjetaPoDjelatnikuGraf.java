@@ -7,7 +7,6 @@ package novoselac.view;
 import java.awt.BorderLayout;
 import novoselac.controller.ObradaDjelatnik;
 import novoselac.controller.ObradaPosjeta;
-import novoselac.controller.ObradaUsluga;
 import novoselac.model.GrafPodaci;
 import novoselac.util.Aplikacija;
 import org.jfree.chart.ChartFactory;
@@ -37,14 +36,14 @@ implements NovoselacViewSucelje{
         setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Pregled broja posjeta po djelatnicima");
-        definirajGraf();
+        definirajGrafDjelatnik();
     }
 
-    private void definirajGraf(){
+    private void definirajGrafDjelatnik(){
         
          DefaultPieDataset dataset = new DefaultPieDataset( );
          
-         for(GrafPodaci gp : new ObradaUsluga().getGrafPodaci()){
+         for(GrafPodaci gp : new ObradaDjelatnik().getGrafPodaci()){
             
              dataset.setValue(gp.getNaziv() + " (" + gp.getBroj() + ")", 
                      Double.valueOf(gp.getBroj()));
@@ -59,9 +58,9 @@ implements NovoselacViewSucelje{
           
           ChartPanel cp = new ChartPanel(chart);
           
-          pnlGraf.setLayout(new BorderLayout());
-          pnlGraf.add(cp,BorderLayout.CENTER);
-          pnlGraf.validate();
+          pnlGrafDjelatnik.setLayout(new BorderLayout());
+          pnlGrafDjelatnik.add(cp,BorderLayout.CENTER);
+          pnlGrafDjelatnik.validate();
             
     }
     /**
@@ -73,40 +72,39 @@ implements NovoselacViewSucelje{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlGraf = new javax.swing.JPanel();
+        pnlGrafDjelatnik = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        javax.swing.GroupLayout pnlGrafLayout = new javax.swing.GroupLayout(pnlGraf);
-        pnlGraf.setLayout(pnlGrafLayout);
-        pnlGrafLayout.setHorizontalGroup(
-            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlGrafDjelatnikLayout = new javax.swing.GroupLayout(pnlGrafDjelatnik);
+        pnlGrafDjelatnik.setLayout(pnlGrafDjelatnikLayout);
+        pnlGrafDjelatnikLayout.setHorizontalGroup(
+            pnlGrafDjelatnikLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1018, Short.MAX_VALUE)
         );
-        pnlGrafLayout.setVerticalGroup(
-            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+        pnlGrafDjelatnikLayout.setVerticalGroup(
+            pnlGrafDjelatnikLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 714, Short.MAX_VALUE)
+            .addGap(0, 1024, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(pnlGraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(pnlGrafDjelatnik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(51, Short.MAX_VALUE)
-                    .addComponent(pnlGraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(52, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(pnlGrafDjelatnik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -119,7 +117,7 @@ implements NovoselacViewSucelje{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel pnlGraf;
+    private javax.swing.JPanel pnlGrafDjelatnik;
     // End of variables declaration//GEN-END:variables
 
     @Override

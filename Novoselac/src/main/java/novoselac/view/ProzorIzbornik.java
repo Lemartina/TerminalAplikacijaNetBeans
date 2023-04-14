@@ -36,48 +36,11 @@ implements NovoselacViewSucelje{
      
      
 pokreniSat();
-//definirajGraf();
+
     }
 
-    // prikazati broj djece po usluzi
-//    private int broj;
-//    
-//    
-//    private void definirajGraf(){
-//        
-//        ObradaUsluga ou = new ObradaUsluga();
-//        DefaultPieDataset dataset = new DefaultPieDataset( );
-//         
-//         for(Usluga u : ou.read()){
-//            broj = 0;
-//            
-//            u.getPosjeta().forEach(u->{
-//                broj +=u.getDjeca().size();
-//            });
-//            
-//            
-//             dataset.setValue(u.getNaziv()+ " (" + broj() + ")", 
-//                     Double.valueOf(broj));
-//      }
-//         
-//         JFreeChart chart = ChartFactory.createPieChrat(      
-//         "Statistika usuga",   // naslob grafa
-//         dataset,          
-//         false,              
-//         false, 
-//         false);
-//          
-//          ChartPanel cp = new ChartPanel(chart);
-//          
-//          pnlGraf.setLayout(new BorderLayout());
-//          pnlGraf.add(cp,BorderLayout.CENTER);
-//          pnlGraf.validate();
-//         
-//         
-//         
-//         
-//        
-//    }
+
+    
     //metoda da se ne radi nova instanca thread
     private void pokreniSat(){
           new Vrijeme().start();
@@ -85,17 +48,14 @@ pokreniSat();
 
     @Override
     public void ucitaj() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   }
 
     @Override
     public void napuniView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   }
 
     @Override
     public void napuniModel() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     private  class Vrijeme extends Thread{
 
@@ -218,7 +178,7 @@ pokreniSat();
 
         jMenu5.setText("Pregledi");
 
-        jMenuItem7.setText("Dogovorene posjete");
+        jMenuItem7.setText("Usluge po posjetama");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);

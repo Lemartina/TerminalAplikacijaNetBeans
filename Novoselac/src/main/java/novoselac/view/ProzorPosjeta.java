@@ -344,7 +344,7 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_btnTraziActionPerformed
 
     private void btnIspisDogovorenihPosjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIspisDogovorenihPosjetaActionPerformed
-       new ProzorDogovoreniTermini().setVisible(true);
+       
     }//GEN-LAST:event_btnIspisDogovorenihPosjetaActionPerformed
 
     private void ucitajDjecu(){

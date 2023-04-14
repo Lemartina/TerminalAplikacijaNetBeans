@@ -18,13 +18,13 @@ import novoselac.util.NovoselacException;
 public class ObradaDjelatnik  extends Obrada<Djelatnik>{
     public List<GrafPodaci> getGrafPodaci(){
         List<GrafPodaci> l = new ArrayList<>();
-        // preraditi na listu Grafpodaci
+        
          List<Object[]> lista =  session.createNativeQuery(
-                 "select a.ime, a.prezime, count(b.datumVrijemeDolaska)\n" +
-"from djelatnik a  \n" +
-"inner join posjeta b on a.sifra=b.djelatnik_sifra \n" +
-"inner join uslugaposjeta c on b.sifra=c. posjeta\n" +
-"group by a.ime"
+                 " select a.ime, a.prezime, count(b.datumVrijemeDolaska) " +
+" from djelatnik a  " +
+" inner join posjeta b on a.sifra=b.djelatnik_sifra " +
+" inner join uslugaposjeta c on b.sifra=c. posjeta " +
+" group by a.ime "
                             
                   ,Object[].class
                  ).getResultList();

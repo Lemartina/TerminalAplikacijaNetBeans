@@ -52,27 +52,12 @@ public class ProzorPregledPosjetaNaDjelatniku
          ucitaj();
     }
     
-//  private void ucitajDjelatnike(){
-//      DefaultComboBoxModel<Djelatnik> m
-//              = new DefaultComboBoxModel<>();
-//      m.addAll(new ObradaDjelatnik().read());
-//      cmbFilterDjelatnici.setModel(m);
-//      cmbFilterDjelatnici.repaint();
-//      cmbFilterDjelatnici.setSelectedIndex(0);
-//  }
+
     
     
     
     
-//private void ucitajDjelatnike(){
-//          DefaultComboBoxModel<Djelatnik> m
-//                = new DefaultComboBoxModel<>();
-//          Djelatnik d= new Djelatnik();
-//          d.setIme(ime);
-//        m.addAll(new ObradaDjelatnik().read());
-//        cmbFilterDjelatnici.setModel(m);
-//        cmbFilterDjelatnici.repaint();
-//         }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +74,7 @@ public class ProzorPregledPosjetaNaDjelatniku
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
         jLabel15 = new javax.swing.JLabel();
-        btnBrojPosjetaNaDjelatniku = new javax.swing.JButton();
+        lblUkupnoPosjetaNaDjelatniku = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -112,13 +97,6 @@ public class ProzorPregledPosjetaNaDjelatniku
 
         jLabel15.setText("Posjeta");
 
-        btnBrojPosjetaNaDjelatniku.setText("Broj posjeta po djelatniku graf");
-        btnBrojPosjetaNaDjelatniku.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrojPosjetaNaDjelatnikuActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,20 +104,15 @@ public class ProzorPregledPosjetaNaDjelatniku
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBrojPosjetaNaDjelatniku, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblUkupnoPosjetaNaDjelatniku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,13 +124,11 @@ public class ProzorPregledPosjetaNaDjelatniku
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBrojPosjetaNaDjelatniku)
-                        .addContainerGap(35, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(28, 28, 28))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(lblUkupnoPosjetaNaDjelatniku, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -190,14 +161,10 @@ public class ProzorPregledPosjetaNaDjelatniku
         napuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
 
-    private void btnBrojPosjetaNaDjelatnikuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrojPosjetaNaDjelatnikuActionPerformed
-        new PregledPosjetaPoDjelatnikuGraf().setVisible(true);
-    }//GEN-LAST:event_btnBrojPosjetaNaDjelatnikuActionPerformed
-
     @Override
     
     //veza posjete i djelatnika
-    //read treba primiti filter djelatnika --tu puca nešto ne valja
+    
     public void ucitaj() {
         DefaultListModel<Djelatnik> m=
                 new DefaultListModel<>();
@@ -216,6 +183,8 @@ public class ProzorPregledPosjetaNaDjelatniku
        m.addAll(d.getPosjete());
    }
    lstDogovorenePosjete.setModel(m);
+   
+   
    }
 
     @Override
@@ -238,11 +207,11 @@ public class ProzorPregledPosjetaNaDjelatniku
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBrojPosjetaNaDjelatniku;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblUkupnoPosjetaNaDjelatniku;
     private javax.swing.JList<Posjeta> lstDogovorenePosjete;
     private javax.swing.JList<Djelatnik> lstPodaci;
     // End of variables declaration//GEN-END:variables

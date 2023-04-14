@@ -59,7 +59,7 @@ implements NovoselacViewSucelje{
                      Double.valueOf(gp.getBroj()));
       }
          
-         JFreeChart chart = ChartFactory.createPieChart(
+         JFreeChart chart = ChartFactory.createPieChart3D(
          "Statistika usluga",   // naslov grafa
          dataset,          
          true,              
@@ -68,9 +68,9 @@ implements NovoselacViewSucelje{
           
           ChartPanel cp = new ChartPanel(chart);
           
-          pnlGraf.setLayout(new BorderLayout());
-          pnlGraf.add(cp,BorderLayout.CENTER);
-          pnlGraf.validate();
+          pnlGrafUsluge.setLayout(new BorderLayout());
+          pnlGrafUsluge.add(cp,BorderLayout.CENTER);
+          pnlGrafUsluge.validate();
             
     }
     /**
@@ -82,40 +82,40 @@ implements NovoselacViewSucelje{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlGraf = new javax.swing.JPanel();
+        pnlGrafUsluge = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        javax.swing.GroupLayout pnlGrafLayout = new javax.swing.GroupLayout(pnlGraf);
-        pnlGraf.setLayout(pnlGrafLayout);
-        pnlGrafLayout.setHorizontalGroup(
-            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 702, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlGrafUslugeLayout = new javax.swing.GroupLayout(pnlGrafUsluge);
+        pnlGrafUsluge.setLayout(pnlGrafUslugeLayout);
+        pnlGrafUslugeLayout.setHorizontalGroup(
+            pnlGrafUslugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1030, Short.MAX_VALUE)
         );
-        pnlGrafLayout.setVerticalGroup(
-            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+        pnlGrafUslugeLayout.setVerticalGroup(
+            pnlGrafUslugeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 641, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 1042, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(pnlGraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(16, Short.MAX_VALUE)))
+                    .addComponent(pnlGrafUsluge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGap(0, 653, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(37, Short.MAX_VALUE)
-                    .addComponent(pnlGraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(37, Short.MAX_VALUE)))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnlGrafUsluge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -128,7 +128,7 @@ implements NovoselacViewSucelje{
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel pnlGraf;
+    private javax.swing.JPanel pnlGrafUsluge;
     // End of variables declaration//GEN-END:variables
     @Override
     public void ucitaj() {
