@@ -60,7 +60,6 @@ implements NovoselacViewSucelje{
         lstPodaci.repaint();
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -223,6 +222,8 @@ implements NovoselacViewSucelje{
             return;
         }
 
+          obrada.setEntitet(lstPodaci.getSelectedValue());
+        
         napuniModel();
 
         try {
@@ -234,6 +235,7 @@ implements NovoselacViewSucelje{
         }
 
 
+  
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged

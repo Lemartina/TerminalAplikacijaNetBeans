@@ -242,6 +242,8 @@ implements NovoselacViewSucelje{
                 "Prvo odabertie djelatnika");
             return;
         }
+        
+         obrada.setEntitet(lstPodaci.getSelectedValue());
 
         napuniModel();
 

@@ -302,10 +302,12 @@ implements NovoselacViewSucelje{
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odabertie dijete");
+                "Prvo odaberite dijete");
             return;
         }
 
+        
+        obrada.setEntitet(lstPodaci.getSelectedValue());
         napuniModel();
 
         try {
