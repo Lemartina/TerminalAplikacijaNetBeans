@@ -49,7 +49,10 @@ public class ProzorPregledPosjetaNaDjelatniku
 
          ucitaj();
     }
+    public Posjeta getOdabranaPosjeta() {
+        return lstDogovorenePosjete.getSelectedValue();
     
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +73,11 @@ public class ProzorPregledPosjetaNaDjelatniku
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        lstDogovorenePosjete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstDogovorenePosjeteMouseClicked(evt);
+            }
+        });
         lstDogovorenePosjete.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstDogovorenePosjeteValueChanged(evt);
@@ -152,6 +160,13 @@ public class ProzorPregledPosjetaNaDjelatniku
 
         napuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
+
+    
+    
+    
+    private void lstDogovorenePosjeteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstDogovorenePosjeteMouseClicked
+ new PodaciDjelatnikuInfoOOdabranojPosjeti().setVisible(true);
+    }//GEN-LAST:event_lstDogovorenePosjeteMouseClicked
 
     @Override
     

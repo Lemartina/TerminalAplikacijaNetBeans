@@ -37,6 +37,7 @@ implements NovoselacViewSucelje{
     private ObradaDjelatnik obradaDjelatnik;
     private ObradaPosjeta obradaPosjeta;
     private DecimalFormat df;
+    private SimpleDateFormat sdf;
    
     
     /**
@@ -46,7 +47,8 @@ implements NovoselacViewSucelje{
         initComponents();
         obradaDjelatnik = new ObradaDjelatnik();
         obradaPosjeta = new ObradaPosjeta();
-       
+        
+       sdf = new SimpleDateFormat("dd.MM.YYYY", new Locale("hr","HR"));
          DecimalFormatSymbols dfs=
                 new DecimalFormatSymbols(
                         new Locale("hr", "HR"));
@@ -59,7 +61,7 @@ implements NovoselacViewSucelje{
    
     ucitajDjelatnike();
     ucitajPosjete();
-    ucitaj();
+   ucitaj();
         
         
           
@@ -81,19 +83,20 @@ implements NovoselacViewSucelje{
       private void ucitajPosjete(){
            DefaultListModel<Posjeta> m = new DefaultListModel<>();
         m.addAll(obradaPosjeta.read(txtUvjet.getText().trim()));
-       lstDogovorenePosjete.setModel(m);
+       
+//        List<Posjeta> lista = obradaPosjeta.read();
+//        for (Posjeta p : lista){
+//            if (p.toString().toLowerCase().contains(txtUvjet.getText().trim().toLowerCase()))
+//        m.addElement(p);
+//                }
+        
+        lstDogovorenePosjete.setModel(m);
        lstDogovorenePosjete.repaint();
       }
-      @Override
-    public void ucitaj() {
-//          DefaultListModel<Posjeta> m= new DefaultListModel<>();
-//        m.addAll(obradaPosjeta.read(txtUvjet.getText().trim()));
-//        lstPosjeteNaDjelatniku.setModel(m);
-//        lstPosjeteNaDjelatniku.repaint();
-        
       
-    }
+
       
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -342,7 +345,7 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_btnObrisiPosjetuActionPerformed
 
     private void cmbFilterDjelatniciItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFilterDjelatniciItemStateChanged
-        ucitaj();
+       
     }//GEN-LAST:event_cmbFilterDjelatniciItemStateChanged
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -389,7 +392,7 @@ implements NovoselacViewSucelje{
     private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 
-    
+   
 
     @Override
     public void napuniView() {
@@ -415,5 +418,9 @@ implements NovoselacViewSucelje{
           
      
          
+    }
+   @Override
+    public void ucitaj() {
+   
     }
 }
