@@ -46,18 +46,10 @@ public class ProzorPregledPosjetaNaDjelatniku
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Posjete na djelatniku");
-//        ucitajDjelatnike();
-//         ucitajDjelatnike();
-//         ucitajPosjete();
+
          ucitaj();
     }
     
-
-    
-    
-    
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -117,7 +117,7 @@ public class Posjeta extends Entitet {
     //ispis
     @Override
 	public String toString() {
-            
+            //stavljeno ovako da može stavljati vanjski ključ šifru djelatnika u tablicu posjeta
             try {
             return datumVrijemeDolaska + "  ( dijete:" + djeca.get(0)+ " ) ";
         } catch (Exception e) {

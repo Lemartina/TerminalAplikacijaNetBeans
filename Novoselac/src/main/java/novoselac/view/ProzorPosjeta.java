@@ -311,7 +311,7 @@ implements NovoselacViewSucelje{
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbOdaberiUsluguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOdaberiUsluguActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cmbOdaberiUsluguActionPerformed
 
     private void btnPotvrdiTerminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotvrdiTerminActionPerformed
@@ -384,32 +384,32 @@ implements NovoselacViewSucelje{
 
     @Override
     public void napuniView() {
-        var p= obrada.getEntitet();
+        var e= obrada.getEntitet();
         //napomena
         
-        txtNapomena.setText(p.getNapomena());
+        txtNapomena.setText(e.getNapomena());
         
         //usluga
-        cmbOdaberiUslugu.setSelectedItem(p.getUsluge());
+        cmbOdaberiUslugu.setSelectedItem(e.getDatumVrijemeDolaska());
         
          // vrijeme i datum - convert
-        LocalDate ld = p.getDatumVrijemeDolaska().
+        LocalDate ld = e.getDatumVrijemeDolaska().
                 toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
         dtpDatumIVrijemeDolaska.datePicker.setDate(ld);
-        LocalTime lt = p.getDatumVrijemeOdlaska()
+        LocalTime lt = e.getDatumVrijemeOdlaska()
                 .toInstant().
                 atZone(ZoneId.systemDefault())
                 .toLocalTime();
         dtpDatumIVrijemeDolaska.timePicker.setTime(lt);
         
-        LocalDate ldd = p.getDatumVrijemeOdlaska()
+        LocalDate ldd = e.getDatumVrijemeOdlaska()
                 .toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
         dtpDatumIVrijemeOdlaska.datePicker.setDate(ldd);
-        LocalTime ltt = p.getDatumVrijemeOdlaska()
+        LocalTime ltt = e.getDatumVrijemeOdlaska()
                 .toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalTime();
@@ -418,8 +418,8 @@ implements NovoselacViewSucelje{
         //djeca na posjeti
         DefaultListModel<Dijete> m= new DefaultListModel<>();
         
-        if(p.getDjeca()!=null && !p.getDjeca().isEmpty()){
-         m.addAll(p.getDjeca());
+        if(e.getDjeca()!=null && !e.getDjeca().isEmpty()){
+         m.addAll(e.getDjeca());
             
         lstDijete.setModel(m);
         lstDijete.repaint();
