@@ -42,7 +42,7 @@ implements NovoselacViewSucelje{
 
     private ObradaPosjeta obrada; //dtp
     private ObradaDijete obradaDijete;//lst
-//    private ObradaUsluga obradaUsluga;//cmb
+    private ObradaUsluga obradaUsluga;//lst
    
 //    private ObradaDjelatnik obradaDjelatnik;
     /**
@@ -52,7 +52,7 @@ implements NovoselacViewSucelje{
         initComponents();
         obrada= new ObradaPosjeta();
         obradaDijete= new ObradaDijete();
-//        obradaUsluga = new ObradaUsluga();
+    obradaUsluga = new ObradaUsluga();
      
 //         lstDijete.setCellRenderer(new DijeteRenderer());
                setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
@@ -62,7 +62,7 @@ implements NovoselacViewSucelje{
         ucitajDjecu();
         odaberiDatumIVrijemeDolaska();
         odaberiDatumIVrijemeOdlaska();
-//        ucitajUsluge();
+       ucitajUsluge();
         ucitaj();//usluge
     }
     
@@ -116,6 +116,8 @@ implements NovoselacViewSucelje{
                
     
     }
+      
+      
       
 //      private void ucitajUsluge(){
 //           DefaultComboBoxModel<Usluga> m
@@ -215,6 +217,11 @@ implements NovoselacViewSucelje{
 
         jScrollPane1.setViewportView(lstDijeteUBazi);
 
+        txtUvjet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUvjetActionPerformed(evt);
+            }
+        });
         txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUvjetKeyPressed(evt);
@@ -447,9 +454,11 @@ implements NovoselacViewSucelje{
         napuniModel();
         try {
             obrada.create();
+            ucitajDjecu();
+            ucitajUsluge();
             odaberiDatumIVrijemeDolaska();
             odaberiDatumIVrijemeOdlaska();
-//            ucitajUsluge();
+            
         } catch (NovoselacException ex) {
 
             JOptionPane.showMessageDialog(
@@ -478,12 +487,12 @@ implements NovoselacViewSucelje{
 
     private void txtUvjet1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjet1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//            ucitajPosjete();
+            ucitajUsluge();
         }
     }//GEN-LAST:event_txtUvjet1KeyPressed
 
     private void btnTrazi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrazi1ActionPerformed
-//        ucitajPosjete();
+    ucitajUsluge();
     }//GEN-LAST:event_btnTrazi1ActionPerformed
 
     private void btnDodajUsluguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajUsluguActionPerformed
@@ -496,26 +505,26 @@ implements NovoselacViewSucelje{
         }
 
         if(lstPotvrdaUsluge.getModel()==null ||
-            !(lstPotvrdaUsluge.getModel() instanceof DefaultListModel<Posjeta>)){
-            lstPotvrdaUsluge.setModel(new DefaultListModel<Posjeta>());
+            !(lstPotvrdaUsluge.getModel() instanceof DefaultListModel<Usluga>)){
+            lstPotvrdaUsluge.setModel(new DefaultListModel<Usluga>());
         }
 
-        DefaultListModel<Posjeta> m =
-        (DefaultListModel<Posjeta>) lstPotvrdaUsluge.getModel();
+        DefaultListModel<Usluga> m =
+        (DefaultListModel<Usluga>) lstPotvrdaUsluge.getModel();
 
-        DefaultListModel<Posjeta> polaznici =
-        (DefaultListModel<Posjeta>) lstPotvrdaUsluge.getModel();
+        DefaultListModel<Usluga> usluge =
+        (DefaultListModel<Usluga>) lstPotvrdaUsluge.getModel();
         boolean postoji;
-        for(Posjeta pub : lstUslugaUBazi.getSelectedValuesList()){
+        for(Usluga pub : lstUslugaUBazi.getSelectedValuesList()){
             postoji=false;
-            for(int i=0;i<polaznici.getSize();i++){
-                if(pub.getSifra()==polaznici.get(i).getSifra()){
+            for(int i=0;i<usluge.getSize();i++){
+                if(pub.getSifra()==usluge.get(i).getSifra()){
                     postoji=true;
                     break;
                 }
             }
             if(!postoji){
-                polaznici.addElement(pub);
+                usluge.addElement(pub);
             }
         }
         lstPotvrdaUsluge.repaint();
@@ -525,15 +534,15 @@ implements NovoselacViewSucelje{
         if(lstPotvrdaUsluge.getSelectedValuesList()==null
             || lstPotvrdaUsluge.getSelectedValuesList().isEmpty()){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite posjetu za uklanjanje sa djelatnika");
+                "Prvo odaberite uslugu za uklanjanje sa posjete");
             return;
         }
 
-        DefaultListModel<Posjeta> m =
-        (DefaultListModel<Posjeta>) lstPotvrdaUsluge.getModel();
+        DefaultListModel<Usluga> m =
+        (DefaultListModel<Usluga>) lstPotvrdaUsluge.getModel();
 
-        for(Posjeta p : lstPotvrdaUsluge.getSelectedValuesList()){
-            m.removeElement(p);
+        for(Usluga u : lstPotvrdaUsluge.getSelectedValuesList()){
+            m.removeElement(u);
         }
         lstPotvrdaUsluge.repaint();
     }//GEN-LAST:event_btnObrisiUsuguActionPerformed
@@ -601,6 +610,10 @@ implements NovoselacViewSucelje{
         
     }//GEN-LAST:event_btnDodajDijeteActionPerformed
 
+    private void txtUvjetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUvjetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUvjetActionPerformed
+
     private void ucitajDjecu(){
         DefaultListModel<Dijete> m= new DefaultListModel<>();
         m.addAll(obradaDijete.read(txtUvjet.getText().trim()));
@@ -608,6 +621,12 @@ implements NovoselacViewSucelje{
         lstDijeteUBazi.repaint();
     }
 
+       private void ucitajUsluge(){
+        DefaultListModel<Usluga> n= new DefaultListModel<>();
+        n.addAll(obradaUsluga.read(txtUvjet1.getText().trim()));
+        lstUslugaUBazi.setModel(n);
+        lstDijeteUBazi.repaint();
+    }
     /**
      * @param args the command line arguments
      */
@@ -638,8 +657,8 @@ implements NovoselacViewSucelje{
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JList<Dijete> lstDijeteUBazi;
     private javax.swing.JList<Dijete> lstPotvrdaDijeteta;
-    private javax.swing.JList<Posjeta> lstPotvrdaUsluge;
-    private javax.swing.JList<Posjeta> lstUslugaUBazi;
+    private javax.swing.JList<Usluga> lstPotvrdaUsluge;
+    private javax.swing.JList<Usluga> lstUslugaUBazi;
     private javax.swing.JTextField txtNapomena;
     private javax.swing.JTextField txtUvjet;
     private javax.swing.JTextField txtUvjet1;

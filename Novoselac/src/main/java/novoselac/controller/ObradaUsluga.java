@@ -7,6 +7,7 @@ package novoselac.controller;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import novoselac.model.Dijete;
 import novoselac.model.GrafPodaci;
 import novoselac.model.Usluga;
 import novoselac.util.NovoselacException;
@@ -40,6 +41,19 @@ public class ObradaUsluga extends Obrada<Usluga> {
        return l;
     }
 
+     
+        public List<Usluga> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+       return session.createQuery("from Usluga "
+               + " where concat(naziv,' ',naziv) "
+               + " like :uvjet "
+               + " order by naziv ", 
+               Usluga.class)
+               .setParameter("uvjet", uvjet)
+               .list();
+    }
+     
     @Override
     public List<Usluga> read() {
        return session.createQuery("from Usluga order by naziv",
