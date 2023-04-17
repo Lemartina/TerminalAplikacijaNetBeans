@@ -63,14 +63,9 @@ implements NovoselacViewSucelje{
     ucitajPosjete();
    ucitaj();
         
-        
-          
-        
-        
+       
     }
     
-    
-      
     
       private void ucitajDjelatnike(){
           DefaultComboBoxModel<Djelatnik> m
@@ -401,7 +396,7 @@ implements NovoselacViewSucelje{
          cmbFilterDjelatnici.setSelectedItem(e.getPosjete());
          
          
-            DefaultListModel<Posjeta> m = new DefaultListModel<>();
+            DefaultListModel<Posjeta> m = new DefaultListModel<>();  //vizulne kompomente rade preko modela, ne moće ići direkt iz baze
         if(e.getPosjete()!=null){
             m.addAll(e.getPosjete());
         }

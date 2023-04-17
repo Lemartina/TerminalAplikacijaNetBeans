@@ -9,6 +9,7 @@ import java.util.List;
 import novoselac.model.Dijete;
 import novoselac.model.Djelatnik;
 import novoselac.model.Posjeta;
+import novoselac.model.Usluga;
 import novoselac.util.NovoselacException;
 
 /**
@@ -25,6 +26,17 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
         ("from Posjeta", Posjeta.class).list();
     }
     
+    
+    //veze
+          public List<Posjeta> read(Usluga u) {
+        return session.createQuery
+        ("from Posjeta"
+                + "where usluga= :usluga",
+                Posjeta.class)
+                .setParameter("usluga", u)
+                .list();
+    }
+        
         public List<Posjeta> read(Djelatnik d) {
         return session.createQuery
         ("from Posjeta"
