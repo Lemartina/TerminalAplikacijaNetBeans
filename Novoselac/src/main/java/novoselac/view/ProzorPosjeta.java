@@ -342,7 +342,7 @@ implements NovoselacViewSucelje{
                                                         .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                         .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -756,18 +756,31 @@ implements NovoselacViewSucelje{
        
         e.setNapomena(txtNapomena.getText());
         
+        //dijete
+     
+        List<Dijete> djeca = new ArrayList<>();
+        try {
+            DefaultListModel<Dijete> m = (DefaultListModel<Dijete>) lstPotvrdaDijeteta.getModel();
+            for(int i=0;i<m.getSize();i++){
+                djeca.add(m.getElementAt(i));
+            }
+        } catch (Exception ex) {
+            
+        }
+        e.setDjeca(djeca);
+        
         //usluga
      
-//         List<Usluga> usluge = new ArrayList<>();
-//        try {
-//            DefaultListModel<Usluga> m = (DefaultListModel<Usluga>) cmbOdaberiUslugu.getModel();
-//            for(int i=0;i<m.getSize();i++){
-//                usluge.add(m.getElementAt(i));
-//            }
-//        } catch (Exception ex) {
-//            
-//        }
-//        e.setUsluge(usluge);
+         List<Usluga> usluge = new ArrayList<>();
+        try {
+            DefaultListModel<Usluga> m = (DefaultListModel<Usluga>) lstPotvrdaUsluge.getModel();
+            for(int i=0;i<m.getSize();i++){
+                usluge.add(m.getElementAt(i));
+            }
+        } catch (Exception ex) {
+            
+        }
+        e.setUsluge(usluge);
         
        
       
