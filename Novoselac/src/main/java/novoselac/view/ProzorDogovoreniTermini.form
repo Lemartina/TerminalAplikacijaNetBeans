@@ -35,7 +35,7 @@
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lblUkupnoPosjetaPoUsluzi" min="-2" pref="282" max="-2" attributes="0"/>
+                      <Component id="lblUkupnoDjecePoUsluzi" min="-2" pref="233" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnStatistikaUsluga" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -60,10 +60,10 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jScrollPane2" pref="342" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnStatistikaUsluga" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUkupnoPosjetaPoUsluzi" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnStatistikaUsluga" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUkupnoDjecePoUsluzi" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="383" max="-2" attributes="0"/>
@@ -135,7 +135,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblUkupnoPosjetaPoUsluzi">
+    <Component class="javax.swing.JLabel" name="lblUkupnoDjecePoUsluzi">
     </Component>
   </SubComponents>
 </Form>

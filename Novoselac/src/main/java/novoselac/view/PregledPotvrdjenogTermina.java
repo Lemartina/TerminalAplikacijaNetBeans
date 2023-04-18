@@ -14,10 +14,12 @@ implements NovoselacViewSucelje{
 
     /**
      * Creates new form PregledPotvrdjenogTermina
+   
      */
-    public PregledPotvrdjenogTermina(ProzorPosjeta prozorPosjeta) {
+    public PregledPotvrdjenogTermina(ProzorPregledPosjetaNaDjelatniku prozorPregledPosjetaNaDjelatniku) {
         initComponents();
-//        this.lblImeDjeteta =prozorPosjeta;
+        
+   
         
     }
 

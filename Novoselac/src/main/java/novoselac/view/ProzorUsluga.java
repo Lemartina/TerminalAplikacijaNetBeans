@@ -379,7 +379,7 @@ implements NovoselacViewSucelje{
             }
         }
 
-        lblUkupnoDjecePoUsluzi.setText("Ukupno djece po uslugama: " + ukupno);
+        lblUkupnoDjecePoUsluzi.setText("Ukupno djece po posjetama: " + ukupno);
     
         
         
