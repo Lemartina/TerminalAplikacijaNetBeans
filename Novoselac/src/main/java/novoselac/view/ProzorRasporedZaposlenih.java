@@ -36,7 +36,7 @@ implements NovoselacViewSucelje{
 
     private ObradaDjelatnik obradaDjelatnik;
     private ObradaPosjeta obradaPosjeta;
-    private DecimalFormat df;
+//    private DecimalFormat df;
     private SimpleDateFormat sdf;
    
     
@@ -52,7 +52,7 @@ implements NovoselacViewSucelje{
          DecimalFormatSymbols dfs=
                 new DecimalFormatSymbols(
                         new Locale("hr", "HR"));
-        df= new DecimalFormat("###,##0.00", dfs);
+//        df= new DecimalFormat("###,##0.00", dfs);
         
         setTitle(Aplikacija.NAZIV_NOVOSELAC + ": " + 
                 Aplikacija.OPERATER.getImePrezime() + 

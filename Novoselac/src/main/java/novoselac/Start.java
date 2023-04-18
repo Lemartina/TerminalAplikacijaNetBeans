@@ -21,7 +21,7 @@ import novoselac.view.SplashScreen;
 public class Start {
 
     public static void main(String[] args) {
-//        new PocetniInsert(); //nakon importa maknuti inesert
+//    new PocetniInsert(); //nakon importa maknuti inesert
  new SplashScreen().setVisible(true);
 
 

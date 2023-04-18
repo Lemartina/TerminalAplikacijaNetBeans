@@ -38,22 +38,14 @@ public class ProzorPregledPosjetaNaDjelatniku
         initComponents();
         obrada= new ObradaPosjeta();
         obradaDjelatnik = new ObradaDjelatnik();
-//         DecimalFormatSymbols dfs=
-//                new DecimalFormatSymbols(
-//                        new Locale("hr", "HR"));
-//        df= new DecimalFormat("###,##0.00", dfs);
         
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Posjete na djelatniku");
 
-         ucitaj();
+         ucitaj();//veza djelatnika i posjete
     }
-    public Posjeta getOdabranaPosjeta() {
-        return lstDogovorenePosjete.getSelectedValue();
-    
-}
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,10 +61,10 @@ public class ProzorPregledPosjetaNaDjelatniku
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
         jLabel15 = new javax.swing.JLabel();
-        lblBrojPosjetaNaDjelatniku = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        lstDogovorenePosjete.setEnabled(false);
         lstDogovorenePosjete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lstDogovorenePosjeteMouseClicked(evt);
@@ -110,9 +102,6 @@ public class ProzorPregledPosjetaNaDjelatniku
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblBrojPosjetaNaDjelatniku, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -125,11 +114,9 @@ public class ProzorPregledPosjetaNaDjelatniku
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblBrojPosjetaNaDjelatniku, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(66, 66, 66))
         );
 
         pack();
@@ -166,7 +153,7 @@ public class ProzorPregledPosjetaNaDjelatniku
     
     
     private void lstDogovorenePosjeteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstDogovorenePosjeteMouseClicked
- new PodaciDjelatnikuInfoOOdabranojPosjeti().setVisible(true);
+
     }//GEN-LAST:event_lstDogovorenePosjeteMouseClicked
 
     @Override
@@ -221,7 +208,6 @@ public class ProzorPregledPosjetaNaDjelatniku
     private javax.swing.JLabel jLabel15;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblBrojPosjetaNaDjelatniku;
     private javax.swing.JList<Posjeta> lstDogovorenePosjete;
     private javax.swing.JList<Djelatnik> lstPodaci;
     // End of variables declaration//GEN-END:variables
