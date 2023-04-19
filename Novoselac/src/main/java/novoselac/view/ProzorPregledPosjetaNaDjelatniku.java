@@ -21,6 +21,16 @@ import novoselac.model.Dijete;
 import novoselac.model.Djelatnik;
 import novoselac.model.Posjeta;
 import novoselac.util.Aplikacija;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -104,12 +114,14 @@ public class ProzorPregledPosjetaNaDjelatniku
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,10 +131,6 @@ public class ProzorPregledPosjetaNaDjelatniku
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(264, 264, 264)
-                .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,11 +141,12 @@ public class ProzorPregledPosjetaNaDjelatniku
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(31, 31, 31)
-                .addComponent(btnExcel)
-                .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnExcel))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,7 +184,7 @@ public class ProzorPregledPosjetaNaDjelatniku
     }//GEN-LAST:event_lstDogovorenePosjeteMouseClicked
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
-        JFileChooser jfc = new JFileChooser();
+           JFileChooser jfc = new JFileChooser();
         jfc.setCurrentDirectory(new File(System.getProperty("user.home")));
         jfc.setSelectedFile(new File(System.getProperty("user.home")
                 + File.separator + "podaci.xlsx"));
@@ -183,8 +192,93 @@ public class ProzorPregledPosjetaNaDjelatniku
             return;
         }
 
-       
-        
+        try {
+
+            Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+            /* CreationHelper helps us create instances of various things like DataFormat, 
+           Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
+            CreationHelper createHelper = workbook.getCreationHelper();
+
+            // Create a Sheet
+            Sheet sheet = workbook.createSheet("Polaznici smjera");
+
+            // Create a Font for styling header cells
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setFontHeightInPoints((short) 14);
+            headerFont.setColor(IndexedColors.RED.getIndex());
+
+            // Create a CellStyle with the font
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFont(headerFont);
+
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
+
+            // Create cells
+            Cell cell = headerRow.createCell(0);
+            cell.setCellValue("Djelatnik");
+            cell.setCellStyle(headerCellStyle);
+            
+            cell = headerRow.createCell(1);
+            cell.setCellValue("Posjeta");
+            cell.setCellStyle(headerCellStyle);
+
+           
+
+            // Create Other rows and cells with employees data
+            int rowNum = 1;
+            Row row;
+            for(Djelatnik d: obradaDjelatnik.read()){
+            for (Posjeta p : d.getPosjete()) {
+                                   
+                
+                row = sheet.createRow(rowNum++);
+
+                row.createCell(0)
+                        .setCellValue(p.getDjelatnik().getIme());
+
+                row.createCell(1)
+                        .setCellValue(p.getDatumVrijemeDolaska().toString());
+
+             
+                }
+
+            
+            }
+
+            row = sheet.createRow(rowNum);
+            cell = row.createCell(3);
+            CellStyle style = workbook.createCellStyle();
+            DataFormat format = workbook.createDataFormat();
+            style.setDataFormat(format.getFormat("0.00"));
+            cell.setCellStyle(style);
+            cell.setCellFormula("sum(E2:E" + (rowNum) + ")");
+
+            // Resize all columns to fit the content size
+            for (int i = 0; i < 4; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            // Write the output to a file
+            FileOutputStream fileOut = new FileOutputStream(jfc.getSelectedFile());
+            workbook.write(fileOut);
+            fileOut.close();
+
+            // Closing the workbook
+            workbook.close();
+
+            ProcessBuilder builder = new ProcessBuilder(
+                    "cmd.exe", "/c", jfc.getSelectedFile().getAbsolutePath());
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+   
+
     }//GEN-LAST:event_btnExcelActionPerformed
 
     
