@@ -119,6 +119,7 @@ pokreniSat();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        lblGitHubMeni = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         txtOperater = new javax.swing.JMenuItem();
@@ -197,6 +198,11 @@ pokreniSat();
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("O aplikaciji");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItem5.setText("Novosti");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -205,6 +211,14 @@ pokreniSat();
             }
         });
         jMenu3.add(jMenuItem5);
+
+        lblGitHubMeni.setText("Git hub");
+        lblGitHubMeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblGitHubMeniActionPerformed(evt);
+            }
+        });
+        jMenu3.add(lblGitHubMeni);
 
         jMenuBar1.add(jMenu3);
 
@@ -297,6 +311,20 @@ pokreniSat();
        new ProzorPregledPosjetaNaDjelatniku().setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void lblGitHubMeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblGitHubMeniActionPerformed
+         try {
+            ProcessBuilder builder = new ProcessBuilder(
+                    "cmd.exe", "/c", "explorer https://github.com/Lemartina");
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_lblGitHubMeniActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+     
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +347,7 @@ pokreniSat();
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenuItem lblGitHubMeni;
     private javax.swing.JLabel lblVrijeme;
     private javax.swing.JMenuItem txtOperater;
     // End of variables declaration//GEN-END:variables
