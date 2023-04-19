@@ -5,6 +5,8 @@
 package novoselac.view;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import novoselac.controller.ObradaDjelatnik;
 import novoselac.controller.ObradaPosjeta;
 import novoselac.model.Dijete;
@@ -61,6 +64,7 @@ public class ProzorPregledPosjetaNaDjelatniku
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
         jLabel15 = new javax.swing.JLabel();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,21 +93,36 @@ public class ProzorPregledPosjetaNaDjelatniku
 
         jLabel15.setText("Posjeta");
 
+        btnExcel.setText("Ispiši u Excel");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(264, 264, 264)
+                .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,27 +133,16 @@ public class ProzorPregledPosjetaNaDjelatniku
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
-                .addGap(66, 66, 66))
+                .addGap(31, 31, 31)
+                .addComponent(btnExcel)
+                .addGap(29, 29, 29))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lstDogovorenePosjeteValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDogovorenePosjeteValueChanged
-         if(evt.getValueIsAdjusting()){
-            return;
-        }
-        if(lstDogovorenePosjete.getSelectedValue()==null){
-            return;
-        }
-
-        obrada.setEntitet(lstDogovorenePosjete.getSelectedValue());
-
-        napuniView();
-    }//GEN-LAST:event_lstDogovorenePosjeteValueChanged
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
         if(evt.getValueIsAdjusting()){
@@ -149,13 +157,39 @@ public class ProzorPregledPosjetaNaDjelatniku
         napuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
 
-    
-    
-    
+    private void lstDogovorenePosjeteValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstDogovorenePosjeteValueChanged
+        if(evt.getValueIsAdjusting()){
+            return;
+        }
+        if(lstDogovorenePosjete.getSelectedValue()==null){
+            return;
+        }
+
+        obrada.setEntitet(lstDogovorenePosjete.getSelectedValue());
+
+        napuniView();
+    }//GEN-LAST:event_lstDogovorenePosjeteValueChanged
+
     private void lstDogovorenePosjeteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstDogovorenePosjeteMouseClicked
 
     }//GEN-LAST:event_lstDogovorenePosjeteMouseClicked
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        jfc.setSelectedFile(new File(System.getProperty("user.home")
+                + File.separator + "podaci.xlsx"));
+        if (jfc.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
+       
+        
+    }//GEN-LAST:event_btnExcelActionPerformed
+
+    
+    
+    
     @Override
     
     //veza posjete i djelatnika
@@ -204,6 +238,7 @@ public class ProzorPregledPosjetaNaDjelatniku
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcel;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JScrollPane jScrollPane1;
