@@ -254,7 +254,7 @@ public class ProzorPregledPosjetaNaDjelatniku
             DataFormat format = workbook.createDataFormat();
             style.setDataFormat(format.getFormat("0.00"));
             cell.setCellStyle(style);
-            cell.setCellFormula("sum(E2:E" + (rowNum) + ")");
+//            cell.setCellFormula("sum(E2:E" + (rowNum) + ")");
 
             // Resize all columns to fit the content size
             for (int i = 0; i < 4; i++) {

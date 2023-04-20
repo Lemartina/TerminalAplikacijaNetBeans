@@ -74,7 +74,7 @@ public class Operater  extends Entitet{
 
 
      public String getImePrezime(){
-        return getIme() + " " + getPrezime();
+        return ime +" "+ prezime;
     }
     
 

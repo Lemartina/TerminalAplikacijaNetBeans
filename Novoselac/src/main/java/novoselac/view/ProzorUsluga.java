@@ -5,18 +5,32 @@
 package novoselac.view;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import novoselac.controller.ObradaUsluga;
 import novoselac.model.Posjeta;
 import novoselac.model.Usluga;
 import novoselac.util.Aplikacija;
 import novoselac.util.NovoselacException;
-
+import org.apache.commons.lang3.text.StrBuilder;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.RichTextString;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -83,7 +97,7 @@ implements NovoselacViewSucelje{
         txtNaziv = new javax.swing.JTextField();
         txtJedinicaMjere = new javax.swing.JTextField();
         btnBrisi = new javax.swing.JButton();
-        lblUkupnoDjecePoUsluzi = new javax.swing.JLabel();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -144,6 +158,13 @@ implements NovoselacViewSucelje{
             }
         });
 
+        btnExcel.setText("Ispiši u Excel");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,7 +177,7 @@ implements NovoselacViewSucelje{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,8 +193,8 @@ implements NovoselacViewSucelje{
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtKolicina)
-                    .addComponent(lblUkupnoDjecePoUsluzi, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,8 +222,9 @@ implements NovoselacViewSucelje{
                             .addComponent(btnDodaj)
                             .addComponent(btnPromjeni)
                             .addComponent(btnBrisi))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblUkupnoDjecePoUsluzi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExcel)
+                        .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(12, Short.MAX_VALUE)
                         .addComponent(jLabel1)
@@ -300,6 +322,112 @@ implements NovoselacViewSucelje{
 
     }//GEN-LAST:event_btnBrisiActionPerformed
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        jfc.setSelectedFile(new File(System.getProperty("user.home")
+            + File.separator + "usluge.xlsx"));
+    if (jfc.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+        return;
+        }
+
+        try {
+
+            Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+            /* CreationHelper helps us create instances of various things like DataFormat,
+            Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
+            CreationHelper createHelper = workbook.getCreationHelper();
+
+            // Create a Sheet
+            Sheet sheet = workbook.createSheet("Popis usluga");
+
+            // Create a Font for styling header cells
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setFontHeightInPoints((short) 14);
+            headerFont.setColor(IndexedColors.RED.getIndex());
+
+            // Create a CellStyle with the font
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFont(headerFont);
+
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
+
+            // Create cells
+            Cell cell = headerRow.createCell(0);
+            cell.setCellValue("Naziv usluge");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(1);
+            cell.setCellValue("Cijena");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(2);
+            cell.setCellValue("Jedinica mjere");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(3);
+            cell.setCellValue("Količina");
+            cell.setCellStyle(headerCellStyle);
+
+           
+
+            // Create Other rows and cells with employees data
+            int rowNum = 1;
+            Row row;
+            for(Usluga u: obrada.read()){
+
+                row = sheet.createRow(rowNum++);
+
+                row.createCell(0)
+                .setCellValue(u.getNaziv());
+
+                row.createCell(1)
+                .setCellValue(u.getCijena().toString());
+
+                row.createCell(2)
+                .setCellValue(u.getJedinicaMjere());
+
+                row.createCell(3)
+                .setCellValue(u.getKolicina().toString());
+
+              
+
+            }
+
+            row = sheet.createRow(rowNum);
+            cell = row.createCell(4);
+            CellStyle style = workbook.createCellStyle();
+            DataFormat format = workbook.createDataFormat();
+            style.setDataFormat(format.getFormat("0.00"));
+            cell.setCellStyle(style);
+            //                      cell.setCellFormula("sum(A2:A" + (rowNum) + ")");
+
+            // Resize all columns to fit the content size
+            for (int i = 0; i < 4; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            // Write the output to a file
+            FileOutputStream fileOut = new FileOutputStream(jfc.getSelectedFile());
+            workbook.write(fileOut);
+            fileOut.close();
+
+            // Closing the workbook
+            workbook.close();
+
+            ProcessBuilder builder = new ProcessBuilder(
+                "cmd.exe", "/c", jfc.getSelectedFile().getAbsolutePath());
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
+
     @Override
     public void napuniModel(){
         var u= obrada.getEntitet();
@@ -379,7 +507,7 @@ implements NovoselacViewSucelje{
             }
         }
 
-        lblUkupnoDjecePoUsluzi.setText("Ukupno djece po posjetama: " + ukupno);
+//        lblUkupnoDjecePoUsluzi.setText("Ukupno djece po posjetama: " + ukupno);
     
         
         
@@ -394,6 +522,7 @@ implements NovoselacViewSucelje{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBrisi;
     private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -401,7 +530,6 @@ implements NovoselacViewSucelje{
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblUkupnoDjecePoUsluzi;
     private javax.swing.JList<Usluga> lstPodaci;
     private javax.swing.JTextField txtCijena;
     private javax.swing.JTextField txtJedinicaMjere;

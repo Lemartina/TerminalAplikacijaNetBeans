@@ -5,10 +5,12 @@
 package novoselac.view;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import novoselac.controller.ObradaDjelatnik;
 import novoselac.model.Djelatnik;
@@ -16,6 +18,16 @@ import novoselac.util.Alati;
 import novoselac.util.Aplikacija;
 import novoselac.util.NovoselacException;
 import org.apache.commons.lang3.text.StrBuilder;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -77,7 +89,7 @@ implements NovoselacViewSucelje{
         txtRadnoMjesto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnDovuciOib = new javax.swing.JButton();
-        lblSlika = new javax.swing.JLabel();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -150,9 +162,10 @@ implements NovoselacViewSucelje{
             }
         });
 
-        lblSlika.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSlikaMouseClicked(evt);
+        btnExcel.setText("Ispiši u Excel");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
             }
         });
 
@@ -185,10 +198,9 @@ implements NovoselacViewSucelje{
                             .addComponent(btnPromjeni)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnBrisi))
-                        .addComponent(txtIban))
+                        .addComponent(txtIban)
+                        .addComponent(btnExcel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(lblSlika, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -201,35 +213,34 @@ implements NovoselacViewSucelje{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnDovuciOib))
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtIban, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtRadnoMjesto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblSlika, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDovuciOib))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtIban, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRadnoMjesto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodaj)
                             .addComponent(btnPromjeni)
-                            .addComponent(btnBrisi)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addComponent(btnBrisi))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExcel))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -323,13 +334,114 @@ implements NovoselacViewSucelje{
         txtOib.setText(Alati.dovuciOib());
     }//GEN-LAST:event_btnDovuciOibActionPerformed
 
-    private void lblSlikaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSlikaMouseClicked
-        if(lstPodaci.getSelectedValue() == null){
-            JOptionPane.showMessageDialog(
-                    getRootPane(), 
-                    "Prvo odaberite djelatnika");
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        jfc.setSelectedFile(new File(System.getProperty("user.home")
+            + File.separator + "djelatnici.xlsx"));
+    if (jfc.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+        return;
         }
-    }//GEN-LAST:event_lblSlikaMouseClicked
+
+        try {
+
+            Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+            /* CreationHelper helps us create instances of various things like DataFormat,
+            Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
+            CreationHelper createHelper = workbook.getCreationHelper();
+
+            // Create a Sheet
+            Sheet sheet = workbook.createSheet("Popis djelatnika");
+
+            // Create a Font for styling header cells
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setFontHeightInPoints((short) 14);
+            headerFont.setColor(IndexedColors.RED.getIndex());
+
+            // Create a CellStyle with the font
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFont(headerFont);
+
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
+
+            // Create cells
+            Cell cell = headerRow.createCell(0);
+            cell.setCellValue("Ime djelatnika");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(1);
+            cell.setCellValue("Prezime djelatnika");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(2);
+            cell.setCellValue("Oib djelatnika");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(3);
+            cell.setCellValue("IBAN djelatnika");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(4);
+            cell.setCellValue("Radno mjesto");
+            cell.setCellStyle(headerCellStyle);
+
+            // Create Other rows and cells with employees data
+            int rowNum = 1;
+            Row row;
+            for(Djelatnik d: obrada.read()){
+
+                row = sheet.createRow(rowNum++);
+
+                row.createCell(0)
+                .setCellValue(d.getIme());
+
+                row.createCell(1)
+                .setCellValue(d.getPrezime());
+
+                row.createCell(2)
+                .setCellValue(d.getOib());
+
+                row.createCell(3)
+                .setCellValue(d.getIban());
+
+                row.createCell(4)
+                .setCellValue(d.getRadnoMjesto());
+
+            }
+
+            row = sheet.createRow(rowNum);
+            cell = row.createCell(5);
+            CellStyle style = workbook.createCellStyle();
+            DataFormat format = workbook.createDataFormat();
+            style.setDataFormat(format.getFormat("0.00"));
+            cell.setCellStyle(style);
+            //                      cell.setCellFormula("sum(A2:A" + (rowNum) + ")");
+
+            // Resize all columns to fit the content size
+            for (int i = 0; i < 4; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            // Write the output to a file
+            FileOutputStream fileOut = new FileOutputStream(jfc.getSelectedFile());
+            workbook.write(fileOut);
+            fileOut.close();
+
+            // Closing the workbook
+            workbook.close();
+
+            ProcessBuilder builder = new ProcessBuilder(
+                "cmd.exe", "/c", jfc.getSelectedFile().getAbsolutePath());
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     
     /**
@@ -341,6 +453,7 @@ implements NovoselacViewSucelje{
     private javax.swing.JButton btnBrisi;
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDovuciOib;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -349,7 +462,6 @@ implements NovoselacViewSucelje{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblSlika;
     private javax.swing.JList<Djelatnik> lstPodaci;
     private javax.swing.JTextField txtIban;
     private javax.swing.JTextField txtIme;
@@ -367,38 +479,38 @@ implements NovoselacViewSucelje{
         txtIban.setText(e.getIban());
         txtRadnoMjesto.setText(e.getRadnoMjesto());
         
-         String path = ProzorDjelatnik.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        path =path.replace("\\", "/");
- String[] niz = path.split("/");
-        
-        StringBuilder sb = new StringBuilder();
-        for(int i=1;i<niz.length-1;i++){
-            sb.append(niz[i]);
-            sb.append(File.separator);
-        }
-        
-        
-        path = sb.toString();
-        System.out.println(path);
-        
-        sb.append("slike");
-        sb.append(File.separator);
-        String pocetniDirektorij = sb.toString();
-        sb.append("djelatnici");
-        sb.append(File.separator);
+//         String path = ProzorDjelatnik.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+//        path =path.replace("\\", "/");
+// String[] niz = path.split("/");
+//        
+//        StringBuilder sb = new StringBuilder();
+//        for(int i=1;i<niz.length-1;i++){
+//            sb.append(niz[i]);
+//            sb.append(File.separator);
+//        }
         
         
-        path =  sb.toString() + e.getSifra() + ".jpg";
-        System.out.println(path);
-        File slika = new File(path );
+//        path = sb.toString();
+//        System.out.println(path);
+//        
+//        sb.append("slike");
+//        sb.append(File.separator);
+//        String pocetniDirektorij = sb.toString();
+//        sb.append("djelatnici");
+//        sb.append(File.separator);
+//        
         
-        if(slika.exists()){
-            System.out.println("Slika postoji");
-            lblSlika.setIcon(new ImageIcon(slika.getAbsolutePath()));
-        }else{
-            slika = new File(pocetniDirektorij + File.separator + "nemaslike.jpg");
-            lblSlika.setIcon(new ImageIcon(slika.getAbsolutePath()));
-        }
+//        path =  sb.toString() + e.getSifra() + ".jpg";
+//        System.out.println(path);
+//        File slika = new File(path );
+//        
+//        if(slika.exists()){
+//            System.out.println("Slika postoji");
+//            lblSlika.setIcon(new ImageIcon(slika.getAbsolutePath()));
+//        }else{
+//            slika = new File(pocetniDirektorij + File.separator + "nemaslike.jpg");
+//            lblSlika.setIcon(new ImageIcon(slika.getAbsolutePath()));
+//        }
         
     }
 

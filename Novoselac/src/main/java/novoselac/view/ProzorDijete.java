@@ -5,13 +5,26 @@
 package novoselac.view;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import novoselac.controller.ObradaDijete;
 import novoselac.model.Dijete;
 import novoselac.util.Alati;
 import novoselac.util.Aplikacija;
 import novoselac.util.NovoselacException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -79,6 +92,7 @@ implements NovoselacViewSucelje{
         txtOib = new javax.swing.JTextField();
         btnDovuciOib = new javax.swing.JButton();
         btnBrisi = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -171,6 +185,13 @@ implements NovoselacViewSucelje{
             }
         });
 
+        btnExcel.setText("Ispiši u Excel");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,26 +227,28 @@ implements NovoselacViewSucelje{
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtTelefonRodtelja, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtImeRoditelja, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnDodaj)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPromjeni)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBrisi)))
-                        .addContainerGap(67, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDovuciOib, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnExcel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTelefonRodtelja, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtImeRoditelja, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnDodaj)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnPromjeni)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnBrisi))))
+                        .addContainerGap(67, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,14 +262,13 @@ implements NovoselacViewSucelje{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTrazi))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
                                 .addComponent(chbTraziOdPocetkaImena)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,8 +295,9 @@ implements NovoselacViewSucelje{
                                     .addComponent(btnDodaj)
                                     .addComponent(btnPromjeni)
                                     .addComponent(btnBrisi))
-                                .addGap(25, 25, 25)))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcel)))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -384,6 +407,118 @@ implements NovoselacViewSucelje{
         }
     }//GEN-LAST:event_btnBrisiActionPerformed
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        jfc.setSelectedFile(new File(System.getProperty("user.home")
+            + File.separator + "djeca.xlsx"));
+    if (jfc.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+        return;
+        }
+
+        try {
+
+            Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
+
+            /* CreationHelper helps us create instances of various things like DataFormat,
+            Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
+            CreationHelper createHelper = workbook.getCreationHelper();
+
+            // Create a Sheet
+            Sheet sheet = workbook.createSheet("Popis djece iz baze");
+
+            // Create a Font for styling header cells
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerFont.setFontHeightInPoints((short) 14);
+            headerFont.setColor(IndexedColors.RED.getIndex());
+
+            // Create a CellStyle with the font
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFont(headerFont);
+
+            // Create a Row
+            Row headerRow = sheet.createRow(0);
+
+            // Create cells
+            Cell cell = headerRow.createCell(0);
+            cell.setCellValue("Ime djeteta");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = headerRow.createCell(1);
+            cell.setCellValue("Prezime djeteta");
+            cell.setCellStyle(headerCellStyle);
+            
+            
+            cell = headerRow.createCell(2);
+            cell.setCellValue("Oib djeteta");
+            cell.setCellStyle(headerCellStyle);
+            
+            cell = headerRow.createCell(3);
+            cell.setCellValue("Ime roditelja");
+            cell.setCellStyle(headerCellStyle);
+            
+                cell = headerRow.createCell(4);
+            cell.setCellValue("Telefon roditelja");
+            cell.setCellStyle(headerCellStyle);
+
+            // Create Other rows and cells with employees data
+            int rowNum = 1;
+            Row row;
+            for(Dijete d: obrada.read()){
+              
+
+                    row = sheet.createRow(rowNum++);
+
+                    row.createCell(0)
+                    .setCellValue(d.getIme());
+
+                    row.createCell(1)
+                    .setCellValue(d.getPrezime());
+
+                    row.createCell(2)
+                    .setCellValue(d.getOib());
+                    
+                    row.createCell(3)
+                    .setCellValue(d.getImeRoditelja());
+                  
+                    row.createCell(4)
+                    .setCellValue(d.getTelefonRoditelja());
+
+            }
+
+            row = sheet.createRow(rowNum);
+            cell = row.createCell(5);
+            CellStyle style = workbook.createCellStyle();
+            DataFormat format = workbook.createDataFormat();
+            style.setDataFormat(format.getFormat("0.00"));
+            cell.setCellStyle(style);
+//                      cell.setCellFormula("sum(A2:A" + (rowNum) + ")");
+
+            // Resize all columns to fit the content size
+            for (int i = 0; i < 4; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            // Write the output to a file
+            FileOutputStream fileOut = new FileOutputStream(jfc.getSelectedFile());
+            workbook.write(fileOut);
+            fileOut.close();
+
+            // Closing the workbook
+            workbook.close();
+
+            ProcessBuilder builder = new ProcessBuilder(
+                "cmd.exe", "/c", jfc.getSelectedFile().getAbsolutePath());
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btnExcelActionPerformed
+
  
 
     @Override
@@ -417,6 +552,7 @@ implements NovoselacViewSucelje{
     private javax.swing.JButton btnBrisi;
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDovuciOib;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JButton btnTrazi;
     private javax.swing.JCheckBox chbTraziOdPocetkaImena;
