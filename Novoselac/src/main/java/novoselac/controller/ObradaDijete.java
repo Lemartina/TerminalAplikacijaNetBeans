@@ -29,7 +29,7 @@ public class ObradaDijete extends Obrada<Dijete> {
         uvjet=uvjet.trim();
         uvjet = "%" + uvjet + "%";
        return session.createQuery("from Dijete "
-               + " where concat(ime,' ',prezime,' ',ime) "
+               + " where concat(ime,' ',prezime,' ',ime, ' ', oib) "
                + " like :uvjet "
                + " order by prezime, ime ", 
                Dijete.class)

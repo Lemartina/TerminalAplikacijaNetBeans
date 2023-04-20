@@ -79,11 +79,11 @@ implements NovoselacViewSucelje{
            DefaultListModel<Posjeta> m = new DefaultListModel<>();
         m.addAll(obradaPosjeta.read(txtUvjet.getText().trim()));
        
-//        List<Posjeta> lista = obradaPosjeta.read();
-//        for (Posjeta p : lista){
-//            if (p.toString().toLowerCase().contains(txtUvjet.getText().trim().toLowerCase()))
-//        m.addElement(p);
-//                }
+        List<Posjeta> lista = obradaPosjeta.read();
+        for (Posjeta p : lista){
+            if (p.toString().toLowerCase().contains(txtUvjet.getText().trim().toLowerCase()))
+        m.addElement(p);
+                }
         
         lstDogovorenePosjete.setModel(m);
        lstDogovorenePosjete.repaint();
@@ -124,6 +124,11 @@ implements NovoselacViewSucelje{
 
         jLabel13.setText("Dogovorene posjete");
 
+        txtUvjet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUvjetActionPerformed(evt);
+            }
+        });
         txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUvjetKeyPressed(evt);
@@ -363,6 +368,10 @@ implements NovoselacViewSucelje{
     private void btnNoviUnos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoviUnos1ActionPerformed
         new ProzorDjelatnik().setVisible(true);
     }//GEN-LAST:event_btnNoviUnos1ActionPerformed
+
+    private void txtUvjetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUvjetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUvjetActionPerformed
 
     /**
      * @param args the command line arguments
