@@ -120,6 +120,7 @@ pokreniSat();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         lblGitHubMeni = new javax.swing.JMenuItem();
+        lblLinkedin = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         txtOperater = new javax.swing.JMenuItem();
@@ -219,6 +220,14 @@ pokreniSat();
             }
         });
         jMenu3.add(lblGitHubMeni);
+
+        lblLinkedin.setText("Linkedin");
+        lblLinkedin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblLinkedinActionPerformed(evt);
+            }
+        });
+        jMenu3.add(lblLinkedin);
 
         jMenuBar1.add(jMenu3);
 
@@ -325,6 +334,16 @@ pokreniSat();
      
     }//GEN-LAST:event_jMenu3ActionPerformed
 
+    private void lblLinkedinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblLinkedinActionPerformed
+         try {
+            ProcessBuilder builder = new ProcessBuilder(
+                    "cmd.exe", "/c", "explorer https://www.linkedin.com/in/martina-novoselac-79b65311a/");
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_lblLinkedinActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,6 +367,7 @@ pokreniSat();
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem lblGitHubMeni;
+    private javax.swing.JMenuItem lblLinkedin;
     private javax.swing.JLabel lblVrijeme;
     private javax.swing.JMenuItem txtOperater;
     // End of variables declaration//GEN-END:variables
