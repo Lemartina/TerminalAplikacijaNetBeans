@@ -119,31 +119,13 @@ implements NovoselacViewSucelje{
       
       
       
-//      private void ucitajUsluge(){
-//           DefaultComboBoxModel<Usluga> m
-//                = new DefaultComboBoxModel<>();
-//        Usluga u = new Usluga();
-//        u.setSifra(0);
-//        u.setNaziv("Nije odabrano");
-//        m.addElement(u);
-//        m.addAll(new ObradaUsluga().read());
-//        cmbOdaberiUslugu.setModel(m);
-//        cmbOdaberiUslugu.repaint();
-//      }
-//      
-      
-  
    
     
     
    @Override
-       // veza usluga posjeta -potrebna provjera!!!
+  
        public void ucitaj(){
-//              DefaultListModel<Posjeta> m = 
-//                new DefaultListModel<>();
-//        m.addAll(obrada.read((Usluga)cmbOdaberiUslugu.getSelectedItem()));
-//    lstOdabranaUsluga.setModel(m);
-//lstOdabranaUsluga.repaint();
+
     }
 
         /**
@@ -497,7 +479,7 @@ implements NovoselacViewSucelje{
     }//GEN-LAST:event_btnTraziActionPerformed
 
     private void btnIspisDogovorenihPosjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIspisDogovorenihPosjetaActionPerformed
-     new ProzorDijeteUslugaPosjeta().setVisible(true);
+     new ProzorDijetePosjeta().setVisible(true);
     }//GEN-LAST:event_btnIspisDogovorenihPosjetaActionPerformed
 
     private void txtUvjet1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjet1KeyPressed
