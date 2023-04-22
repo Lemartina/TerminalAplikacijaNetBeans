@@ -326,7 +326,7 @@ pokreniSat();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       new ProzorPregledPosjetaNaDjelatniku().setVisible(true);
+       new ProzorDjelatnikPosjeta().setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void lblGitHubMeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblGitHubMeniActionPerformed

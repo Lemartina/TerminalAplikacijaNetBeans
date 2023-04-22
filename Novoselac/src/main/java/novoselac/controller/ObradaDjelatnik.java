@@ -6,6 +6,7 @@ package novoselac.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import novoselac.model.Dijete;
 import novoselac.model.Djelatnik;
 import novoselac.model.GrafPodaci;
 import novoselac.util.Alati;
@@ -42,7 +43,17 @@ public class ObradaDjelatnik  extends Obrada<Djelatnik>{
     }
 
     
-    
+            public List<Djelatnik> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+       return session.createQuery("from Djelatnik "
+               + " where concat(ime,' ',prezime,' ',ime, ' ', oib) "
+               + " like :uvjet "
+               + " order by prezime, ime ", 
+               Djelatnik.class)
+               .setParameter("uvjet", uvjet)
+               .list();
+    }
     
 
     
