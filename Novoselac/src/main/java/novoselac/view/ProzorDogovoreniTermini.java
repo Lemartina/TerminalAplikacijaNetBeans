@@ -4,13 +4,16 @@
  */
 package novoselac.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import novoselac.controller.ObradaDijete;
 import novoselac.controller.ObradaPosjeta;
 import novoselac.controller.ObradaUsluga;
@@ -51,6 +54,8 @@ implements NovoselacViewSucelje
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Usluge po posjetama");
+         
+          
          ucitaj();
     }
 
@@ -67,7 +72,7 @@ implements NovoselacViewSucelje
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstPodaci = new javax.swing.JList<>();
+        lstUsluga = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstPosjeta = new javax.swing.JList<>();
 
@@ -84,15 +89,19 @@ implements NovoselacViewSucelje
 
         jLabel2.setText("Posjeta");
 
-        lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        lstUsluga.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstUsluga.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstPodaciValueChanged(evt);
+                lstUslugaValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(lstPodaci);
+        jScrollPane1.setViewportView(lstUsluga);
 
-        lstPosjeta.setEnabled(false);
+        lstPosjeta.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPosjetaValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lstPosjeta);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,7 +121,7 @@ implements NovoselacViewSucelje
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(41, Short.MAX_VALUE))
+                        .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnStatistikaUsluga)
@@ -138,24 +147,30 @@ implements NovoselacViewSucelje
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+ 
+    
+ 
     private void btnStatistikaUslugaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaUslugaActionPerformed
          new ProzorPregledUsluga().setVisible(true);
     }//GEN-LAST:event_btnStatistikaUslugaActionPerformed
 
-    private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
+    private void lstUslugaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstUslugaValueChanged
         if(evt.getValueIsAdjusting()){
             return;
         }
-        if(lstPodaci.getSelectedValue()==null){
+        if(lstUsluga.getSelectedValue()==null){
             return;
         }
 
-        obrada.setEntitet(lstPodaci.getSelectedValue());
+        obrada.setEntitet(lstUsluga.getSelectedValue());
 
         napuniView();
+    }//GEN-LAST:event_lstUslugaValueChanged
 
-    }//GEN-LAST:event_lstPodaciValueChanged
+    private void lstPosjetaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPosjetaValueChanged
+       
+
+    }//GEN-LAST:event_lstPosjetaValueChanged
 
     /**
      * @param args the command line arguments
@@ -168,8 +183,8 @@ implements NovoselacViewSucelje
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<Usluga> lstPodaci;
     private javax.swing.JList<Posjeta> lstPosjeta;
+    private javax.swing.JList<Usluga> lstUsluga;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -177,10 +192,10 @@ implements NovoselacViewSucelje
         
         
         // puni listu usluga
-        DefaultListModel<Usluga> m=
+          DefaultListModel<Usluga> m=
                 new DefaultListModel<>();
         m.addAll(obrada.read());
-        lstPodaci.setModel(m);
+        lstUsluga.setModel(m);
    }
 
     @Override

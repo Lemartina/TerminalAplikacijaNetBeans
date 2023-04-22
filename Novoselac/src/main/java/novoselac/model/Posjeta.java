@@ -119,7 +119,7 @@ public class Posjeta extends Entitet {
 	public String toString() {
             //stavljeno ovako da može stavljati vanjski ključ šifru djelatnika u tablicu posjeta
             try {
-            return Alati.sdf.format(datumVrijemeDolaska) + "  ( dijete:" + djeca.get(0)+ " ) ";
+            return Alati.sdf.format(datumVrijemeDolaska) + "  ( dijete: " + djeca.get(0)+ " , " + "usluga: " + usluge.get(0)+ ")";
         } catch (Exception e) {
         }
 		return datumVrijemeDolaska.toString();
