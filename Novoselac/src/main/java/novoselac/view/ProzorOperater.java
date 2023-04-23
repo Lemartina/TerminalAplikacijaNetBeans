@@ -223,7 +223,7 @@ implements NovoselacViewSucelje{
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odabertie djelatnika");
+                "Prvo odabertie operatera");
             return;
         }
 
@@ -241,7 +241,7 @@ implements NovoselacViewSucelje{
     private void btnBrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisiActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(getRootPane(),
-                "Prvo odaberite operater kojeg želite brisati");
+                "Prvo odaberite operatera kojeg želite brisati");
 
             return;
         }
@@ -339,7 +339,7 @@ implements NovoselacViewSucelje{
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtEmail.setText(e.getEmail());
-//       txtLozinka.setText(e.getLozinka()); string u char treba prebaciti
+ 
     }
 
     @Override
@@ -349,5 +349,6 @@ implements NovoselacViewSucelje{
         e.setPrezime(txtPrezime.getText());
         e.setOib(txtOib.getText());
        e.setEmail(e.getEmail());
+      
     }
 }

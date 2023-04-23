@@ -63,7 +63,7 @@
                   <Component id="jScrollPane2" alignment="0" min="-2" pref="525" max="-2" attributes="0"/>
                   <Component id="lblPosjeta" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

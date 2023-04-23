@@ -446,7 +446,7 @@ if(d.getPosjete()!=null && !d.getPosjete().isEmpty()){
                             }
 
         lstPosjeta.setModel(m);
-        lstPosjeta.repaint();
+//        lstPosjeta.repaint();
 
    }
  
