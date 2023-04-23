@@ -158,11 +158,11 @@ implements NovoselacViewSucelje
         if(evt.getValueIsAdjusting()){
             return;
         }
-        if(lstPosjeta.getSelectedValue()==null){
+        if(lstUsluga.getSelectedValue()==null){
             return;
         }
 
-        obrada.setEntitet(lstPosjeta.getSelectedValue());
+        obradaUsluga.setEntitet(lstUsluga.getSelectedValue());
 
         napuniView();
     }//GEN-LAST:event_lstPosjetaValueChanged
@@ -210,10 +210,10 @@ implements NovoselacViewSucelje
     @Override
     public void napuniView() {
   var u = obrada.getEntitet(); 
-        DefaultListModel<Posjeta> m = new DefaultListModel<>();
-         m.addElement(u);
-        lstPosjeta.setModel(m);
-        lstPosjeta.repaint();
+        DefaultListModel<Usluga> m = new DefaultListModel<>();
+         m.addElement((Usluga) obradaUsluga.read());
+        lstUsluga.setModel(m);
+        lstUsluga.repaint();
     
     
     }

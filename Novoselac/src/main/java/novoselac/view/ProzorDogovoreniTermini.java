@@ -7,6 +7,9 @@ package novoselac.view;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +47,7 @@ implements NovoselacViewSucelje
     
     private ObradaUsluga obrada;
     private ObradaPosjeta obradaPosjeta;
+    private DecimalFormat df;
     /**
      * Creates new form ProzorDogovoreniTermini
      */
@@ -51,6 +55,13 @@ implements NovoselacViewSucelje
         initComponents();
         obrada = new ObradaUsluga();
         obradaPosjeta= new ObradaPosjeta();
+        
+        
+         DecimalFormatSymbols dfs=
+                new DecimalFormatSymbols(
+                        new Locale("hr", "HR"));
+        df= new DecimalFormat("###,##0.00", dfs);
+        
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Usluge po posjetama");
@@ -75,6 +86,14 @@ implements NovoselacViewSucelje
         lstUsluga = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstPosjeta = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        txtCijena = new javax.swing.JTextField();
+        txtKolicina = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNaziv = new javax.swing.JTextField();
+        txtJedinicaMjere = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,6 +123,32 @@ implements NovoselacViewSucelje
         });
         jScrollPane2.setViewportView(lstPosjeta);
 
+        jLabel3.setText("Cijena");
+
+        txtCijena.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtKolicina.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jLabel4.setText("Jedinica mjere");
+
+        jLabel5.setText("Naziv");
+
+        jLabel6.setText("Količina");
+
+        txtNaziv.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtNaziv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNazivActionPerformed(evt);
+            }
+        });
+
+        txtJedinicaMjere.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtJedinicaMjere.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtJedinicaMjereActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,21 +156,33 @@ implements NovoselacViewSucelje
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnStatistikaUsluga)
-                        .addGap(77, 77, 77))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnStatistikaUsluga)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtCijena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtJedinicaMjere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtKolicina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,13 +192,29 @@ implements NovoselacViewSucelje
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCijena, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtJedinicaMjere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtKolicina, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnStatistikaUsluga))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,6 +245,14 @@ implements NovoselacViewSucelje
 
     }//GEN-LAST:event_lstPosjetaValueChanged
 
+    private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNazivActionPerformed
+
+    private void txtJedinicaMjereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJedinicaMjereActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtJedinicaMjereActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,10 +262,18 @@ implements NovoselacViewSucelje
     private javax.swing.JButton btnStatistikaUsluga;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<Posjeta> lstPosjeta;
     private javax.swing.JList<Usluga> lstUsluga;
+    private javax.swing.JTextField txtCijena;
+    private javax.swing.JTextField txtJedinicaMjere;
+    private javax.swing.JTextField txtKolicina;
+    private javax.swing.JTextField txtNaziv;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -203,8 +292,22 @@ implements NovoselacViewSucelje
         
         var u = obrada.getEntitet();
         
-        // veza usluga posjeta       
+           
+     txtNaziv.setText(u.getNaziv());
         
+        try {
+          txtCijena.setText(df.format(u.getCijena()));  
+        } catch (Exception e) {
+            txtCijena.setText(" ");
+        }
+        
+        txtJedinicaMjere.setText(u.getJedinicaMjere());
+        
+        try {
+             txtKolicina.setText(df.format(u.getKolicina())); 
+        } catch (Exception e) {
+            txtKolicina.setText(" "); //ako je u bazi null ispisat će prazno polje
+        }    
    DefaultListModel<Posjeta> m = new DefaultListModel<>();
    if (u.getPosjete()!=null && !u.getPosjete().isEmpty()){
        m.addAll(u.getPosjete());
@@ -223,7 +326,45 @@ implements NovoselacViewSucelje
     @Override
     public void napuniModel() {
         
-        var e = obrada.getEntitet();
+        var u = obrada.getEntitet();
+        
+          //naziv
+       u.setNaziv(txtNaziv.getText());
+       
+       //cijena
+            try {
+            u.setCijena(
+                    BigDecimal.valueOf(
+                    df.parse(
+                            txtCijena.getText())
+                            .doubleValue()
+                    )
+            );
+        } catch (Exception e) {
+            u.setCijena(BigDecimal.ZERO);
+        }
+        
+      //jedinica mjere     
+    
+       u.setJedinicaMjere(txtJedinicaMjere.getText());
+    
+    
+       //količina
+       
+           try {
+            u.setKolicina(
+                    BigDecimal.valueOf(
+                    df.parse(
+                            txtKolicina.getText())
+                            .doubleValue()
+                    )
+            );
+        } catch (Exception e) {
+            u.setKolicina(BigDecimal.ZERO);
+        }
+        
+        
+        
          List<Posjeta> posjete = new ArrayList<>();
         try {
             DefaultListModel<Posjeta> m = (DefaultListModel<Posjeta>) lstPosjeta.getModel();
@@ -233,7 +374,7 @@ implements NovoselacViewSucelje
         } catch (Exception ex) {
             
         }
-        e.setPosjete(posjete);
+        u.setPosjete(posjete);
         
     }
         

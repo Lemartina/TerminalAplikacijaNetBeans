@@ -161,7 +161,7 @@ pokreniSat();
 
         jMenu1.setText("Obrada");
 
-        jMenuItem4.setText("Posjete");
+        jMenuItem4.setText("Posjeta - dijete");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -169,7 +169,7 @@ pokreniSat();
         });
         jMenu1.add(jMenuItem4);
 
-        jMenuItem8.setText("Raspored zaposlenih");
+        jMenuItem8.setText("Posjeta - djelatnik");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);

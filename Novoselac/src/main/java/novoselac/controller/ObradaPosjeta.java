@@ -45,6 +45,17 @@ public class ObradaPosjeta extends Obrada <Posjeta> {
                 .setParameter("djelatnik", d)
                 .list();
     }
+        
+        
+        
+                public List<Posjeta> read(Dijete d) {
+        return session.createQuery
+        ("from Posjeta"
+                + "where dijete= :dijete",
+                Posjeta.class)
+                .setParameter("dijete", d)
+                .list();
+    }
     
     public List<Posjeta> read(String uvjet) {
         uvjet=uvjet.trim();

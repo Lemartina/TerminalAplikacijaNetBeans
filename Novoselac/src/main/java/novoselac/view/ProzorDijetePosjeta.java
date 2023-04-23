@@ -441,16 +441,34 @@ for (Posjeta p : d.getPosjete()) {
     
               
         DefaultListModel<Posjeta> m = new DefaultListModel<>();
-        int ukupno=0;
-        if(d.getPosjete()!=null && !d.getPosjete().isEmpty()){
-            for(Posjeta p : d.getPosjete()){
-                ukupno+=p.getDjeca().size();
-                m.addElement(p);
-            }
-        }
+//        int ukupno=0;
+//        if(d.getPosjete()!=null && !d.getPosjete().isEmpty()){
+//            for(Posjeta p : d.getPosjete()){
+//                ukupno+=p.getDjeca().size();
+//                m.addElement(p);
+//                            }
+//       }
+if(d.getPosjete()!=null && !d.getPosjete().isEmpty()){
+            m.addAll(d.getPosjete());
+                            }
+
         lstPosjeta.setModel(m);
         lstPosjeta.repaint();
 //        lblUkupnoDjeceNaPosjeti.setText("Ukupno djece: " + ukupno);
+
+
+
+
+//  List<Posjeta> posjete = new ArrayList<>();
+//        try {
+//            DefaultListModel<Posjeta> m = (DefaultListModel<Posjeta>) lstPosjeta.getModel();
+//            for(int i=0;i<m.getSize();i++){
+//                posjete.add(m.getElementAt(i));
+//            }
+//        } catch (Exception ex) {
+//            
+//        }
+//        d.setPosjete(posjete);
     
    }
  
