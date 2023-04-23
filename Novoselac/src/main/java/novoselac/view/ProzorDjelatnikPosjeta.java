@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import novoselac.controller.ObradaDjelatnik;
+import novoselac.controller.ObradaPosjeta;
 import novoselac.model.Dijete;
 import novoselac.model.Djelatnik;
 import novoselac.model.Posjeta;
@@ -34,6 +35,7 @@ public class ProzorDjelatnikPosjeta
 implements NovoselacViewSucelje{
 
     private ObradaDjelatnik obrada;
+     private ObradaPosjeta obradaPosjeta;
     /**
      * Creates new form ProzorDjelatnikPosjeta
      */
@@ -41,6 +43,7 @@ implements NovoselacViewSucelje{
     public ProzorDjelatnikPosjeta() {
         initComponents();
         obrada = new ObradaDjelatnik();
+        obradaPosjeta = new ObradaPosjeta();
          setTitle(Aplikacija.NAZIV_NOVOSELAC+ ": "+
                Aplikacija.OPERATER.getImePrezime() +
                 ": Pregled posjeta po djelatnicima");
@@ -436,16 +439,14 @@ implements NovoselacViewSucelje{
         txtRadnoMjesto.setText(e.getRadnoMjesto());
         
         
-         DefaultListModel<Posjeta> m = new DefaultListModel<>();
-        int ukupno=0;
-        if(e.getPosjete()!=null && !e.getPosjete().isEmpty()){
-            for(Posjeta p : e.getPosjete()){
-                p.getDjelatnik();
-                m.addElement(p);
-            }
-        }
+       DefaultListModel<Posjeta> m = new DefaultListModel<>();
+if(e.getPosjete()!=null && !e.getPosjete().isEmpty()){
+            m.addAll(e.getPosjete());
+                            }
+
         lstPosjeta.setModel(m);
-        lstPosjeta.repaint();      
+        lstPosjeta.repaint();
+   
        
     }
 
