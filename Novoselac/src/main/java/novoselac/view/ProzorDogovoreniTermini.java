@@ -189,9 +189,9 @@ implements NovoselacViewSucelje
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -286,6 +286,7 @@ implements NovoselacViewSucelje
                 new DefaultListModel<>();
         m.addAll(obrada.read());
         lstUsluga.setModel(m);
+        lstUsluga.repaint();
    }
 
     @Override
@@ -362,16 +363,16 @@ implements NovoselacViewSucelje
         
         
         
-         List<Posjeta> posjete = new ArrayList<>();
-        try {
-            DefaultListModel<Posjeta> m = (DefaultListModel<Posjeta>) lstPosjeta.getModel();
-            for(int i=0;i<m.getSize();i++){
-                posjete.add(m.getElementAt(i));
-            }
-        } catch (Exception ex) {
-            
-        }
-        u.setPosjete(posjete);
+//         List<Posjeta> posjete = new ArrayList<>();
+//        try {
+//            DefaultListModel<Posjeta> m = (DefaultListModel<Posjeta>) lstPosjeta.getModel();
+//            for(int i=0;i<m.getSize();i++){
+//                posjete.add(m.getElementAt(i));
+//            }
+//        } catch (Exception ex) {
+//            
+//        }
+//        u.setPosjete(posjete);
         
     }
         

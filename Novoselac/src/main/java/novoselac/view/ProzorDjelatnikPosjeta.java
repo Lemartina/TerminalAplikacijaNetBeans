@@ -427,7 +427,8 @@ implements NovoselacViewSucelje{
            DefaultListModel<Djelatnik> m= new DefaultListModel<>();
         m.addAll(obrada.read(txtUvjet.getText().trim()));
         lstPodaci.setModel(m);
-        lstPodaci.repaint(); }
+       lstPodaci.repaint(); 
+    }
 
     @Override
     public void napuniView() {
