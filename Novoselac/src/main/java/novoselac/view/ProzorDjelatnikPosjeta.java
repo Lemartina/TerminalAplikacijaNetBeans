@@ -331,18 +331,17 @@ implements NovoselacViewSucelje{
             cell.setCellValue("Datum dolaska");
             cell.setCellStyle(headerCellStyle);
             
-             cell = headerRow.createCell(6);
-            cell.setCellValue("Usluga");
-            cell.setCellStyle(headerCellStyle);
+
 
             // Create Other rows and cells with employees data
             int rowNum = 1;
             Row row;
             for(Djelatnik d: obrada.read()){
                 for (Posjeta p : d.getPosjete()) {
+                  
                     row = sheet.createRow(rowNum++);
 
-                    row.createCell(0)
+                   row.createCell(0)
                     .setCellValue(d.getIme());
 
                     row.createCell(1)
@@ -359,11 +358,11 @@ implements NovoselacViewSucelje{
 
                     row.createCell(5)
                     .setCellValue(p.getDatumVrijemeDolaska().toString());
-                    
-                    
-                }
+              
+                
+                
             }
-
+            }
             row = sheet.createRow(rowNum);
             cell = row.createCell(6);
             CellStyle style = workbook.createCellStyle();
